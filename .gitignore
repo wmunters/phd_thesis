@@ -7,3 +7,8 @@
 *.xml
 *.out
 *.log
+*.loc
+*.lof
+*.ps
+*.lot
+*.toc
