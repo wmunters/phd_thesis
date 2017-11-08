@@ -1,0 +1,17 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: thesis.aux
+The style file: jfm.bst
+A level-1 auxiliary file: abbreviations.aux
+A level-1 auxiliary file: nomenclature.aux
+A level-1 auxiliary file: chapters/introduction/introduction.aux
+A level-1 auxiliary file: chapters/appendix_adm/appendix_adm.aux
+A level-1 auxiliary file: chapters/appendix_variance/appendix_variance.aux
+A level-1 auxiliary file: chapters/appendix_adjoint_derivation/appendix_adjoint_derivation.aux
+Illegal, another \bibstyle command---line 60 of file thesis.aux
+ : \bibstyle
+ :          {acm}
+I'm skipping whatever remains of this command
+A level-1 auxiliary file: chapters/curriculum/curriculum.aux
+A level-1 auxiliary file: chapters/publications/publications.aux
+Database file #1: bibfile.bib
+Warning--empty publisher in jensen1983note
+(There was 1 error message)

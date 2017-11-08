@@ -1,0 +1,156 @@
+\documentclass[showinstructions,faculty=firw,department=wtk,phddegree=wtk,final]{adsphd}
+
+% !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+% !!                                                               !!
+% !!  WARNING: do not remove the following lines between           !!
+% !!  "%%% COVER: Settings %%%" and "%%% COVER: End settings %%%"  !!
+% !!                                                               !!
+% !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+%%% COVER: Settings %%%
+	\title{Large-eddy simulations and optimal coordinated control of wind-farm boundary layers}
+
+	\author{Wim}{Munters}
+	\supervisor{Prof.~dr.~ir.~J.~Meyers}{}
+	\president{(to be determined)}
+	\jury{Prof.~dr.~N.~van~Lipzig\\Prof.~dr.~ir.~G.~Samaey}
+	\externaljurymember{Prof.~dr.~ir.~Jan-Willem~van Wingerden}{Delft University of Technology, Netherlands}
+	\externaljurymember{Prof.~dr.~ir.~Stefan~Ivanell}{KTH and Uppsala University, Sweden}
+	\researchgroup{Turbulent Flow Simulation \& Optimization Group}
+	\website{http://www.mech.kuleuven.be/en/tme/research/tfso} % Leave empty to hide
+	\email{wim.munters@kuleuven.be} % Leave empty to hide
+	\address{Celestijnenlaan 300 box 2421}
+	\addresscity{B-3001 Leuven} 
+	\date{November 2017}
+	\copyyear{2017}
+
+	% Set spine width:
+	\setlength{\adsphdspinewidth}{9mm}
+
+	%% Set bleeds
+	%\setlength{\defaultlbleed}{7mm}
+	%\setlength{\defaultrbleed}{7mm}
+
+	% Set custom cover page
+	% \setcustomcoverpage{mycoverpage.tex} % mycoverpage.tex is the default
+
+%%% COVER: End settings %%%
+
+% for the nomenclature (comment out if you do not use the nomencl package
+%\usepackage{nomencl}   % For nomenclature
+%\renewcommand{\nomname}{List of Symbols}
+%\newcommand{\myprintnomenclature}{%
+%  \cleardoublepage%
+%  \printnomenclature%
+%  \chaptermark{\nomname}
+%  \addcontentsline{toc}{chapter}{\nomname} %% comment to exclude from TOC
+%}
+%\makenomenclature%
+%
+%% for the list of abbreviations (comment out if you do not use the glossaries package
+%\usepackage{glossaries} % For list of abbreviations
+%\newcommand{\glossname}{List of Abbreviations}
+%\newcommand{\myprintglossary}{%
+%  \renewcommand{\glossaryname}{\glossname}
+%  \cleardoublepage%
+%  \printglossary[title=\glossname]
+%  \chaptermark{\glossname}
+%  \addcontentsline{toc}{chapter}{\glossname} %% comment to exclude from TOC
+%}
+%\makeglossaries%
+
+
+%% BibLaTeX
+%\usepackage[utf8]{inputenc}
+%\usepackage{csquotes}
+%\usepackage[
+%  hyperref=auto,
+%  mincrossrefs=999,
+%  backend=biber,
+%  style=authoryear-icomp
+%]{biblatex}
+%\addbibresource{allpapers.bib}
+
+% Bibtex
+\usepackage[authoryear]{natbib}
+
+% Fonts
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\usepackage{textcomp} % nice greek alphabet
+\usepackage{pifont}   % Dingbats
+\usepackage{booktabs}
+\usepackage{amssymb,amsthm}
+\usepackage{amsmath}
+
+
+\usepackage[authoryear]{natbib}
+\bibliographystyle{jfm}
+
+%\includeonly{introduction}
+
+\include{packages_and_commands}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makefrontcoverXII
+
+\maketitle
+
+\frontmatter % to get \pagenumbering{roman}
+
+%\includepreface{preface}
+%\includeabstract{abstract}
+%\includeabstractnl{abstractnl}
+
+%% To create a list of abbreviations, there are 2 options
+%% 1. manual creation of list of abbreviations and inclusion as a chapter
+%%    \includeabbreviations{abbreviations}
+%% 2. automatic generation via the glossary package
+%%    \glossary{name=MD,description=molecular dynamics}
+
+
+%% To create a list of symbols, there are 2 options
+%% 1. include a manually created nomenclature as a chapter
+\includenomenclature{nomenclaturechapter}
+%% 2. automatic generation via the nomencl package
+%%    \nomenclature[cB]{$c_B(\vec{x})$}{Characteristic function of $B$}
+
+%
+\tableofcontents
+\listoffigures
+\listoftables
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MAIN MATTER
+\mainmatter 
+\includechapter{introduction}
+%\includechapter{methodology}
+%\includechapter{turbulent_inflow}
+%\includechapter{optimal_control_problem}
+%\includechapter{optimal_induction_control}
+%\includechapter{analysis_induction_control}
+%\includechapter{optimal_yaw_control}
+%\includechapter{conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% APPENDICES
+\appendix
+\includeappendix{appendix_adm}
+\includeappendix{appendix_variance}
+\includeappendix{appendix_adjoint_derivation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BACKMATTER
+\backmatter
+% BibTex
+\bibliographystyle{acm}
+\bibliography{bibfile}
+\includecv{curriculum} %UNCOMMENT THIS
+\includepublications{publications} %UNCOMMENT THIS
+\makebackcoverXII
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+

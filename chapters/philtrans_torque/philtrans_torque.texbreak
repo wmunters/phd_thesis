@@ -1,0 +1,493 @@
+	%%%% Article title to be placed here
+	\chapter[An optimal control framework for dynamic induction control of wind farms and their interaction with the atmospheric boundary layer]{An optimal control framework for dynamic induction control of wind farms and their interaction with the atmospheric boundary layer\raisebox{.3\baselineskip}{\normalsize\footnotemark}}
+	\footnotetext{Parts of the contents of this chapter have been published in ``An optimal control framework for dynamic induction control of wind farms and their interaction with the atmospheric boundary layer.'' Phil Trans Roy Soc A, 375 (2091), 20160100, with J. Meyers as co-author}
+	
+	
+	
+	%%%% Abstract text to be placed here %%%%%%%%%%%%
+	\begin{abstract}
+		Complex turbine wake interactions play an important role in overall energy extraction in large wind farms. Current control strategies optimize individual turbine power, and lead to significant energy losses in wind farms compared to lone-standing wind turbines. In recent work, an optimal coordinated control framework was introduced (Goit and Meyers 2015, J Fluid Mech, 768, 5--50). Here, we further elaborate this framework, quantify the influence of optimization parameters, and introduce new simulation results for which gains in power production of up to 21\% are observed. 
+	\end{abstract}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	%%%%%%%%%% Insert the texts which can accomdate on firstpage in the tag "fmtext" %%%%%
+	
+	%\begin{fmtext}
+	\section{Introduction}\label{sec:introduction}
+	%%%% Insert A head here
+	
+	In large-scale wind farms, a large number of wind turbines is clustered together, and complex turbine wake interactions play an important role in energy extraction from the atmospheric boundary layer (ABL). Current control strategies typically maximize power extraction at turbine level, but do not take into account wind-farm wake interactions, leading to power deficits in downstream regions of the wind farm. More specifically, efficiency losses of up to 40\% compared to lone-standing turbines have been reported in operational offshore wind farms \cite{barthelmie2007modelling, barthelmie2010quantifying}. Recently, Goit and Meyers \cite{goit2015optimal} introduced an optimal coordinated control framework for dynamic induction control of wind-farm boundary layers for maximal energy extraction. In this framework, wind turbines are used as active flow actuators that optimally influence turbine wake interactions as well as the interplay of the wind farm with the turbulent ABL. To this end, a model-predictive optimal control approach was employed, in which the wind-farm boundary layer
+	%\end{fmtext}
+	\maketitle
+	
+	\noindent  is modeled using large-eddy simulations (LES) of the Navier-Stokes partial differential equations (PDE). As also explained in the current paper, the method is not directly useable as a real controller, but instead provides benchmark results that yield insights in the potential of wind-farm control, which may help in elucidating new control mechanisms for wind farms. The framework was applied earlier to fully-developed wind farms \cite{goit2015optimal} as well as wind farms with entrance effects \cite{goit2016optimal}, for which gains in energy extraction of 16 and 7\% were achieved respectively.
+	
+	Here, we review and further elaborate on the work introduced by Goit and Meyers \cite{goit2015optimal}. We quantify the influence of optimization parameters, and reveal differences with previous studies. In addition, we present new results, further illustrating the potential of optimal control methods applied to wind-farm boundary layers. The paper is structured as follows: Section \ref{sec:methodology} introduces key aspects of the methodological approach. Section \ref{sec:results} introduces recent results, and quantifies the sensitivity of the performance of the overall optimal control framework to user-defined parameters. Finally, Section \ref{sec:conclusion} provides a concise summary and indicates directions for future research.
+	
+	\section{Methodology}\label{sec:methodology}
+	We discuss the aforementioned optimal control methodology, highlighting key aspects of and differences with previous work \cite{goit2015optimal, goit2016optimal}. First, our receding-horizon optimal control approach is discussed, and compared to classical model-predictive control methods. Subsequently, the PDE-constrained optimization problem is introduced. Afterwards, the actuator disk wind turbine model and the adjoint gradient calculation are discussed. Finally, an updated optimization algorithm is presented, that is based on a L-BFGS-B quasi-Newton method.
+	
+	
+	
+	\subsection{Receding-horizon optimization}
+	In a conventional optimal-control approach (see Figure~\ref{fig:block_diag}a), the system (the wind farm) is controlled by a controller that optimizes the controls ($\boldsymbol{\varphi}$) in a state model that represents the system. Usually, a receding horizon approach is used (see, e.g., Figure~\ref{fig:drawing_receding_horizon}), in which the controls are optimized for a future time window $[t,t+T]$, after which the obtained optimum ($\boldsymbol{\varphi}^{\bullet}$) is used during a control time step $T_A$. In addition, the model state is regularly adapted based on measurements in the system, minimizing the errors between the state model and the real system. The challenge for wind farms is that the detailed turbulent flow state in the atmospheric boundary layer is very high dimensional, and an accurate state model (e.g. based on large-eddy simulations) is computationally very expensive, so that it is impossible to implement in a real-time controller. Therefore, wind-farm control in practice requires extensive simplifying assumptions that may limit \emph{a priori} the performance of the controller. Because of this, the development of practical cooperative wind-farm controllers remains an open issue to date, in particular for the case of power maximization through mitigation of unfavorable wake interactions.
+	
+	Instead of focusing on the direct formulation of a real wind-farm controller for increased energy extraction, Goit and Meyers \cite{goit2015optimal} concentrated on finding optimal controls in a very accurate state representation of the wind-farm boundary layer, i.e. based on large-eddy simulations (LES) that resolve the large turbulent flow structures in the atmospheric boundary layer and their interaction with the wind turbines both in space and in time (see Figure~\ref{fig:block_diag}b). Such an approach is not yet feasible for real control, as LES is to date still significantly slower than real time, but it allows for exploring the potential of improved energy extraction by wind-farm control, and may help in identifying new ways in which large wind farms can optimally interact with the atmospheric boundary layer.
+	
+	
+	%The optimal wind-farm control is realized using a receding-horizon optimal control approach. This approach resembles the widely-spread model-predictive-control (MPC) technique, where the model consists of the full 3D LES equations. However, as illustrated in Figure \ref{fig:block_diag}, our approach differs from an \emph{actual} MPC, in that the model and the system to be controlled are identical in our case. Therefore, at each stage throughout the optimization process, we have full space-time knowledge of the system state. This is in contrast to an actual MPC, which requires a state estimation step, based on a limited set of measurements. Moreover, since in our case the system behaves identically to the model, a feedback loop is meaningless. Previously, a similar  approach has been applied to LES-based or DNS-based optimal control in \commwim{REFS}. Finally, note that the `practical' wind-farm controller is a purely hypothetical case since the LES evaluation is orders of magnitude too slow to be used in actual real-time controllers.
+	
+	
+	In the current work, we further elaborate and adapt the framework of Goit and Meyers \cite{goit2015optimal, goit2016optimal}, using a receding horizon optimization approach as shown in Figure \ref{fig:drawing_receding_horizon}. Given a control time horizon $T$, controls are optimized to yield maximum energy extraction. Further details are provided in \S\ref{sec:optimproblem}--\S\ref{sec:optimalgo}. Part of the resulting optimal controls $\boldsymbol{\varphi}^{\bullet}$ are then used for a time period $T_A \leq T$, during which we advance the wind-farm LES system in time. Subsequently, control optimization over a new time horizon is initiated, etc. The flow advancement time $T_A$ is chosen based on a trade-off between limiting overall computational expenses, favoring $T_A/T \rightarrow 1$, and averting finite-horizon optimization effects, favoring $T_A/T \rightarrow 0$. The influence of the ratio $T_A/T$ on the dynamic behavior of the optimized wind farm is discussed in Section \ref{sec:results}, presenting both results for $T_A=T/2$, and $T_A=T/4$, and evaluated over a total wind-farm control time $T_{\textit{tot}}=N_AT_A$ of approximately 30 minutes of real wind-farm time.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{chapters/philtrans_torque/figure1.eps}
+		\caption{Model-predictive control applied to wind farms. a) Conventional feedback MPC of a wind farm. b) Benchmark optimal control framework of a wind farm LES considered in the current study.}\label{fig:block_diag}
+	\end{figure}
+	
+	\begin{figure}[]
+		\centering
+		\includegraphics[width=0.75\linewidth]{chapters/philtrans_torque/figure2.eps}
+		\caption{Receding horizon optimization framework for optimal control of wind farms. Figure adapted from Ref.~\cite{goit2015optimal}.}
+		\label{fig:drawing_receding_horizon}
+	\end{figure}
+	
+	
+	% Move receding horizon stuff here...
+	\subsection{Definition of the optimization problem}\label{sec:optimproblem}
+	Within each window of the receding-horizon framework introduced above, we maximize aggregated energy extraction by solving the following PDE-constrained optimization problem:
+	
+	\begin{alignat}{3}
+	\underset{\blds{\varphi}, \blds{q}}{\text{min}} &\mathscr{J}(\blds{\varphi}, \blds{q}) = \int_{0}^{T} \sum_{i=1}^{N_t} -P_i(t)~\dt && \label{eq:costfunction}\\
+	\text{s.t.} \quad  & \frac{\partial \ufilt}{\partial t} + \ufilt \cdot \nabla \ufilt = -\frac{1}{\rho} \nabla (p_\infty + \tilde{p}) - \nabla \cdot \blds{\tau}_{sgs} + \sum_{i=1}^{N_t} \blds{f}_i \quad && \text{in } \ \Omega \times (0, T], \label{eq:momentum}\\
+	& \nabla \cdot \ufilt = 0 && \text{in } \ \Omega \times (0, T], \label{eq:continuity}\\
+	& \tau \frac{\ddd \ctihat}{\dt} = C_{T,i}' - \ctihat  && \text{for } i= 1 \dots N_t \  \text{in } (0, T],\label{eq:timefilter}\\
+	& 0 \leq C_{T,i}' \leq C_T'^{max} && \text{for } i= 1 \dots N_t \  \text{in } (0, T].\label{eq:bound}
+	\end{alignat}
+	The cost functional to be minimized in \eqref{eq:costfunction} is the total wind farm energy extraction from the boundary layer over a time horizon $T$, with switched sign for convention of notation. The control variables in the problem defined above are the time-dependent disk-based thrust coefficients for all turbines $\boldsymbol{\varphi} \equiv [C_{T,1}'(t),\ C_{T,2}'(t)\ \dots \ C_{T,N_t}'(t)]$, whereas the state variables $\boldsymbol{q} \equiv [\ufilt(\blds{x},t),\tilde{p}(\blds{x},t),\widehat{\blds{C}}_T'(t)]$ (where  $\widehat{\blds{C}}_T' \equiv [\widehat{C}_{T,1}'\ \dots\ \widehat{C}_{T,N_t}' ]$) consist of the velocity and pressure field in the ABL, and time-filtered turbine thrust coefficients. The explicit dependence of both turbine power $P_i$ and thrust force $\blds{f}_i$ on the latter is discussed in the next section on turbine modeling. The optimization problem is solved in a reduced form, i.e. instead of explicitly considering the differential equations in \eqref{eq:momentum} - \eqref{eq:timefilter} as constraints and optimizing over the parameter space $[\blds{\varphi}, \blds{q}]$, the dependency of the state on the controls $\blds{q}(\blds{\varphi})$ is satisfied explicitly through means of large-eddy simulation (LES), leaving only the control parameter $\blds{\varphi}$ as decision variable to optimize the reduced cost functional $\widetilde{\mathscr{J}}(\blds{\varphi}) \equiv \mathscr{J}(\blds{\varphi}, \blds{q}(\blds{\varphi}))$.
+	
+	The filtered Navier-Stokes state equations in \eqref{eq:momentum} and \eqref{eq:continuity} are solved using an in-house LES solver \cite{meyers2010large, calaf2010large, goit2015optimal}. The equations are discretized using a Fourier pseudo-spectral approach in the horizontal directions, combined with a fourth order finite-difference scheme in the vertical direction \cite{verstappen2003symmetry}. The top surface is treated using a free slip condition, whereas the bottom surface applies a wall stress boundary condition. The influence of Coriolis forces and thermal stratification are not taken into account, i.e. all cases considered here involve half-channel flows serving as a surrogate for a neutral ABL. The high Reynolds numbers associated with the latter justify neglecting resolved effects of molecular viscosity. Instead, the effect of subgrid-scale phenomena on resolved scales is represented using a classical Smagorinsky model with a constant coefficient $C_s = 0.14$, in which the Smagorinsky length scale is reduced near the surface using a wall damping function \cite{mason1992stochastic}. Inflow conditions are extracted from an auxiliary periodic precursor simulation and are imposed using a fringe region \cite{munters2016turbulent}. The flow field is advanced in time using an explicit fourth order Runge-Kutta scheme using a constant timestep corresponding to a Courant--Friedrichs--Lewy number of 0.4. The time-filtering state equation \eqref{eq:timefilter} applies a first order exponential time filter to the control input $C_T'$ to generate the thrust coefficient $\widehat{C}_T'$ that is used in the thrust force felt by the flow. An implicit Euler scheme is used to integrate the time filter equation. To give an indication of the influence of the wind turbine response time $\tau$, defined as the filter time constant, on the thrust coefficient behavior, the response of the latter to a square wave variation in the control signal is illustrated in Figure \ref{fig:timefilter}. Note however that the control signals originating from the optimal control simulations will be more complicated. In this way, \eqref{eq:timefilter} allows to incorporate a finite wind-turbine response time $\tau$ to temporal variations in optimized thrust coefficient setpoints $C_{T}'$. This would, e.g., fit in a hierarchical approach to wind-farm control, in which wind-farm control signals are passed on to individual turbine controllers that themselves may not react instantaneously to these control signals. In the current work, we use different time constants $\tau$ to investigate the effect of control smoothness on possible power gains. Finally, the box constraints \eqref{eq:bound} on the controls are added that prevent the turbine from operating as a fan on the one hand, and limit the maximal thrust coefficient to technically feasible values on the other hand (see below). 
+	
+	\begin{figure}
+		\includegraphics[width=\textwidth]{chapters/philtrans_torque/figure3.eps}    
+		\caption{Illustration of the response of the thrust coefficient $\widehat{C}_T'$ to a square wave variation in the control signal $C_T'$ for varying wind turbine response times $\tau$.}\label{fig:timefilter}
+	\end{figure}
+	
+	\subsection{Wind-turbine modeling}\label{sec:windturbinemodeling}
+	
+	The forces exerted by turbine $i$ on the boundary layer flow are parametrized using a non-rotating actuator disk method as 
+	\begin{equation}
+	\blds{f}_i(\blds{x},t) = - \frac{1}{2}~\ctihat(t)~V_{d,i}^2(t)~\mathscr{R}_i(\blds{x})~\blds{e}_\perp,\label{eq:define_force}
+	\end{equation}
+	where $\ctihat$ is the time-filtered disk-based thrust coefficient (see, e.g., \cite{meyers2010large, calaf2010large}), $\blds{e}_\perp$ is the unit vector perpendicular to the rotor plane, and $\mathscr{R}_i (\blds{x})$ is a smoothed representation of the geometric footprint of the rotor on the LES grid. Furthermore, the disk-averaged velocity is calculated as $V_{d,i} = (1/A_i) \int_\Omega \mathscr{R}_i(\blds{x})\ \ufilt \cdot \blds{e}_\perp \ \dx$, with $A_i$ the rotor disk area. Note that, through the time filtering equation \eqref{eq:timefilter}, the actual time-filtered thrust coefficient $\widehat{C}_T'$ employed by the turbine can be rendered arbitrarily smooth in time, which allows to model a finite wind turbine response time. This is in contrast to previous studies \cite{meyers2010large, calaf2010large, goit2015optimal}, where turbine inertia was modeled through a time-filtering of the disk velocity $V_{d,i}$. The actual mechanical power captured by the wind turbine is calculated as 
+	\begin{equation}
+	P_i(t) = \frac{1}{2} C_{P,i}'(t)~V_{d,i}^3(t)~A_i.\label{eq:define_power}
+	\end{equation}
+	In contrast to earlier work \cite{meyers2010large, calaf2010large, goit2015optimal}, where $C_P' = \widehat{C}_T'$, here the disk-based power coefficient $C_P' = a~\widehat{C}_T'$, with $a = 0.9$ for the simulation grids applied in this paper. This relation is derived from a fitting operation of LES results to momentum theory as described in Appendix \ref{sec:cpct}. This is done in order to eliminate overpredictions in power extraction observed using turbine parametrizations on typical wind-farm grid resolutions (see, e.g. Refs \cite{martinez2016wind, martinez2015large}). Due to the linear nature of this fit, this does not influence the relative gains in power production discussed below, which are normalized by a reference case. 
+	
+	Following the methodology in Goit and Meyers \cite{goit2015optimal}, dynamic induction control is performed by controlling the disk-based thrust coefficient $C_T'$ for every turbine and in every timestep, such that the aggregated power extraction of the entire wind farm is maximized.  In the remainder of this section, we discuss steady-state turbine operation, hence $C_T'$ and $\widehat{C}_T'$ can be used interchangeably. Using relations from 1D momentum theory for an ideal turbine \cite{burton2001wind}, straightforward algebraic manipulation relates the disk-based thrust coefficient $C_T'$ with the conventional power coefficient $C_P$ and thrust coefficient $C_T$ as
+	\begin{equation}
+	C_P = 64\frac{C_T'}{(C_T' + 4)^3} \qquad \text{and} \qquad C_T = 16\frac{C_T'}{(C_T' + 4)^2}.
+	\end{equation}
+	As shown in Figure \ref{fig:ct_cpct}, $C_P$ achieves a maximum at the well-known Betz limit of $16/27 \approx 0.593$, for which $C_T' = 2$. In order to obtain any lower $C_P$ value, 2 possible $C_T'$ setpoints can be chosen: an underinductive ($C_T' < 2$) and an overinductive ($C_T' > 2$) coefficient. In the work of Goit and Meyers \cite{goit2015optimal}, a maximum coefficient $C_T'^{max} = 4$ is used. It can be seen from the figure that this corresponds to a maximal thrust force, with $C_T=1$. Furthermore, it is worth noting that $C_P$ is quite insensitive to $C_T'$ in the range 1.5 to 2.5 indicating that, in this zone, turbine thrust forces can be varied significantly without sacrificing a lot of power. 
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{chapters/philtrans_torque/figure4.eps}
+		\caption{Thrust coefficient $C_T$ (\emph{a}) and power coefficient $C_P$ (\emph{b}) as a function of modified thrust coefficient $C_T'$ for a steady turbine based on 1D momentum theory.}
+		\label{fig:ct_cpct}
+	\end{figure}
+	
+	\subsection{Gradient calculation}
+	Due to the combination of a high control space dimensionality  ($\blds{\varphi} \in \mathbb{R}^n$, with $n \approx 10^4 \dots 10^5$) with a computationally expensive system of state equations, calculating the gradient of the reduced cost functional $\nabla \widetilde{\mathscr{J}}$ using classical finite-difference methods is computationally infeasible. Instead, we employ the continuous adjoint method, in which the gradient is identified through the solution of an additional set of partial differential equations. The simulation of these adjoint equations involves a computational cost similar to a single state system evaluation, independent of control space dimensionality $n$. The adjoint equations are derived by appending the state constraints to the cost function in \eqref{eq:costfunction} - \eqref{eq:timefilter} to form the Lagrangian, introducing the triplet of adjoint variables $\blds{q}^* = [\blds{\xi}$, $\pi$, $\blds{\sigma}]$ as the Lagrange multipliers to the state variables $\blds{q} = [\ufilt$, $\tilde{p}$, $\widehat{\blds{C}}_T']$.  Postulating vanishing gradients of the Lagrangian with respect to the state variables directly produces the adjoint equations \cite{choi1999instantaneous, bewley2001dns,goit2015optimal}: 
+	
+	\begin{alignat}{3}
+	- \frac{\partial \boldsymbol{\xi}}{\partial t} + (\nabla \ufilt)^T \boldsymbol{\xi} - (\ufilt \cdot \nabla) \boldsymbol{\xi} &= -\frac{1}{\rho} \nabla \pi  - \nabla \cdot \boldsymbol{\tau}_{sgs}^* + \sum_{i=1}^{N_t} \boldsymbol{f}_i^* &&  \text{in}~\Omega \times (0, T]\label{eq:adjoint_momentum}\\
+	\nabla \cdot \boldsymbol{\xi} &= 0 && \text{in}~\Omega \times (0, T]\label{eq:adjoint_continuity}\\
+	- \tau \frac{\text{d} \sigma_i}{\dt} &= -\sigma_i + \frac{1}{2} V_{d,i}^2 \int_{\Omega} \mathscr{R}_i(\boldsymbol{x})(a~\ufilt - \boldsymbol{\xi}) \cdot \boldsymbol{e}_\perp \text{d}\boldsymbol{x} \qquad &&  \text{for}~i = 1 \dots N_t~\text{in}~(0, T].\label{eq:adjoint_timefilter}
+	\end{alignat}
+	
+	\noindent The definition and derivation of the adjoint equations is identical to the previous work of \cite{goit2015optimal,goit2016optimal}. However, due to the addition of a time-filtering equation on the controls and the resulting definition of the turbine forces, the adjoint forcing terms $\blds{f}_i^*$ associated with each of the turbines differ from the latter studies, and are given by
+	\begin{equation}
+	\blds{f}_i^*(\blds{x}) = \frac{1}{2} \ctihat V_{d,i} \bigg(3~a~V_{d,i} - 2~X_{d,i} \bigg)\  \mathscr{R}_i(\blds{x})  \blds{e}_\perp, \label{eq:adj_forcing}
+	\end{equation} 
+	where $X_{d,i} = (1/A_i)\int_{\Omega} \mathscr{R}_i(\blds{x})\  \blds{\xi} \cdot \blds{e}_\perp \dx$ is the disk-averaged adjoint velocity, defined similarly to $V_{d,i}$. The gradient can then be evaluated as 
+	\begin{equation}
+	\nabla\widetilde{\mathscr{J}} = - \blds{\sigma}.\label{eq:gradient}
+	\end{equation}
+	\noindent The derivation of the adjoint time-filtering equation, and the novel expressions for both the adjoint forcing terms and the cost functional gradient are presented in Appendix \ref{sec:derivation_adjoint}. 
+	
+	
+	
+	\subsection{Optimization algorithm}\label{sec:optimalgo}
+	
+	In this work, we solve the optimal control problem within each prediction window using the quasi-Newton L-BFGS-B algorithm by Byrd \emph{et al.} \cite{byrd1995limited} This is in contrast to the classical use of non-linear conjugate gradient (CG) methods in flow control, for instance in earlier studies on drag reduction \cite{bewley2001dns}, noise reduction \cite{kim2014adjoint}, and wind farms \cite{goit2015optimal, goit2016optimal}. First, the main steps in the algorithm are briefly outlined. Afterwards, the convergence behavior of the method is compared to a non-linear CG method for a typical wind-farm control case.
+	
+	At the beginning of each iteration, a quadratic model of the cost functional $m_k(\blds{\varphi})$ is constructed based on the current iterate $(\blds{\varphi}_k, \widetilde{\mathscr{J}}_k)$, the current gradient $\nabla \widetilde{\mathscr{J}}_k$, and a positive definite limited-memory Hessian approximation $B_k$ as 
+	
+	\begin{equation}
+	m_k(\blds{\varphi}) = \widetilde{\mathscr{J}}_k + \nabla \widetilde{\mathscr{J}}_k^T (\blds{\varphi} - \blds{\varphi}_k) + \frac{1}{2} (\blds{\varphi} - \blds{\varphi}_k)^T B_k (\blds{\varphi} - \blds{\varphi}_k).
+	\end{equation}
+	
+	
+	\noindent As discussed in \cite{byrd1995limited}, this model is minimized while satisfying the box constraints (i.e. $0 \le \blds{\varphi} \le C_T'^{max}$) , yielding a solution $\overline{\blds{\varphi}}_{k+1}$. Subsequently, a More-Thuente line search \cite{more1994line} along direction $\blds{d}_k = \overline{\blds{\varphi}}_{k+1} - \blds{\varphi}_k$ is  employed to identify the new iterate $\blds{\varphi}_{k+1} = \blds{\varphi}_k + \alpha_k \blds{d}_k$, such that the strong Wolfe conditions are satisfied \cite{wolfe1969convergence, wolfe1971convergence}. The line search is initialized with a unit steplength $\alpha_k = 1$ which, as shown below, often directly meets the Wolfe conditions. Note that each iteration requires a minimum of 1 LES  and 1 adjoint simulation, since the construction of $m_k$ requires both the current functional value $\mathscr{J}_k$ and its gradient $\nabla \mathscr{J}_k$. In addition, checking the Wolfe conditions entails an additional pair of LES and adjoint evaluations per inner line search iteration. The limited-memory Hessian approximation $B_k$ is constructed from information retained from previous iterations through a set of $m$ correction pairs $\{(\blds{\varphi}_{i+1}- \blds{\varphi}_i), (\nabla \widetilde{\mathscr{J}}_{i+1} - \nabla \widetilde{\mathscr{J}}_i)\}$, for $i = k-1, \dots, k-m$ \cite{liu1989limited}.
+	
+	Figure \ref{fig:cg_bfgs} presents the cost function decrease for a typical wind-farm optimization window as a function of PDE evaluations for the Polak-Ribi\`{e}re non-linear CG method and the L-BFGS-B method. The figure illustrates that the use of additional knowledge of curvature information employed by the L-BFGS-B algorithm significantly speeds up convergence compared to CG. Recently, this behavior was also shown for a low Reynolds number turbulent channel flow case in \cite{nita2016efficiency}.
+	Note that, for PDE constrained optimization, the most important driver for computational costs is by far the amount of PDE evaluations. Therefore, it can be seen from the figure that, for a given decrease in the cost functional, computational efforts are reduced by a factor 4 for L-BFGS-B compared to CG. The convergence rate of the optimization algorithm and its sensitivity to user-defined parameters are further discussed based on a set of recent optimal control cases in Section \ref{sec:results}. In addition to the updated optimization algorithm, a further decrease in time-to-solution of the optimal control simulations is achieved by the upgrade of the grid partitioning scheme used in the code parallelization from a 1D slab decomposition to a 2D pencil decomposition \cite{pekurovsky2012p3dfft, li20102decomp}, which allows the PDE solver to scale to core counts in the order of a hundred to a thousand cores for the simulation grids considered here. 
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{chapters/philtrans_torque/figure5.eps}
+		\caption{Cost functional decrease as a function of PDE simulations for a non-linear CG and L-BFGS-B algorithm applied to a typical wind-farm optimization window. \emph{Filled circles: } LES, \emph{Open circles: } adjoint. }
+		\label{fig:cg_bfgs}
+	\end{figure}
+	
+	\subsection{Simulation setup}
+	In the remainder of the manuscript, we show new results of optimized wind farms. We focus mainly on the justification of methodological choices and parameter settings, with the aim of quantifying the influence of optimization parameters on convergence rate and value of the optimized cost functional for the optimal control framework described in this paper.
+	
+	We consider a $12 \times 6$ aligned wind farm where turbines are spaced apart by 6 rotor diameters in axial and transversal directions. The spatial domain of $10 \times 3.6 \times 1$ km$^3$ is discretized using a standard numerical grid of $384 \times 192 \times 244$. A driving pressure gradient of $\partial_x p_\infty/\rho = 2.5 \times 10^{-4}$ m s$^{-2}$ results in a free-stream hub-height velocity slightly over 8 m s$^{-1}$. Figure \ref{fig:domain} illustrates a typical snapshot of the LES velocity field for the wind farm considered here. It can be seen from the figure that, starting from the second row, turbines are subjected to significantly lower velocities with increased variability. Moreover, it is shown that the LES allows to capture complex unsteady wake behavior, including meandering and turbulent entrainment, that can potentially be harnessed by the optimal control approach. Unsteady turbulent inflow conditions are the same for all cases, and are generated by running a separate precursor simulation of a periodic ABL without turbines on a domain identical to that of the wind farm simulation. Wind farm operation is optimized over $N_A = 15$ prediction windows, resulting in a total time of $T_{tot} = N_AT_A = 30$ minutes. Time integration is performed using a constant timestep $\Delta t = 0.75$ s. We employ a prediction horizon of $T = 240$ s, and a flow advancement horizon of $T_A = T/2 = 120$ s. Moreover, we retain $m = 5$ correction pairs for the BFGS Hessian updates, and stop the optimization algorithm after $N_{it} = 60$ iterations. 
+	The chosen values for these additional optimization parameters are justified based on parameter studies discussed below.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{chapters/philtrans_torque/figure6.eps}
+		\caption{Large-eddy simulation streamwise velocity field for a 12 $\times$ 6 aligned wind farm. The black lines represent the turbine rotors. The black dashed line indicates a buffer region for the imposition of inflow conditions \cite{munters2016turbulent, goit2016optimal}.}
+		\label{fig:domain}
+	\end{figure}
+	
+	\section{Results and discussion}\label{sec:results}
+	In this section, we discuss optimization results using the setup mentioned above. First, the different cases are distinguished. Subsequently, the energy gains in optimized cases are quantified and discussed. Finally, the influence of optimization parameters is quantified.
+	
+	We define a reference case R, in which all turbines are controlled statically and greedily, i.e. with thrust coefficients equal to the Betz-optimal value $C_T' = 2$. In addition, we define a total of 6 optimal control cases. The latter are distinguished by whether or not overinduction is allowed, i.e. with $C_T'^{max} = 3$ or 2 respectively, and by the wind turbine response time $\tau$ of 0, 5, or 30 s. Optimized cases are denoted by C<X>t<Y>, where X and Y represent $C_T'^{max}$ and $\tau$ respectively, e.g. C3t30 for the case with $C_T'^{max}=3$ and $\tau=30$ s. The upper bound $C_T'^{max} = 3$ of the overinductive cases is justified based on Figure \ref{fig:Ct_Uinfty}, which contains results of blade element momentum theory calculations for the maximum attainable $C_T'$ in the NREL 5-MW turbine \cite{jonkman2009definition} for region II operation through increase of the tip speed ratio $\lambda = \omega r/ V_\infty$, with $r$ the turbine radius, $\omega$ its rotational speed, and $V_\infty$ the undisturbed upstream velocity. The calculations are performed for  a turbine in region II operation at below-rated wind speeds, in which $\lambda$ is controlled through regulation of the turbine generator torque. It can be seen that in this way, for $V_\infty \approx 8$ m s$^{-1}$, a $C_T'$ of approximately 2.5 is feasible. This value could still be increased, e.g. through a minor increase in blade chord length. Therefore, the upper bound of 3 for the overinductive cases in this work is reasonable.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\linewidth]{chapters/philtrans_torque/figure7.eps} 	
+		\caption{Maximum attainable modified thrust coefficient $C_T'^{max}$ for region II operation of the NREL-5 MW turbine through increase of $\lambda$ as a function of undisturbed upstream velocity $V_\infty$.}\label{fig:Ct_Uinfty}
+	\end{figure}
+	
+	Figure \ref{fig:bar_and_row} depicts the energy extraction of the optimally controlled wind farms normalized by the reference case. The energy extraction is integrated starting from the second optimization window, since the optimized wind farms are still in a transient phase during the first window. It is shown in Figure \ref{fig:bar_and_row}a that all cases, except for the most restrictive case C2t30, achieve significant energy gains ranging between 8 and 21\%. This illustrates the potential of dynamic coordinated control approaches over greedy individual control. As can be expected, decreasing flexibility with regards to $C_T'^{max}$ and $\tau$ reduces the margins for increased power extraction. It is worth noting that the slow-response overinductive case C3t30 achieves power gains close to the underinductive fast-response case C2t0 and C2t5. This observation is promising for the eventual actual roll-out of dynamic wind farm controllers, as it shows that fast temporal variations in turbine control settings, with associated detrimental effects on turbine structural loading, are not a prerequisite for significant improvements in power extraction. The error bars in the figure indicate 2 standard deviations from the sampled mean. Error estimates are within $\pm 1.2$\% points for all cases except C3t0, for which $\pm 1.9$\% points is observed. The variances of relative energy gains are estimated using variances and covariances defined on the optimization window level, as further elaborated in Appendix \ref{sec:variance_estimation}. Note that the cases considered here feature significantly larger energy gains than the comparable case of Goit \emph{et al.} \cite{goit2016optimal}, for which an increase in energy extraction of approximately 6\% was reported. This fact can be attributed to a better convergence of the current results due to a judicious choice of optimization parameters as elaborated below and the update to a quasi-Newton optimizer discussed previously. In Figure \ref{fig:bar_and_row}b it is shown that energy extraction is increased in every downstream row by slightly downrating the first row for all cases except C3t30. Moreover, the first row aside, the last row extracts the most energy for all cases, since it does not have to take into account any downstream neighbors. We further performed for the overinductive case with $\tau = 0$ s a case in which only the first row turbines were optimally controlled (details not further shown here). We found energy gains of only 5\% instead of 21\%, indicating that all turbines contribute significantly to the energy gains. 
+	
+	Figure \ref{fig:axialvelocity} shows time-averaged axial velocities throughout the wind farm. Figure \ref{fig:axialvelocity}a illustrates the axial velocity for the reference case. It can be seen that downstream turbines are subjected to the wakes of their upstream neighbors, and that wake behavior, i.e. spanwise wake extent and wake recovery, achieves a fully-developed regime in the downstream rows of the wind farm. Figures \ref{fig:axialvelocity}b - \ref{fig:axialvelocity}d depict the difference between axial velocities in the optimized case and the reference case for cases C3t0, C3t30 and C2t0 respectively. It is shown that, for all cases, rows 2 to 12 are subjected to higher incoming velocities. For the overinductive cases C3t0 and C3t30, it can be seen that the near wake behind some turbines is deeper, yet the wake recovers more than in the reference case before reaching the next row. This is caused by enhanced turbulent wake mixing, consistent with observed increased turbulence intensities for downstream rows in these cases (not shown here). Contrastingly, the underinductive case C2t0 features higher axial velocities throughout the entire wind farm. Considering the comparable power gains of 10\% for C3t30 and C2t0, this indicates that different cases are characterized by complex different mechanisms for power increase. These are not further elaborated here, and are subject of current work. Ongoing research focusses on identifying the physical mechanisms behind the increase in energy extraction and the identification of possible correlations between turbines.   
+	
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{chapters/philtrans_torque/figure8.eps}
+		\caption{Energy extraction of optimally controlled wind farms $E_O$ normalized by greedy reference case $E_R$. \emph{a) } Total energy extraction. Error bars indicate confidence intervals of $\pm 2$ standard deviations. \emph{b) } Energy extraction per row, normalized by first row of reference case. \legend \label{fig:bar_and_row}}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{chapters/philtrans_torque/figure9.eps}
+		\caption{Plan views of time-averaged axial velocity $\overline{u}$ throughout the wind farm, averaged over all 6 turbine columns. \emph{a)} Reference case $\overline{u}_{R}$. \emph{b, c, d)}: Differences $\Delta = \overline{u} - \overline{u}_R$ between optimized cases and reference case for C3t0, C3t30, and C2t0 respectively. \label{fig:axialvelocity}}
+	\end{figure}
+	
+	
+	
+	Figure \ref{fig:T_A} qualitatively illustrates the influence of $T_A$ on the temporal smoothness of the wind farm power extraction for case C3t0. The figure shows the normalized power extraction for $T_A = T/2 = 120$ s (top) and $T_A = T/4 = 60$ s (bottom) respectively, where both simulations apply an equal prediction horizon $T = 240$ s. For $T_A = T/2$ it can be seen in Figure \ref{fig:T_A} that, within each window, power extraction is initially reduced. This causes flow conditions that lead to an increased power extraction later in the window. By stringing the windows together, a sawtooth-like behavior of power extraction is created. Reducing $T_A$ diminishes this effect, as shown in Figure \ref{fig:T_A}b, but leads to a doubling in computational cost for a given total time $T_{tot}$. Although present-day computational resources have limited us to using $T_A = T/2 = 240$ s for the cases presented in this paper, we aim to reduce $T_A/T$ in the future to obtain reduced ramps in power production and mitigate finite-horizon effects.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{chapters/philtrans_torque/figure10.eps}
+		\caption{Dynamic behavior of optimized power extraction normalized by a greedy control reference case (shown in black). \emph{Top ({\bf \color{blue}-----}): } $T_A = T/2 = 120$ s. \emph{Bottom ({\bf \color{OliveGreen}-----}): } $T_A = T/4 = 60$ s. The dashed vertical lines indicate the flow advancement windows.\label{fig:T_A}}
+	\end{figure}
+	
+	Given that limitations on computational resources prevent formal convergence of the optimal control problems considered here, we further investigate convergence rates, parameters sensitivities and the existence of local minima. Figure \ref{fig:window_opt} illustrates the convergence behavior for all optimal control simulations. From Figure \ref{fig:window_opt}a it can be seen that, for most cases, the amount of PDE evaluations is only slightly higher than twice the amount of BFGS iterations $N_{it}$, illustrating that the optimization algorithm mostly takes steps with unit length, and only rarely has to resort to a line-search when $\alpha$ does not satisfy the Wolfe conditions. Note that case C2t30 achieved convergence after 120 iterations, with a large increase in PDE simulations in the preceding iterations. This indicates that, upon approaching convergence, inconsistencies between the gradient obtained from the continuous adjoint approach and the actual cost functional gradient are making it harder to satisfy the Wolfe conditions, and more line searches are needed. This behavior also starts to show in the later iterations of the other cases. Figure \ref{fig:window_opt}b depicts the relative improvement in the cost function within an optimization window in terms of the amount of iterations. It can be seen that, after 60 iterations, the improvement rate of the cost function significantly dimishes. Therefore, in order to limit computational expenses, in practice we stop all optimizations after $N_{it} = 60$. Figure \ref{fig:window_opt}c shows the cost functional as a function of PDE evaluations. The circle markers indicate the datapoints for which $N_{it} = 60$. The figure shows that all cases achieve reasonable convergence for the chosen iteration limit, i.e. further improvements of the cost functional are minimal.  
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{chapters/philtrans_torque/figure11.eps}
+		\caption{Typical convergence behavior within an optimization window. (Legend: \legendnoref) \label{fig:window_opt}}
+	\end{figure}
+	
+	Figure \ref{fig:bfgs_m} shows the sensitivity of convergence rate of C3t0 to $m$, i.e. the amount of retained correction pairs used in the update for the Hessian approximation in the L-BFGS-B algorithm. It can be seen from the figure that $m=3$ converges more slowly than $m$ = 5, 7, or 9. The fact that using more Hessian correction pairs, i.e. $m=9$ over $m=7$, does not always lead to an improvement in convergence rate can be attributed to the irrelevance of gradient information from many iterations earlier. In the remainder of this work, we choose $m = 5$, as this proved to be an adequate parameter choice, both here and for a varied set of constrained problems in the CUTE collection \cite{bongartz1995cute}, as illustrated by Byrd \emph{et al.} \cite{byrd1995limited}. 
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{chapters/philtrans_torque/figure12.eps}	
+		\caption{Cost functional as a function of PDE evaluations within an optimization for varying amount $m$ of retained correction pairs for Hessian approximation.}
+		\label{fig:bfgs_m}
+	\end{figure}
+	
+	Given the non-convexity of the Navier--Stokes constrained optimization problems considered here, the cost functional landscape is expected to be characterized by a multitude of local optima. Figure \ref{fig:initial_conditions} shows the cost functional and a subset of the optimized controls for different starting points $\blds{\varphi}_0$, i.e. a greedy control case on the one hand, for which all turbines operate Betz-optimal at $\blds{\varphi}_0 = [2 \ \ 2 \ \dots \ 2]$, and a case with $\blds{\varphi}_0 = [1.33 \ \ 1.33 \ \dots \ 1.33]$ (see, e.g., \cite{calaf2010large, goit2015optimal}) on the other hand. Figure \ref{fig:initial_conditions}a illustrates cost functional decrease in terms of BFGS iterations. It can be seen that, although the choice of initial conditions has an influence on the power extraction, the relative order of which conditions yield better results is not uniform across all cases. Figure \ref{fig:initial_conditions}b shows the optimized controls for the first row of the wind farm after 1, 60, 120, and 180 iterations. Although some regions of the controls correspond between both initial conditions, mainly at the start of the optimization window the controls differ significantly. Since the overall energy extraction seems only modestly dependent on the initial condition, the greedy control with $\varphi_0 = 2$ is a suitable starting point for wind-farm optimal control.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{chapters/philtrans_torque/figure13.eps}	
+		\caption{Sensitivity of optimization to initial conditions. \emph{a):} Cost functional as a function of BFGS iterations for a single window. ($\square$: $\blds{\varphi}_0 = 2$, $\lozenge$: $\blds{\varphi}_0 = 1.33$, \legendnoref ). \emph{b):} Optimized controls for a front row turbine at various iterations. (Black: $\blds{\varphi}_0 = 2$, Gray: $\blds{\varphi}_0 = 1.33$). \label{fig:initial_conditions}} 
+	\end{figure}
+	
+	In this section, new optimization results were introduced, illustrating the further potential of the optimal dynamic induction control framework introduced by Goit and Meyers \cite{goit2015optimal}. Moreover, the choice of $T_A = T/2$ is justified. The convergence behavior of the optimization in terms of the amount of iterations and Hessian correction pairs $m$ is illustrated. Finally, although the existence of local optima is shown, overall energy gains are found to be only slightly dependent on initial control parameters in the optimization problem.
+	
+	
+	\section{Conclusion}\label{sec:conclusion}
+	In this work, we discuss and further elaborate on the PDE-constrained optimal control framework for dynamic induction control of wind farms introduced in Goit and Meyers \cite{goit2015optimal}. Key components of the framework are discussed in detail, and the increase in convergence rate due to the upgrade of the optimization algorithm from a nonlinear conjugate gradient method used in earlier work \cite{goit2015optimal, goit2016optimal} to a quasi-Newton L-BFGS-B method is shown. New results indicate power gains for wind farms with optimal coordinated control in the order of 8 to 21\% compared to a greedily controlled case. Simulation results show that fast variations in turbine thrust coefficients are not a prerequisite for significant gains in energy extraction. Finally, user-defined values of key parameters in the optimization approach are justified based on parameter studies. Future application of the optimization framework will focus on identifying the physical mechanisms behind the observed gains in energy extraction, and the translation of simulation-based optimal controllers with high computational costs towards practical cooperative wind farm controllers. For instance, the use of reduced order state models, e.g. based on proper orthogonal decomposition or dynamic mode decomposition, provide a possible route to real-time implementation of optimal dynamic induction controllers. Another area of interest is the use of higher-fidelity wind turbine models, such as the rotating ADM \cite{wu2011large}, the actuator sector model \cite{storey2015actuator}, or the actuator line model \cite{troldborg2008actuator, sorensen2002numerical}. Furthermore, the addition of yaw to the optimal control problem, and the inclusion of thermal stratification effects in the atmosphere are interesting topics for further research.
+	
+	\enlargethispage{20pt}
+	
+	
+	%%%%%%%%%% Insert bibliography here %%%%%%%%%%%%%%
+	%\bibliography{mybibfile_abbrev}
+	\newpage
+	\begin{thebibliography}{10}
+		\expandafter\ifx\csname urlstyle\endcsname\relax
+		\providecommand{\doi}[1]{(doi:\discretionary{}{}{}#1)}\else
+		\providecommand{\doi}{(doi:\discretionary{}{}{}\begingroup
+			\urlstyle{rm}\Url)}\fi
+		
+		\bibitem{barthelmie2007modelling}
+		Barthelmie RJ, Rathmann O, Frandsen ST, Hansen K, Politis E, Prospathopoulos J,
+		Rados K, Cabez{\'o}n D, Schlez W, Phillips J, \emph{et~al.} 2007 Modelling
+		and measurements of wakes in large wind farms.
+		\newblock In \emph{Journal of Physics: Conference Series}, volume~75, p.
+		012049. IOP Publishing.
+		
+		\bibitem{barthelmie2010quantifying}
+		Barthelmie RJ, Pryor S, Frandsen ST, Hansen KS, Schepers J, Rados K, Schlez W,
+		Neubert A, Jensen L, Neckelmann S. 2010 Quantifying the impact of wind
+		turbine wakes on power output at offshore wind farms.
+		\newblock \emph{J Atmos Ocean Tech} \textbf{27}, 1302--1317.
+		
+		\bibitem{goit2015optimal}
+		Goit JP, Meyers J. 2015 Optimal control of energy extraction in wind-farm
+		boundary layers.
+		\newblock \emph{J Fluid Mech} \textbf{768}, 5--50.
+		
+		\bibitem{goit2016optimal}
+		Goit JP, Munters W, Meyers J. 2016 Optimal coordinated control of power
+		extraction in {LES} of a wind farm with entrance effects.
+		\newblock \emph{Energies} \textbf{9}, 29.
+		
+		\bibitem{meyers2010large}
+		Meyers J, Meneveau C. 2010 Large eddy simulations of large wind-turbine arrays in the atmospheric boundary layer.
+		\newblock \emph{AIAA Paper} \textbf{827}, 2010.
+		
+		\bibitem{calaf2010large}
+		Calaf M, Meneveau C, Meyers J. 2010 Large eddy simulation study of fully
+		developed wind-turbine array boundary layers.
+		\newblock \emph{Phys Fluids} \textbf{22}, 015110.
+		
+		\bibitem{verstappen2003symmetry}
+		Verstappen RWCP, Veldman AEP. 2003 Symmetry-preserving discretization of turbulent flow.
+		\newblock \emph{J Comput Phys} \textbf{187}, 343.
+		
+		\bibitem{mason1992stochastic}
+		Mason PJ, Thomson DJ. 1992 Stochastic backscatter in large-eddy simulations of boundary layers.
+		\newblock \emph{J Fluid Mech} \textbf{242}, 51. 
+		
+		\bibitem{munters2016turbulent}
+		Munters W, Meneveau C, Meyers J. 2016 Turbulent inflow precursor method with
+		time-varying direction for large-eddy simulations and applications to wind
+		farms.
+		\newblock \emph{Boundary-Layer Meteorol} \textbf{159}, 305--328.	
+		
+		\bibitem{martinez2016wind}
+		Martinez-Tossas LA, Meneveau C, Stevens RJAM. 2016 Wind farm large-eddy simulations on very coarse grid resolutions using an actuator line model.
+		\newblock In \emph{AIAA SciTech proceedings, 34th Wind Energy Symposium}, 1261.
+		
+		\bibitem{martinez2015large}
+		Martinez-Tossas LA, Churchfield MJ, Leonardi S. 2015 Large eddy simulations of the flow past wind turbines: actuator line and disk modeling.
+		\newblock \emph{Wind Energy} \textbf{18}, 10471060.
+		
+		\bibitem{burton2001wind}
+		Burton T, Sharpe D, Jenkins N, Bossanyi E. 2001 \emph{Wind energy handbook}.
+		\newblock John Wiley \& Sons.
+		
+		\bibitem{bewley2001dns}
+		Bewley TR, Moin P, Temam R. 2001 {DNS}-based predictive control of turbulence:
+		an optimal benchmark for feedback algorithms.
+		\newblock \emph{Journal of Fluid Mechanics} \textbf{447}, 179--225.
+		
+		\bibitem{choi1999instantaneous}
+		Choi H, Hinze M, Kunisch K. 1999 Instantaneous control of backward-facing step
+		flows.
+		\newblock \emph{Applied Numerical Mathematics} \textbf{31}, 133--158.
+		
+		\bibitem{byrd1995limited}
+		Byrd RH, Lu P, Nocedal J, Zhu C. 1995 A limited memory algorithm for bound
+		constrained optimization.
+		\newblock \emph{SIAM Journal on Scientific Computing} \textbf{16}, 1190--1208.
+		
+		\bibitem{kim2014adjoint}
+		Kim J, Bodony DJ, Freund JB. 2014 Adjoint-based control of loud events in a
+		turbulent jet.
+		\newblock \emph{Journal of Fluid Mechanics} \textbf{741}, 28--59.
+		
+		\bibitem{more1994line}
+		Mor{\'e} JJ, Thuente DJ. 1994 Line search algorithms with guaranteed sufficient
+		decrease.
+		\newblock \emph{ACM Trans. Math. Softw.} \textbf{20}, 286--307.
+		
+		\bibitem{wolfe1969convergence}
+		Wolfe P. 1969 Convergence conditions for ascent methods.
+		\newblock \emph{SIAM Review} \textbf{11}, 226 -- 235
+		
+		\bibitem{wolfe1971convergence}
+		Wolfe P. 1971 Convergence conditions for ascent methods. II: Some corrections.
+		\newblock \emph{SIAM Review} \textbf{13}, 185 -- 188
+		
+		\bibitem{liu1989limited}
+		Liu DC, Nocedal J. 1989 On the limited memory {BFGS} method for large scale
+		optimization.
+		\newblock \emph{Mathematical programming} \textbf{45}, 503--528.
+		
+		\bibitem{nita2016efficiency}
+		Nita C, Vandewalle S, Meyers J. 2016 On the efficiency of gradient based
+		optimization algorithms for {DNS}-based optimal control in a turbulent
+		channel flow.
+		\newblock \emph{Computers \& Fluids} \textbf{125}, 11--24.
+		
+		\bibitem{pekurovsky2012p3dfft}
+		Pekurovsky D. 2012 {P3DFFT}: A framework for parallel computations of fourier
+		transforms in three dimensions.
+		\newblock \emph{SIAM Journal on Scientific Computing} \textbf{34}, C192--C209.
+		
+		\bibitem{li20102decomp}
+		Li N, Laizet S. 2010 {2DECOMP} \& {FFT} - a highly scalable 2{D} decomposition
+		library and {FFT} interface.
+		\newblock In \emph{Cray User Group 2010 conference}, pp. 1--13.
+		
+		\bibitem{jonkman2009definition}
+		Jonkman J, Butterfield S, Musial W, Scott G. 2009 Definition of a 5-{MW}
+		reference wind turbine for offshore system development.
+		\newblock Technical Report Technical Report NREL/TP-500-38060, National
+		Renewable Energy Laboratory, Golden, CO, USA.
+		
+		\bibitem{bongartz1995cute}
+		Bongartz I, Conn AR, Gould N, Toint PL. 1995 {CUTE}: Constrained and
+		unconstrained testing environment.
+		\newblock \emph{ACM Transactions on Mathematical Software (TOMS)} \textbf{21},
+		123--160.
+		
+		\bibitem{wu2011large}
+		Wu Y-T, Port\'e-Agel F. 2011 Large-Eddy Simulation of Wind-Turbine Wakes: Evaluation of Turbine Parametrisations.
+		\newblock \emph{Boundary-Layer Meteorol} \textbf{138}, 345 -- 366.
+		
+		\bibitem{storey2015actuator}
+		Storey RC, Norris SE, Cater JE. 2015 An actuator sector method for efficient transient wind turbine simulation.
+		\newblock \emph{Wind Energy} \textbf{18}: 699 -- 711.
+		
+		\bibitem{troldborg2008actuator}
+		Troldborg N. 2008 Actuator Line Modeling of Wind Turbine Wakes.
+		\newblock \emph{PhD thesis} Technical University of Denmark, Lyngby, Denmark.
+		
+		\bibitem{sorensen2002numerical}
+		S{\o}rensen JN, Shen WZ. 2002 Numerical modeling of wind turbine wakes.
+		\newblock \emph{J Fluid Eng} \textbf{124}: 393 -- 399.
+		
+		\bibitem{data}
+		Figshare data collection repository. (doi:10.6084/m9.figshare.c.3520113)
+		
+		\bibitem{delport2009constrained}
+		Delport S, Baelmans M, Meyers J. 2009 Constrained optimization of turbulent
+		mixing-layer evolution.
+		\newblock \emph{Journal of Turbulence} N18.
+		
+		\bibitem{kendalladvanced}
+		Kendall MG, Stuart A, Ord JK. The advanced theory of statistics, Volume 1: Distribution theory. Arnold, London, 1968.
+		
+		
+	\end{thebibliography}
+	
+	\appendix
+	\newpage
+	\section{Relationship between modified power coefficient and modified thrust coefficient.}\label{sec:cpct}
+	Due to present-day computational constraints, state of the art wind-farm LES grids in pseudo-spectral codes are limited to $\approx$ 10 gridpoints across the turbine diameter. As illustrated below, the use of actuator disk models for wind turbines in these resolutions lead to overpredictions in turbine power production (see, e.g., Refs \cite{martinez2016wind, martinez2015large}). Reviewing the expression for the disk-averaged velocity, 
+	
+	\begin{align}
+	%\blds{f}_i(\blds{x}) &= - \frac{1}{2} \widehat{C}_{T,i}' V_{d,i}^2 \mathscr{R}_i (\blds{x}) \blds{e}_\perp,\\
+	%P_i(t) &= - \frac{1}{2} C_{P,i}'(t)~V_{d,i}^3(t)~A_i.\\
+	V_{d,i}(t) &= \frac{1}{A_i} \int_{\Omega} \mathscr{R}_i(\blds{x})~\ufilt \cdot \blds{e}_\perp~\dx
+	\end{align}
+	it can be shown that the main culprit in this overprediction is the geometric footprint $\mathscr{R}_i$, which is based on a Gaussian filter kernel $G(\blds{x})=[6/(\pi \Delta_f^2]^{3/2}\exp (-6\vert \vert \blds{x} \vert \vert^2/\Delta_f^2)$, as discussed in more detail in \cite{meyers2010large, calaf2010large}. We select the characteristic filter width as $\Delta_f = 3/2 \Delta$, with $\Delta$ the LES grid spacing. The diffuse smearing of the rotor geometry on the LES grid, which is required for numerical stability, leads to an overestimation of disk velocity $V_{d,i}$, entailing an overprediction in power production compared to momentum theory. Note that this overprediction is not unique to actuator disk models, also in actuator line models overpredictions in turbine power are observed, for which a heuristic blade tip correction is often applied \cite{martinez2016wind, martinez2015large}.
+	
+	Figure \ref{fig:fit} illustrates $C_P$ as a function of $\widehat{C}_T'$, obtained from a steady-state actuator disk under uniform inflow. The circle markers ($\circ$) indicate simulation results with $C_P' = \widehat{C}_T'$ for the same resolution employed for the cases in Section \ref{sec:results}, and illustrate an overpredicted $C_P$. Consistent with the fact that the overprediction in power is caused by an overestimation in disk velocity due to the diffuse rotor representation, the error increases for increasing $\widehat{C}_T'$, since velocity gradients are higher for larger thrust forces. Although it is shown that this overprediction is diminished for higher grid resolutions ($\triangle$), this is not a practical solution since present-day computational constraints do not allow optimal control simulations on finer grids. Therefore, a solution to this problem is to calibrate $C_P'$ based on a least-squares fit to results obtained from 1D momentum theory, yielding $C_P' = a \widehat{C}_T'$, with $a = 0.9$. From the figure it can be seen ($\square$) that this improves the $C_P$ values significantly, and that the Betz limit is not surpassed. Physically, this implies that 10\% of the power depleted from the boundary layer due to the turbine presence is not captured by the rotor, but can be ascribed to dissipation losses. Remark that the coefficient $a$ depends on the simulation grid, and will tend to a value of 1 for finer and finer grids. It is worth noting that, since the proposed fit is linear, introducing a $C_P'$ differing from $\widehat{C}_T'$ eventually boils down to a postprocessing step, and does not influence the optimization itself. In other words, the actual results on power increase reported in this paper, which are all non-dimensionalized by a reference power, are not affected by the value of $a$.
+	
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\linewidth]{chapters/philtrans_torque/figure14.eps}
+		\caption{Power coefficient $C_P$ as a function of time-filtered modified thrust coefficient $\widehat{C}_T'$ for a steady turbine in uniform inflow.}
+		\label{fig:fit}
+	\end{figure}
+	
+	
+	\newpage
+	
+	
+	\section{Derivation of adjoint forcing and cost functional gradient.}\label{sec:derivation_adjoint}
+	In this appendix, we expand on the derivation of the adjoint forcing terms and the cost functional gradient in Equations \eqref{eq:adj_forcing} and \eqref{eq:gradient} respectively. For the derivation of the standard adjoint transport terms in the Navier--Stokes equations, we refer the reader to Refs \cite{choi1999instantaneous, bewley2001dns, delport2009constrained}. The derivation of the adjoint formulations of the wall stress model and Smagorinsky model is elaborated by Goit and Meyers \cite{goit2015optimal}. Following the same approach as the latter study, we construct the Lagrangian of the optimization problem by adding the state constraints, with shorthand notation $\blds{B}(\blds{\varphi}, \blds{q})$, to the cost functional $\mathscr{J}$ through an inner product with a set of Lagrange multipliers $\blds{q^*} = [\blds{\xi}, \pi, \blds{\sigma}]$ to form 
+	\begin{align}
+	\mathscr{L}(\blds{\varphi, q, q^*}) &= \mathscr{J}(\blds{\varphi, q}) + \big( \blds{q^*}, \blds{B}(\blds{\varphi},\blds{q})  \big)\\
+	&= \mathscr{J}(\blds{\varphi, q}) + \int_0^T \int_\Omega \pi \nabla \cdot \ufilt~\dx~\dt + \sum_{i=1}^{N_t} \int_0^T \bigg( \tau\ddt{\widehat{C}_{T,i}'} - (C_{T,i}' - \widehat{C}_{T,i}') \bigg) \sigma_i~\dt \nonumber \\
+	& \quad +  \int_0^T \int_\Omega \bigg( \frac{\partial \ufilt}{\partial t} + \ufilt \cdot \nabla \ufilt  +\frac{1}{\rho}\nabla (p_\infty + \tilde{p}) + \nabla \cdot \blds{\tau}_{sgs} - \sum_{i=1}^{N_t} \blds{f}_i \bigg) \cdot \blds{\xi} ~\dx~\dt.\label{eq:lagrangian}
+	\end{align}
+	
+	\noindent The adjoint equations in \eqref{eq:adjoint_momentum} - \eqref{eq:adjoint_timefilter} can then be found by expressing $\mathscr{L}_{\blds{q}_i}(\delta \blds{q}_i)= (\partial \mathscr{L}/\partial \blds{q}_i, \delta \blds{q}_i) = 0$ for each of the state variables $\blds{q}_i$.
+	
+	\subsection{Adjoint of time-filtered thrust coefficient}
+	We find the adjoint time filter equation by expressing the Riesz representation of $\mathscr{L}_{\widehat{\blds{C}}_T'} (\delta \widehat{\blds{C}}_T') = 0$. Using equations \eqref{eq:lagrangian}, \eqref{eq:costfunction}, \eqref{eq:define_force} and \eqref{eq:define_power}, and applying partial integration to the transient term leads to
+	
+	\begin{align}
+	\mathscr{L}_{\widehat{\blds{C}}_T'}(\delta {\widehat{\blds{C}}_T'}) &= \mathscr{J}_{\widehat{\blds{C}}_T'}(\delta \widehat{\blds{C}}_T') - \int_0^T \int_\Omega \blds{f}_{\widehat{\blds{C}}_T'} \cdot \blds{\xi}~\dx~\dt + \int_0^T \sum_{i=1}^{N_t} \bigg( \tau \ddt{\delta \widehat{C}_{T,i}'} + \delta \widehat{C}_{T,i}' \bigg) \sigma_i \dt\\
+	&= \int_0^T \int_\Omega \sum_{i=1}^{N_t} \frac{1}{2} V_{d,i}^2 \mathscr{R}_i(\blds{x}) \bigg( -\dd{C_{P,i}'}{\widehat{C}_{T,i}'}~\ufilt + \blds{\xi} \bigg)  \cdot \blds{e}_\perp \  \delta \widehat{C}_{T,i}'~\dx~\dt \nonumber\\
+	& \qquad \qquad + \int_0^T \sum_{i=1}^{N_t} \bigg( \tau \ddt{\delta \widehat{C}_{T,i}'} + \delta \widehat{C}_{T,i}' \bigg) \sigma_i~\dt \\ 
+	&= \int_0^T \sum_{i=1}^{N_t} \bigg( -\tau \ddt{\sigma_i} + \sigma_i + \frac{1}{2} V_{d,i}^2 \int_\Omega \mathscr{R}_i(\blds{x}) (-a~\ufilt + \blds{\xi}) \cdot \blds{e}_\perp~\dx \bigg) \delta \widehat{C}_{T,i}'~\dt \nonumber\\
+	& \qquad \qquad + \sum_{i=1}^{N_t} \tau \bigg[\delta \widehat{C}_{T,i}'\ \sigma_i \bigg]_0^T.    
+	\end{align}
+	
+	\noindent This equation directly leads to the adjoint time-filter Equation \eqref{eq:adjoint_timefilter}. The boundary term introduced by partial integration vanishes by imposing the terminal condition $\sigma_k(T)=0$. The factor $a$ originates from the relation between $\widehat{C}_T'$ and $C_P'$ derived in Appendix \ref{sec:cpct}.
+	
+	\subsection{Adjoint forcing term}
+	Similar to the derivation of the corresponding term in \cite{goit2015optimal}, we find the adjoint forcing term through
+	\begin{align}
+	\big( -\blds{f}^*, \delta \ufilt \big) &= \mathscr{J}_{\ufilt} (\delta \ufilt) + \int_{0}^{T} \int_\Omega -\blds{f}_{\ufilt} (\delta \ufilt) \cdot \blds{\xi}~\dx~\dt\\
+	&= \int_{0}^{T} \int_{\Omega} \sum_{i=1}^{N_t} -\frac{3}{2} C_{P,i}' V_{d,i}^2 \mathscr{R}_i (\blds{x}) \blds{e}_\perp \cdot \delta \ufilt~\dx~\dt \nonumber \\
+	& \qquad + \int_{0}^{T} \int_{\Omega} \sum_{i=1}^{N_t} \widehat{C}_{T,i}' V_{d,i} \bigg( \frac{1}{A_i} \int_{\Omega} \mathscr{R}_i(\blds{x}) \blds{\xi} \cdot \blds{e}_\perp \dx  \bigg) \mathscr{R}_i (\blds{x}) \blds{e}_\perp \cdot \delta \ufilt ~\dx~\dt\\
+	&= \int_{0}^{T} \int_{\Omega} \sum_{i=1}^{N_t} -\frac{1}{2} \widehat{C}_{T,i}' V_{d,i} \bigg(3~\frac{C_{P,i}'}{\widehat{C}_{T,i}'}~V_{d,i} - 2~X_{d,i} \bigg)~\mathscr{R}_i (\blds{x}) \blds{e}_\perp \cdot \delta \ufilt ~\dx~\dt\\
+	&= \int_{0}^{T} \int_{\Omega} \sum_{i=1}^{N_t} -\frac{1}{2} \widehat{C}_{T,i}' V_{d,i} \bigg(3~a~V_{d,i} - 2~X_{d,i} \bigg)~\mathscr{R}_i (\blds{x}) \blds{e}_\perp \cdot \delta \ufilt ~\dx~\dt,
+	\end{align}
+	leading to Equation \eqref{eq:adj_forcing}. 
+	
+	
+	\subsection{Gradient}
+	The gradient of the reduced cost functional $\nabla \widetilde{\mathscr{J}}$ with respect to the control variables $\blds{\varphi} \equiv [C_{T,1}'~ \dots~C_{T,N_t}']$ is derived from \eqref{eq:lagrangian} as
+	
+	\begin{align}
+	(\nabla \widetilde{\mathscr{J}}, \delta \blds{\varphi}) &= \int_{0}^{T} \int_{\Omega} - \blds{\sigma}\cdot\delta\blds{\varphi}~\dx~\dt,
+	\end{align}
+	or $\nabla \widetilde{\mathscr{J}} = - \blds{\sigma}$, with $\blds{\sigma} \equiv [\sigma_1~\dots~\sigma_{N_t}]$.
+	\newpage
+	
+	\section{Variance estimation of energy gains}\label{sec:variance_estimation}
+	We can estimate the standard deviation of $E_O/E_R$ based on $N$ optimization windows, where $N = 14$, including all windows except the first, which exhibits transient behavior for the optimized cases (see Figure \ref{fig:T_A}). Because the integral timescale of power extraction $\Lambda \approx 50$ s is significantly smaller than the window time horizon $T_A = 120$ s, time-integrated quantities over different windows can be assumed to be statistically independent. Firstly, the total time-averaged power is defined as 
+	\begin{equation}
+	\overline{P} = \frac{1}{T_\text{tot}} \int_{0}^{T_\text{tot}} P(t)~\text{d}t = \frac{E}{T_\text{tot}},
+	\end{equation}
+	hence $E_O/E_R = \overline{P}_O / \overline{P}_R$. Furthermore, the window-averaged power extraction for each optimization window $i$ is 
+	\begin{equation}
+	\overline{P}_{i}^{T_A} = \frac{1}{T_A} \int_{i\ T_A}^{(i+1)T_A} P(t)~\text{d}t \qquad \text{for}~i = 1 \dots N.
+	\end{equation}
+	\noindent Using a Taylor series approximation for the ratio $\overline{P}_{\text{opt}} / \overline{P}_R$, the variance thereof can be expressed in terms of statistical quantities of its numerator and denominator (see, e.g., Refs \cite{kendalladvanced}) as 
+	\begin{equation}\label{eq:formula}
+	\text{var} (\overline{P}_O / \overline{P}_R) \approx \frac{\text{E}(\overline{P}_O)^2}{\text{E}(\overline{P}_R)^2} \bigg[ \frac{\text{var}(\overline{P}_O)}{\text{E}(\overline{P}_O)^2} - 2\frac{\text{cov}(\overline{P}_O, \overline{P}_R)}{\text{E}(\overline{P}_{R})\text{E}(\overline{P}_O)} + \frac{\text{var} (\overline{P}_R)}{\text{E}(\overline{P}_R)^2}  \bigg],
+	\end{equation}
+	\noindent where var, cov and E denote the variance, covariance and expected value respectively. Since $\overline{P} = (\sum_{i=1}^{N}\overline{P}_i^{T_A})/N$, the variances in Equation \eqref{eq:formula} can be written as $\text{var}(\overline{P}) = \text{var}(\overline{P}^{T_A})/N$. Furthermore, combining properties of the covariance operator with the fact that mean powers in different optimization windows can be assumed to be statistically independent, the covariance in Equation \eqref{eq:formula} can be rewritten as 
+	\begin{align}
+	\text{cov}(\overline{P}_O, \overline{P}_R) &= \text{cov} \Bigg[\bigg(\sum_{i=1}^{N}\overline{P}_{O,i}^{T_A}\bigg)/N, \bigg(\sum_{j=1}^{N}\overline{P}_{R,j}^{T_A}\bigg)/N \Bigg] \\
+	&= \frac{1}{N^2} \sum_{i=1}^{N} \sum_{j=1}^{N} \text{cov}\bigg(\overline{P}_{O,i}^{T_A}, \overline{P}_{R,j}^{T_A} \bigg)\\
+	&= \frac{1}{N^2} \sum_{i=1}^{N} \text{cov}\bigg(\overline{P}_{O,i}^{T_A}, \overline{P}_{R,i}^{T_A} \bigg)\\
+	&= \frac{1}{N} \text{cov} \bigg( \overline{P}_O^{T_A}, \overline{P}_{R}^{T_A} \bigg).
+	\end{align}
+	\noindent Finally, since $\text{E}(\overline{P}) = \overline{P}$, Equation \eqref{eq:formula} can be readily evaluated in terms of quantities that can either be directly obtained from total time-averaged powers $\overline{P}_O$ and $\overline{P_R}$, or calculated from the distribution of window-averaged powers $\overline{P}^{T_A}_O$ and $\overline{P}^{T_A}_{R}$ as
+	\begin{equation}\label{eq:formula2}
+	\text{var} (\overline{P}_O / \overline{P}_R) \approx \frac{1}{N} \frac{\overline{P}_O^2}{\overline{P}_R^2} \bigg[ \frac{\text{var}(\overline{P}_O^{T_A})}{\overline{P}_O^2} - 2\frac{\text{cov}(\overline{P}_O^{T_A}, \overline{P}_R^{T_A})}{\overline{P}_R \overline{P}_O} + \frac{\text{var} (\overline{P}_R^{T_A})}{\overline{P}_R^2}  \bigg],
+	\end{equation}
+	leading to a standard deviation $\sigma = (\text{var} (\overline{P}_O / \overline{P}_R))^{1/2}$. Note that, even though $\overline{P}_O$ and $\overline{P}_R$ are normally distributed, the ratio between them is not. Therefore, the interval of $\text{E}(\overline{P}_O / \overline{P}_R) \pm 2 \sigma$, as shown in the error bars in Figure \ref{fig:bar_and_row}, does not correspond to a 95\% confidence interval as would be the case for a normal distribution of $\overline{P}_O / \overline{P}_R$. Nonetheless, by definition of the standard deviation, the $\text{E}(\overline{P}_O / \overline{P}_R) \pm 2 \sigma$ interval provides a good uncertainty estimate for the gains reported in Figure \ref{fig:bar_and_row}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Keep the following \cleardoublepage at the end of this file, 
+% otherwise \includeonly includes empty pages.
+\cleardoublepage

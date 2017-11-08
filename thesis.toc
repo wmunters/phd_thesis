@@ -1,0 +1,35 @@
+\select@language {english}
+\select@language {dutch}
+\select@language {english}
+\select@language {dutch}
+\select@language {english}
+\contentsline {chapter}{Contents}{iii}{section*.2}
+\contentsline {chapter}{List of Figures}{v}{section*.4}
+\contentsline {chapter}{List of Tables}{vii}{section*.6}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Wind-farm -- boundary layer interaction and modeling}{4}{section.1.1}
+\contentsline {subsubsection}{Wind-farm boundary layer modeling}{5}{section*.11}
+\contentsline {section}{\numberline {1.2}Wind-farm large-eddy simulations}{6}{section.1.2}
+\contentsline {subsubsection}{Turbulent inflow conditions in wind-farm LES}{7}{section*.12}
+\contentsline {section}{\numberline {1.3}Turbine control in wind farms}{8}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Wind-turbine control}{8}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Coordinated control in wind farms: state of the art}{10}{subsection.1.3.2}
+\contentsline {subsubsection}{Axial induction control}{11}{section*.15}
+\contentsline {subsubsection}{Wake redirection control}{13}{section*.16}
+\contentsline {section}{\numberline {1.4}Optimal control in wind-farm boundary layers: preceding work of Goit \& Meyers (2015)}{14}{section.1.4}
+\contentsline {section}{\numberline {1.5}Aims and objectives}{16}{section.1.5}
+\contentsline {section}{\numberline {1.6}Outline}{18}{section.1.6}
+\contentsline {chapter}{\numberline {A}Relationship between modified power coefficient and modified thrust coefficient}{19}{appendix.A}
+\contentsline {chapter}{\numberline {B}Variance estimation of energy gains}{21}{appendix.B}
+\contentsline {chapter}{\numberline {C}Derivation of the adjoint gradient and adjoint equations}{23}{appendix.C}
+\contentsline {section}{\numberline {C.1}Adjoint gradient}{26}{section.C.1}
+\contentsline {section}{\numberline {C.2}Adjoint of time-filtered thrust coefficient}{26}{section.C.2}
+\contentsline {section}{\numberline {C.3}Adjoint turbine forcing term}{28}{section.C.3}
+\contentsline {section}{\numberline {C.4}Adjoint fringe region forcing term}{28}{section.C.4}
+\contentsline {section}{\numberline {C.5}Adjoint of yaw angle}{29}{section.C.5}
+\contentsline {subsection}{\numberline {C.5.1}Adjoint disk velocity equation}{29}{subsection.C.5.1}
+\contentsline {subsection}{\numberline {C.5.2}Adjoint rotor footprint equation}{30}{subsection.C.5.2}
+\contentsline {subsection}{\numberline {C.5.3}Adjoint perpendicular vector equation}{30}{subsection.C.5.3}
+\contentsline {subsection}{\numberline {C.5.4}Adjoint yaw angle equation}{32}{subsection.C.5.4}
+\contentsline {chapter}{Curriculum Vitae}{47}{section*.22}
+\contentsline {chapter}{List of publications}{49}{section*.26}

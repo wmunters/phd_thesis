@@ -1,0 +1,85 @@
+\chapter{Optimal coordinated control of wind farms: problem formulation and optimization methodology}\label{ch:opt_formulation}
+
+\section{Receding-horizon optimization}
+In a conventional optimal-control approach (see Figure~\ref{fig:block_diag}a), the system (the wind farm) is controlled by a controller that optimizes the controls ($\boldsymbol{\varphi}$) in a state model that represents the system. Usually, a receding horizon approach is used (see, e.g., Figure~\ref{fig:drawing_receding_horizon}), in which the controls are optimized for a future time window $[t,t+T]$, after which the obtained optimum ($\boldsymbol{\varphi}^{\bullet}$) is used during a control time step $T_A$. In addition, the model state is regularly adapted based on measurements in the system, minimizing the errors between the state model and the real system. The challenge for wind farms is that the detailed turbulent flow state in the atmospheric boundary layer is very high dimensional, and an accurate state model (e.g. based on large-eddy simulations) is computationally very expensive, so that it is impossible to implement in a real-time controller. Therefore, wind-farm control in practice requires extensive simplifying assumptions that may limit \emph{a priori} the performance of the controller. Because of this, the development of practical cooperative wind-farm controllers remains an open issue to date, in particular for the case of power maximization through mitigation of unfavorable wake interactions.
+
+Instead of focusing on the direct formulation of a real wind-farm controller for increased energy extraction, Goit and Meyers \cite{goit2015optimal} concentrated on finding optimal controls in a very accurate state representation of the wind-farm boundary layer, i.e. based on large-eddy simulations (LES) that resolve the large turbulent flow structures in the atmospheric boundary layer and their interaction with the wind turbines both in space and in time (see Figure~\ref{fig:block_diag}b). Such an approach is not yet feasible for real control, as LES is to date still significantly slower than real time, but it allows for exploring the potential of improved energy extraction by wind-farm control, and may help in identifying new ways in which large wind farms can optimally interact with the atmospheric boundary layer.
+
+
+%The optimal wind-farm control is realized using a receding-horizon optimal control approach. This approach resembles the widely-spread model-predictive-control (MPC) technique, where the model consists of the full 3D LES equations. However, as illustrated in Figure \ref{fig:block_diag}, our approach differs from an \emph{actual} MPC, in that the model and the system to be controlled are identical in our case. Therefore, at each stage throughout the optimization process, we have full space-time knowledge of the system state. This is in contrast to an actual MPC, which requires a state estimation step, based on a limited set of measurements. Moreover, since in our case the system behaves identically to the model, a feedback loop is meaningless. Previously, a similar  approach has been applied to LES-based or DNS-based optimal control in \commwim{REFS}. Finally, note that the `practical' wind-farm controller is a purely hypothetical case since the LES evaluation is orders of magnitude too slow to be used in actual real-time controllers.
+
+
+In the current work, we further elaborate and adapt the framework of Goit and Meyers \cite{goit2015optimal, goit2016optimal}, using a receding horizon optimization approach as shown in Figure \ref{fig:drawing_receding_horizon}. Given a control time horizon $T$, controls are optimized to yield maximum energy extraction. Further details are provided in \S\ref{sec:optimproblem}--\S\ref{sec:optimalgo}. Part of the resulting optimal controls $\boldsymbol{\varphi}^{\bullet}$ are then used for a time period $T_A \leq T$, during which we advance the wind-farm LES system in time. Subsequently, control optimization over a new time horizon is initiated, etc. The flow advancement time $T_A$ is chosen based on a trade-off between limiting overall computational expenses, favoring $T_A/T \rightarrow 1$, and averting finite-horizon optimization effects, favoring $T_A/T \rightarrow 0$. The influence of the ratio $T_A/T$ on the dynamic behavior of the optimized wind farm is discussed in Section \ref{sec:results}, presenting both results for $T_A=T/2$, and $T_A=T/4$, and evaluated over a total wind-farm control time $T_{\textit{tot}}=N_AT_A$ of approximately 30 minutes of real wind-farm time.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{chapters/optimal_control_problem/figure1.eps}
+	\caption{Model-predictive control applied to wind farms. a) Conventional feedback MPC of a wind farm. b) Benchmark optimal control framework of a wind farm LES considered in the current study.}\label{fig:block_diag}
+\end{figure}
+
+\begin{figure}[]
+	\centering
+	\includegraphics[width=0.75\linewidth]{figure2.eps}
+	\caption{Receding horizon optimization framework for optimal control of wind farms. Figure adapted from Ref.~\cite{goit2015optimal}.}
+	\label{fig:drawing_receding_horizon}
+\end{figure}
+
+
+\section{Optimal control problem formulation}
+\begin{mini!}|s|
+	{\bs{\varphi}, \bs{q}}{\J(\bs{\varphi}, \bs{q}) = - \Tint \sum_{i=1}^{N_t} \frac{1}{2} C_{P,i}'~V_i^3 A_i \dt}{ \label{eq:costfunction}}{}
+	\addConstraint{\frac{\partial \utilde}{\partial t} + \big(\utilde \cdot \nabla \big)~ \utilde }{= - \nabla (\ptilde + \ptilde_\infty) / \rho - \nabla \cdot \boldsymbol{\tau}_{sgs} + \sum_{i=1}^{N_t} \bs{f}_i \quad \label{eq:NSmomentum_constraint}}{\text{in } \Omega \times (0,T]}
+	\addConstraint{\nabla \cdot \utilde}{=0,\quad \label{eq:NScontinuity_constraint}}{\text{in } \Omega \times (0,T]}
+	\addConstraint{\tau \ddt{\ctihat}}{=\cti - \ctihat \quad \label{eq:ctihat_constraint}}{ i=1\dots N_t~\text{in } (0,T]}
+	\addConstraint{\ddt{\theta_i}}{= \omega_i \quad \label{eq:omega_constraint}}{i=1\dots N_t~\text{in } (0,T]}
+	\addConstraint{C_{T,\text{min}}' \leq}{ \cti \leq C_{T,\text{max}}'\quad \label{eq:boxct_constraint}}{i=1\dots N_t~\text{in } (0,T]}
+	\addConstraint{-\omega_{\text{max}} \leq}{ \omega_i \leq \omega_{\text{max}} \quad \label{eq:boxomega_constraint}}{i=1\dots N_t~\text{in } (0,T]. }
+\end{mini!}
+
+\begin{equation}\label{eq:optimizationproblem}
+\begin{aligned}
+& \underset{\ufilt, \blds{C}_T'}{\text{min}}
+& &  \mathscr{J}(\ufilt, \blds{C}_T') = \int_{0}^{T} \int_{\Omega} \sum_{i=1}^{N_t} -\blds{f}_{i} \cdot~ \ufilt~\dx~\dt  \\
+& \text{s.t. }
+& & \frac{\partial \ufilt}{\partial t} + \nabla \cdot (\ufilt \ufilt) = -\nabla (p_\infty + \tilde{p}) - \nabla \cdot \blds{\tau}_{sgs} + \sum_{i=1}^{N_t}\blds{f}_i & \text{in}~\Omega \times (0, T],\\
+& & & \nabla \cdot \ufilt = 0 & \text{in}~\Omega \times (0, T],\\
+& & & \tau \frac{\text{d}\ctihat}{\dt} = C_{T,i}' - \ctihat & \text{for}~i = 1 \dots N_t~\text{in}~(0, T],\\
+& & & 0 \le C_{T,i}' \le C_{T}^{' max} & \text{for}~i = 1 \dots N_t.
+\end{aligned}
+\end{equation}
+
+\section{Optimization algorithms}
+	
+	\subsection{Non-linear conjugate gradient method}
+	
+	\subsection{Quasi-Newton L-BFGS-B method}
+	
+	\subsection{Performance comparison}
+
+\section{Gradient evaluation}
+
+	\subsection{Gradient of the reduced cost functional}
+	
+\section{Adjoint Navier-Stokes equations}
+	
+		Introduce formal lagrangian method, base on Appendix A of RSTA paper
+		
+	\subsection{Adjoint turbine forcing}
+		
+	\subsection{Adjoint fringe region forcing}
+		
+	\subsection{Adjoint of time-filtered thrust coefficient}
+		
+	\subsection{Adjoint of yaw rate}
+	
+	\subsection{Adjoint equations}
+		
+	\subsection{Verification of the adjoint gradient}
+
+\section{Summary}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Keep the following \cleardoublepage at the end of this file, 
+% otherwise \includeonly includes empty pages.
+\cleardoublepage

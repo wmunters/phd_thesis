@@ -1,0 +1,53 @@
+\chapter{List of publications}\label{ch:methodology}
+
+\section*{Articles in internationally reviewed academic journals}
+
+Munters W., Meyers J. (2017). An optimal control framework for dynamic induction control of wind farms and their interaction with the atmospheric boundary layer. Philosophical Transactions of the Royal Society of London A, Mathematical, Physical and Engineering Sciences, 375 (2091), art.nr. 20160100.
+
+Munters W., Meneveau C., Meyers J. (2016). Turbulent inflow precursor method with time-varying direction for large-eddy simulations and applications to wind farms. Boundary-Layer Meteorology, 159 (2), 305-328.
+
+Munters W., Meneveau C., Meyers J. (2016). Shifted periodic boundary conditions for simulations of wall-bounded turbulent flows. Physics of Fluids, 28, art.nr. 025112.
+
+Goit J., Munters W., Meyers J. (2016). Optimal coordinated control of power extraction in LES of a wind farm with entrance effects. Energies, 9 (1), art.nr. 29.
+
+
+\section*{Papers at international scientific conferences and symposia, published in full in proceedings}
+
+Munters W., Meyers J. (2016). Effect of wind turbine response time on optimal dynamic induction control of wind farms. Journal of Physics: Conference Series: Vol. 753. The Science of Making Torque from Wind. Munich, 5-7 October 2016.
+
+Meyers J., Munters W., Goit J. (2016). A framework for optimization of turbulent wind-farm boundary layers and application to optimal control of wind-farm energy extraction. Proceedings of the American Control Conference. American Control Conference (ACC). Boston, 6-8 July 2016 (art.nr. WeA15.3).
+
+\section*{Meeting abstracts, presented at international scientific conferences and symposia}
+
+Munters W., Meyers J. (2017). Optimal coordinated control of wind-farm boundary layers in large-eddy simulations: Optimal coordinated control of wind-farm boundary layers in large-eddy simulations: intercomparison between dynamic yaw control and dynamic induction control. Wind Energy Science Conference 2017. Lynbgy, Denmark, 26-29 June 2017.
+
+Meyers J., Munters W. (2017). Optimal coordinated control of wind-farm boundary layers in large-eddy simulations: analysis of optimal induction control and progress towards practical control strategies. Wind Energy Science Conference 2017. Lynbgy, Denmark, 26-29 June 2017.
+
+Munters W., Meyers J. (2016). Optimal control of wind-farm boundary layers: effect of turbine response time. Bulletin of the American Physical Society: vol. 61. Annual Meeting of the APS Division of Fluid Dynamics. Portland, OR, 20-22 November 2016, Abstract No. L2.00009.
+
+Munters W., Meyers J. (2016). PDE-constrained optimal control of large-scale wind farms. European Conference on Computational Optimization. Leuven, 12-14 September 2016.
+
+Meyers J., Munters W., Bokharaie V. S. (2016). Optimal control and optimization of wind farms using large-eddy simulations. EUROMECH Colloquium 576 Wind Farms in Complex Terrains. Stockholm, Sweden, 8-10 June 2016.
+
+Meyers J., Munters W., Bokharaie V. S. (2016). LES-based optimal control and optimization of wind farms. Windfarms 2016: International colloquium on wind-power plants. Richardson, TX, USA 23-25 May 2016.
+
+Munters W., Goit J., Meyers J. (2016). HPC-based optimal coordinated control in large-eddy simulations of wind farms. HPC-CORE Workshop. Lancaster, UK, 7-8 April 2016.
+
+Meyers J., Munters W., Goit J. (2015). Optimal coordinated control of energy extraction in LES of wind farms: effect of turbine arrangement patterns. Bulletin of the American Physical Society: vol. 60. Annual Meeting of the APS Division of Fluid Dynamics. Boston, MA, USA, 22 - 24 November 2015.
+
+Munters W., Meneveau C., Meyers J. (2015). Shifted periodic boundary conditions for large-eddy simulation of wind farms. Bulletin of the American Physical Society: vol. 60. Annual Meeting of the APS Division of Fluid Dynamics. Boston, MA, USA, 22 - 24 November 2015, Abstract No. G12.00006.
+
+Munters W., Meneveau C., Meyers J. (2015). Turbulent inflow precursor method with time-varying direction for large eddy simulations and applications to wind farms. International Colloquium on Large Wind-Power Plants: Interaction, Control, and Integration. Book of Abstracts. Windfarms 2015. Leuven, Belgium, 8-10 July 2015.
+
+Meyers J., Goit J., Munters W. (2015). Optimal coordinated control of energy extraction in wind farms. International Colloquium on Large Wind-Power Plants: Interaction, Control, and Integration. Book of Abstracts. Windfarms 2015. Leuven, Belgium, 8 - 10 July 2015.
+
+Munters W., Meneveau C., Meyers J. (2015). Turbulent Inflow Conditions for Time-Varying Mean-Flow Directions in LES with Application to Wind Farms. International conference on model integration across disparate scales in complex turbulent flow simulation (ICMIDS). State College, PA, USA, 15-17 June 2015.
+
+Meyers J., Goit J., Munters W. (2014). Optimal control of energy extraction in LES of large wind farms. Bulletin of the American Physical Society: vol. 59. Annual Meeting of the APS Division of Fluid Dynamics. San Francisco, CA, USA, 23-25 November 2014, Abstract No. E24.00004.
+
+Munters W., Meneveau C., Meyers J. (2014). A concurrent precursor inflow method for LES of atmospheric boundary layer flows with variable inflow direction for coupling with meso-scale models. Bulletin of the American Physical Society: vol. 59. Annual Meeting of the APS Division of Fluid Dynamics. San Francisco, CA, USA, 23-25 November 2014, Abstract No. L35.00005
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Keep the following \cleardoublepage at the end of this file, 
+% otherwise \includeonly includes empty pages.
+\cleardoublepage
+

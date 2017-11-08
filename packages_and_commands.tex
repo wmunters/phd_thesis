@@ -1,0 +1,122 @@
+% Packages physics of fluids 
+\usepackage{tabularx}
+\usepackage{multirow}
+
+\usepackage{booktabs,caption,fixltx2e}
+\usepackage[flushleft]{threeparttable}
+
+
+\usepackage{arydshln}
+
+% Packages philtrans
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{epstopdf}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage[outline]{contour}
+\newcommand{\addref}{{\color{blue} REF}}
+\newcommand{\ufilt}{\tilde{\boldsymbol{u}}}
+\newcommand{\commwim}[1]{{\color{red} #1}}
+\newcommand{\dx}{\text{d}\boldsymbol{x}}
+\newcommand{\dt}{\text{d}t}
+\newcommand{\ddd}{\text{d}}
+\newcommand{\ddt}[1]{\frac{\ddd #1}{\ddd t}}
+\newcommand{\blds}[1]{\boldsymbol{#1}}
+\newcommand{\dd}[2]{\frac{\ddd #1}{\ddd #2}}
+\newcommand{\ctihat}{\widehat{C}_{T,i}'}
+\newcommand{\cthat}{\widehat{C}_T'}
+\newcommand{\ctmax}{C_{T,\text{max}}'}
+
+\newcommand{\legend}{(\emph{Legend}: R: {\bf \color{black}-----}, C3t0: {\bf \color{red}-----}, C3t5: {\bf\color{Dandelion}-----}, C3t30: {\bf\color{Cyan}-----}, C2t0: {\bf\color{red}- - -}, C2t5: {\bf\color{Dandelion}- - -}, C2t30: {\bf\color{Cyan}- - -})}
+\newcommand{\legendtauref}{(\emph{Legend}: R: {\bf \color{black}-----}, $\tau = 0$ s: {\bf \color{red}-----}, $\tau = 5$ s: {\bf\color{Dandelion}-----}, $\tau = 30$ s: {\bf\color{Cyan}-----})}
+
+\newcommand{\legendnoref}{C3t0: {\bf \color{red}-----}, C3t5: {\bf\color{Dandelion}-----}, C3t30: {\bf\color{Cyan}-----}, C2t0: {\bf\color{red}- - -}, C2t5: {\bf\color{Dandelion}- - -}, C2t30: {\bf\color{Cyan}- - -}}
+
+\newcommand{\legendtau}{(\emph{Legend}: $\tau = 0$ s: \contour{red}{\color{red}-----}, $\tau = 5$ s: \contour{Dandelion}{\color{Dandelion}-----}, $\tau = 30$ s: \contour{Cyan}{\color{Cyan}-----})}
+%\newcommand{\legendtauref}{(\emph{Legend}: R: \contour{black}{\color{black}-----}, $\tau = 0$ s: \contour{red}{\color{red}-----}, $\tau = 5$ s: \contour{Dandelion}{\color{Dandelion}-----}, $\tau = 30$ s: \contour{Cyan}{\color{Cyan}-----})}
+
+\newrobustcmd*{\mycircle}[1]{\tikz{\filldraw[draw=#1,fill=#1] (0,0) 
+		circle [radius=0.08cm];}}
+\newrobustcmd*{\mycircleopen}[1]{\tikz{\filldraw[draw=#1,fill=white] (0,0) circle [radius=0.08cm];}}
+
+% Yawing paper
+% Additional packages to be loaded
+%---------------------------------------------------------------------------------
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage[short]{optidef}
+\usepackage{printlen}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+\definecolor{C1}{RGB}{31,119,180}
+\definecolor{C2}{RGB}{255,127,14}
+\definecolor{C3}{RGB}{44,160,44}
+\definecolor{C4}{RGB}{214,39,40}
+
+% Some  auxiliary commands for ease of mathematics notations
+%---------------------------------------------------------------------------------
+% Derivatives and differentials
+\newcommand{\ds}{~\text{d}\boldsymbol{s}}
+\newcommand{\dzeta}{~\text{d}\boldsymbol{\zeta}}
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+% Integrals
+\newcommand{\stint}{\int_{0}^{T} \int_{\Omega}}
+\newcommand{\sint}{\int_{\Omega}}
+\newcommand{\Tint}{\int_{0}^{T}}
+\newcommand{\tint}{\int_{0}^{t}}
+% Filtered variables
+\newcommand{\utilde}{\widetilde{\bs{u}}}
+\newcommand{\ptilde}{\widetilde{p}}
+\newcommand{\ctnhat}[1]{\widehat{C}_{T,#1}'}
+% Other symbols
+\newcommand{\cti}{C_{T,i}'}
+\newcommand{\ctn}[1]{C_{T,#1}'}
+\newcommand{\R}{\mathscr{R}}
+\newcommand{\J}{\mathscr{J}}
+\newcommand{\Jtilde}{\tilde{\mathscr{J}}}
+\newcommand{\Jgrad}{\nabla \Jtilde}
+\newcommand{\Lagr}{\mathscr{L}}
+\newcommand{\eperp}{\bs{e}_\perp}
+\newcommand{\eperpi}{\bs{e}_{\perp,i}}
+\newcommand{\etransi}{\bs{e}_{\parallel,i}}
+\newcommand{\ex}{\bs{e}_x}
+\newcommand{\ey}{\bs{e}_y}
+\newcommand{\ez}{\bs{e}_z}
+\newcommand{\eperpn}[1]{\bs{e}_{\perp,#1}}
+\newcommand{\vi}{\frac{1}{A_i} \sint \R_i (\bs{s})~\utilde \cdot \eperpi \ds}
+% Operators
+\newcommand{\innerproduct}[2]{\bigg( #1, #2 \bigg)}
+\newcommand{\innerproductsmall}[2]{\big( #1, #2 \big)}
+\newcommand{\sumturbines}{\sum_{i=1}^{N_t}}
+\newcommand{\diracdelta}{{\delta}}
+% Colors
+\newcommand{\red}[1]{{\color{red} #1}}
+\newcommand{\purp}[1]{{\color{purple} #1}}
+\newcommand{\reftodo}[1]{\red{AddREF}: #1}
+\newcommand{\todo}[1]{\purp{TODO: #1}}
+\newcommand{\fixeqref}{\purp{FixEqRef}}
+%---------------------------------------------------------------------------------
+
+%---------------------------------------------------------------------------------
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage[short]{optidef}
+\usepackage{printlen}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+\definecolor{C1}{RGB}{31,119,180}
+\definecolor{C2}{RGB}{255,127,14}
+\definecolor{C3}{RGB}{44,160,44}
+\definecolor{C4}{RGB}{214,39,40}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\sqdiamond}[1][fill=gray]{\tikz [x=1.2ex,y=1.85ex,line width=.1ex,line join=round, yshift=-0.285ex] \draw  [#1]  (0,.5) -- (.5,1) -- (1,.5) -- (.5,0) -- (0,.5) -- cycle;}%
+\newcommand{\miDiamond}[1][fill=gray]{\mathop{\raisebox{-0.275ex}{$\sqdiamond[#1]$}}}
+
