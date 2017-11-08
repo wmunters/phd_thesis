@@ -1,5 +1,5 @@
 DONE - p. 1: waarom zijn windmolenparken precies "economically advantageous"?  Een paar zinnen volstaan.
-- p. 3: eerste verschijning van het woord "boundary layer".  Misschien in 1 zin uitleggen welk stuk atmosfeer dit precies is? (Dit wordt nu geleidelijkaan duidelijk doorheen het eerste hoofdstuk, ipv op een specifieke plaats gedefinieerd.)
+DONE - p. 3: eerste verschijning van het woord "boundary layer".  Misschien in 1 zin uitleggen welk stuk atmosfeer dit precies is? (Dit wordt nu geleidelijkaan duidelijk doorheen het eerste hoofdstuk, ipv op een specifieke plaats gedefinieerd.)
 - p. 5: "cheap to evaluate and hence suitable..."  Die "hence" betekent "bijgevolg", maar je wil nadien aankaarten dat er nauwkeurigheidsproblemen zijn.  Ik denk dat je best "suitable" vervangt door "often used"...
 - p. 6: Top.  Hier komt de boodschap dat je op LES gaan werken, omdat het nu "bijna" kan om die echt te gebruiken. De boodschap kan wat meer in de verf gezet worden.
 - p. 6, l -10: "In contrast, ..."  : waar zit precies het contrast?
