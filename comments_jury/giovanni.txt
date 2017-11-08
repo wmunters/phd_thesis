@@ -1,0 +1,25 @@
+- p. 1: waarom zijn windmolenparken precies "economically advantageous"?  Een paar zinnen volstaan.
+- p. 3: eerste verschijning van het woord "boundary layer".  Misschien in 1 zin uitleggen welk stuk atmosfeer dit precies is? (Dit wordt nu geleidelijkaan duidelijk doorheen het eerste hoofdstuk, ipv op een specifieke plaats gedefinieerd.)
+- p. 5: "cheap to evaluate and hence suitable..."  Die "hence" betekent "bijgevolg", maar je wil nadien aankaarten dat er nauwkeurigheidsproblemen zijn.  Ik denk dat je best "suitable" vervangt door "often used"...
+- p. 6: Top.  Hier komt de boodschap dat je op LES gaan werken, omdat het nu "bijna" kan om die echt te gebruiken. De boodschap kan wat meer in de verf gezet worden.
+- p. 6, l -10: "In contrast, ..."  : waar zit precies het contrast?
+- p. 7, last paragraph: "It is widely accepted that..." Het is hier niet duidelijk waarop de statements gebaseerd zijn.  Dit werd uitgelegd in sectie 3.2. Misschien hier al aangeven dat de details daar komen?
+- p. 10, fig 1.5: de uitleg van op je verdediging over waarom je op region 2 concentreert opnemen in je tekst.
+- p. 20: motivatie voor definitie u_*
+- p. 20 (onderaan): motivatie voor keuze n=1 + ref
+- sectie 2.5: aantal processoren vermelden als je rekentijden geeft.
+- p. 40 eerste lijn: het is pas duidelijk waarom je naar "shifted" periodic BC kijkt wanneer je het er effectief over hebt.  Hier ontbreekt een zinnetje dat motiveert waarom je ernaar zou willen kijken.
+- p. 43, niet gestelde vraag.  De zin "Since the boundary layer is fully developed, the periodic case is equivalent to the precursor simulation."  Hoe weet je dit?  Ik kon niet vinden op basis van welke observatie je dit kon besluiten.
+- Fig 3.1: "omitted for clarity".  Voor lezers die geinteresseerd zijn in wat er gebeurt in de fringe region wordt de methode juist duidelijker door die 10% niet te knippen.  Misschien een figuur toevoegen waarin je "enkel" toont wat er in de fringe region gebeurt om de methode te illustreren? (Hier illustreer je de resultaten van de simulatie.)
+- Fig 3.2: niet gestelde vraag:  hoe vertalen verschillen in spectrum zich in verschillen in de quantity of interest (extracted power in jouw geval).
+- Fig 3.2: De figuur hier gaat uit van exactheid van de zwarte lijn, maar dat wordt nergens geverifieerd.  Zie een vorige opmerking.
+- Misschien iets vermelden in future work dat het zinvol kan zijn om te onderzoeken hoe sterk de "natuurlijke" dynamica verstoord wordt door de fringe region?  (Mijn vraag over de tijdschalen ging in die richting, maar ik heb de discussie niet verdergezet omwille van tijdsgebrek.  Ik vermoed dat de keuze van de tijschaal een afweging is tussen sterke perturbatie op de dynamica (wat je nu doet) en efficientie van de simulatie.  Ik vraag me af op dit implicaties heeft op de tijdsgemiddeldes die je berekent.  Ik denk dat die implicaties veel kleiner zijn dan die op de dynamica, maar weet niet hoeveel daar van gekend is.
+- p. 66: as is shown in the current paper --> ik denk dat je "chapter" moet zetten.  Misschien zijn er nog van die copy-paste issues.
+- p. 68: "satisfactory results" --> hoe is dit precies gedefnieerd? hoe is dit nagegaan? kijken naar het prentje?
+- p. 81 laatste lijn, fout label: 4.4.2 moet 4.4 zijn.
+- p.83: zelfs met T_A/T constant zijn er verschillende mogelijkheden.  Je antwoord op mijn vraag daarover was duidelijk genoeg om hier opgenomen te worden als paragraaf.
+- p. 84 laatste lijn "opposite" --> "negative"  (opposite kan ook 1/... betekenen).  
+- p. 85 vgl (4.1) ik heb de min liefst voor de integraal.
+- p. 85 "no cost with control action" en later een soort tijdsconstantie voor je control.  Kun je die constraint op niet vervangen door kost van controle te penaliseren (niet gestelde vraag).
+- p. 96 (niet gesteld vraag): effect van chaotische dynamica en discretizatiefouten op nauwkeurigheid van adjoint simulatie?
+- p. 98: je verwijst vooruit naar Ch 5 en 7, maar niet naar Ch 6.
