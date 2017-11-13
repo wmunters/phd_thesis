@@ -5,7 +5,7 @@ DONE - p. 5: "cheap to evaluate and hence suitable..."  Die "hence" betekent "bi
 DONE - p. 6, l -10: "In contrast, ..."  : waar zit precies het contrast?
 DONE - p. 7, last paragraph: "It is widely accepted that..." Het is hier niet duidelijk waarop de statements gebaseerd zijn.  Dit werd uitgelegd in sectie 3.2. Misschien hier al aangeven dat de details daar komen?
 DONE - p. 10, fig 1.5: de uitleg van op je verdediging over waarom je op region 2 concentreert opnemen in je tekst.
-- p. 20: motivatie voor definitie u_*
+DONE - p. 20: motivatie voor definitie u_*
 - p. 20 (onderaan): motivatie voor keuze n=1 + ref
 - sectie 2.5: aantal processoren vermelden als je rekentijden geeft.
 - p. 40 eerste lijn: het is pas duidelijk waarom je naar "shifted" periodic BC kijkt wanneer je het er effectief over hebt.  Hier ontbreekt een zinnetje dat motiveert waarom je ernaar zou willen kijken.
