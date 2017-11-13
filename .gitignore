@@ -6,9 +6,14 @@
 *.bbl
 *.xml
 *.out
-*.log
 *.loc
 *.lof
 *.ps
 *.lot
 *.toc
+/thesis.blg
+/thesis.lof
+/thesis.ps
+*.synctex.gz(busy)
+/bibfile.bib.bak
+/bibfile.bib.sav
