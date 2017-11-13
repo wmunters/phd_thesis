@@ -1,0 +1,14 @@
+Jw v Wingerden
+- p. 16 More concrete
+- Optimal control?
+- WFsim niet teveel onderuit halen. Wake propagation is 'dynamic'. Term dynamic misschien wat meer gedetailleerd aflijnen.
+
+
+S. Ivanell 
+p. 166: make somewhat more clear, add yaw angles, ...?
+- Perhaps add power plots to figure axial velocity. SI was soms the bigger picture kwijt naar eigen zeggen....
+
+
+N. vL
+- Which direction should further research go -> Conclusions chapter
+- Hoe zouden C_T' schommelingen bekomstigd worden door lambda en beta veranderingen? (Interessant topic, verder onderzoek)
