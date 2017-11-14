@@ -7,7 +7,7 @@ DONE - p. 7, last paragraph: "It is widely accepted that..." Het is hier niet du
 DONE - p. 10, fig 1.5: de uitleg van op je verdediging over waarom je op region 2 concentreert opnemen in je tekst.
 DONE - p. 20: motivatie voor definitie u_*
 DONE - p. 20 (onderaan): motivatie voor keuze n=1 + ref
-- sectie 2.5: aantal processoren vermelden als je rekentijden geeft.
+DONE - sectie 2.5: aantal processoren vermelden als je rekentijden geeft.
 - p. 40 eerste lijn: het is pas duidelijk waarom je naar "shifted" periodic BC kijkt wanneer je het er effectief over hebt.  Hier ontbreekt een zinnetje dat motiveert waarom je ernaar zou willen kijken.
 - p. 43, niet gestelde vraag.  De zin "Since the boundary layer is fully developed, the periodic case is equivalent to the precursor simulation."  Hoe weet je dit?  Ik kon niet vinden op basis van welke observatie je dit kon besluiten.
 - Fig 3.1: "omitted for clarity".  Voor lezers die geinteresseerd zijn in wat er gebeurt in de fringe region wordt de methode juist duidelijker door die 10% niet te knippen.  Misschien een figuur toevoegen waarin je "enkel" toont wat er in de fringe region gebeurt om de methode te illustreren? (Hier illustreer je de resultaten van de simulatie.)
