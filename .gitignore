@@ -17,3 +17,4 @@
 *.synctex.gz(busy)
 /bibfile.bib.bak
 /bibfile.bib.sav
+*.glo
