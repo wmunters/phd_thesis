@@ -44,7 +44,7 @@ In this section, the optimal control problem, which is solved in every window of
 \subsubsection{Cost functional}
 The aim of the optimal control is translated into the minimization of a scalar cost functional $\J$. In all optimal control cases throughout this thesis, this cost functional is defined as the negative of the aggregated energy extracted from the ABL by the wind farm (opposite due to minimization convention), i.e.
 \begin{equation}\label{eq:costfunction}
-	\J = \Tint - \sum_{i=1}^{N_t} P_i(t) \dt = \Tint - \sum_{i=1}^{N_t} \frac{1}{2} a \ctihat V_i^3 A_i \dt,
+	\J = - \Tint \sum_{i=1}^{N_t} P_i(t) \dt = - \Tint \sum_{i=1}^{N_t} \frac{1}{2} a \ctihat V_i^3 A_i \dt,
 \end{equation}
 with the turbine area $A_i$, time-filtered thrust coefficient $\widehat{C}_T'$, scaling parameter $a = C_P'/\widehat{C}_T'$, and disk-averaged axial velocity $V_i = (1/A_i) \sint  \R(\bs{x}) \ufilt \cdot \eperp \dx$, as defined in Section~\ref{sec:meth_adm}. Note that there is no cost associated with control actions, and no considerations on turbine loading are taken: wind-farm power is optimized at all cost throughout this thesis. 
 
