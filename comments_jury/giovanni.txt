@@ -17,7 +17,7 @@ DONE - Misschien iets vermelden in future work dat het zinvol kan zijn om te ond
 DONE - p. 66: as is shown in the current paper --> ik denk dat je "chapter" moet zetten.  Misschien zijn er nog van die copy-paste issues.
 DONE - p. 68: "satisfactory results" --> hoe is dit precies gedefnieerd? hoe is dit nagegaan? kijken naar het prentje?
 DONE - p. 81 laatste lijn, fout label: 4.4.2 moet 4.4 zijn.
-- p.83: zelfs met T_A/T constant zijn er verschillende mogelijkheden.  Je antwoord op mijn vraag daarover was duidelijk genoeg om hier opgenomen te worden als paragraaf.
+DONE - p.83: zelfs met T_A/T constant zijn er verschillende mogelijkheden.  Je antwoord op mijn vraag daarover was duidelijk genoeg om hier opgenomen te worden als paragraaf.
 - p. 84 laatste lijn "opposite" --> "negative"  (opposite kan ook 1/... betekenen).  
 - p. 85 vgl (4.1) ik heb de min liefst voor de integraal.
 - p. 85 "no cost with control action" en later een soort tijdsconstantie voor je control.  Kun je die constraint op niet vervangen door kost van controle te penaliseren (niet gestelde vraag).
