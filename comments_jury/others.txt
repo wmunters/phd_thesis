@@ -1,6 +1,6 @@
 Jw v Wingerden
 - p. 16 More concrete
-- Optimal control?
+DONE - Optimal control?
 - WFsim niet teveel onderuit halen. Wake propagation is 'dynamic'. Term dynamic misschien wat meer gedetailleerd aflijnen.
 
 
