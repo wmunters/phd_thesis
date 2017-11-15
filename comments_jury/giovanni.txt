@@ -21,5 +21,5 @@ DONE - p.83: zelfs met T_A/T constant zijn er verschillende mogelijkheden.  Je a
 DONE - p. 84 laatste lijn "opposite" --> "negative"  (opposite kan ook 1/... betekenen).  
 DONE - p. 85 vgl (4.1) ik heb de min liefst voor de integraal.
 OMITTED - p. 85 "no cost with control action" en later een soort tijdsconstantie voor je control.  Kun je die constraint op niet vervangen door kost van controle te penaliseren (niet gestelde vraag).
-- p. 96 (niet gesteld vraag): effect van chaotische dynamica en discretizatiefouten op nauwkeurigheid van adjoint simulatie?
+OMITTED - p. 96 (niet gesteld vraag): effect van chaotische dynamica en discretizatiefouten op nauwkeurigheid van adjoint simulatie?
 - p. 98: je verwijst vooruit naar Ch 5 en 7, maar niet naar Ch 6.
