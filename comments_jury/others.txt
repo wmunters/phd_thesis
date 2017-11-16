@@ -11,5 +11,5 @@ OMIT - Perhaps add power plots to figure axial velocity. SI was soms the bigger 
 
 
 N. vL
-- Which direction should further research go -> Conclusions chapter
+DONE s- Which direction should further research go -> Conclusions chapter
 DONE - Hoe zouden C_T' schommelingen bekomstigd worden door lambda en beta veranderingen? (Interessant topic, verder onderzoek)
