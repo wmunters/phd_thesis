@@ -6,8 +6,8 @@ DONE - conclusie IPC wake redirection
 
 
 S. Ivanell 
-p. 166: make somewhat more clear, add yaw angles, ...?
-- Perhaps add power plots to figure axial velocity. SI was soms the bigger picture kwijt naar eigen zeggen....
+DONE, more or less p. 166: make somewhat more clear, add yaw angles, ...?
+OMIT - Perhaps add power plots to figure axial velocity. SI was soms the bigger picture kwijt naar eigen zeggen....
 
 
 N. vL
