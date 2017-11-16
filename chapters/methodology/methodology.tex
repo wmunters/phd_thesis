@@ -70,11 +70,13 @@ Wind turbines are controlled dynamically in such a way as to actively influence 
 As discussed in Chapter~\ref{ch:introduction}, the main features to be controlled in modern horizontal-axis wind turbines are the blade pitch angle $\beta$ using pitch actuators, the tip speed ratio $\lambda$ by varying resisting generator torque, and the yaw angle $\theta$ using the active yaw system. Blade pitch and tip speed ratio influence axial induction behavior, and thus the magnitude of the thrust force, whereas yaw governs the orientation of the thrust force. 
 
 \subsubsection{Axial induction control}
-In the context of the ADM used throughout this thesis, the effects of blade pitch $\beta$ and tip speed ratio $\lambda$ on the axial induction are represented through the modified thrust coefficient $\widehat{C}_T'$ (as used in Equation~\ref{eq:define_force}). Following \cite{goit2015optimal}, in the current approach we provide a thrust coefficient setpoint $C_T'$ and make abstraction of how such a setpoint should be attained through variations in $\beta$ or $\lambda$. Furthermore, we do not directly impose this thrust setpoint on the turbine, but instead apply a first-order exponential time filter:
+In the context of the ADM used throughout this thesis, the effects of blade pitch $\beta$ and tip speed ratio $\lambda$ on the axial induction are represented through the modified thrust coefficient $\widehat{C}_T'$ (as used in Equation~\ref{eq:define_force}). Following \cite{goit2015optimal}, in the current approach we provide a thrust coefficient setpoint $C_T'$ and make abstraction of how such a setpoint should be attained through variations in $\beta$ or $\lambda$.\footnote{Note that virtually every feasible thrust setpoint can be achieved by multiple ($\beta$,$\lambda$) combinations (see Figure \ref{fig:WT_drawing}c), and that unsteady variations can hence also be achieved in multiple ways.} We do not directly impose the thrust setpoint on the turbine, but instead apply a first-order exponential time filter:
 \begin{equation}
 	\tau \ddt{\ctihat} = \cti - \ctihat \label{eq:timefilter_def}.
 \end{equation}
 In this equation, the time constant $\tau$ characterizes the turbine response time to variations in thrust setpoints. This would, for example, fit in a hierarchical approach to wind-farm control, in which wind-farm control signals are passed on to individual turbine controllers that themselves may not react instantaneously to the control signals. Moreover, increasing $\tau$ allows to assess the effect on power gains of limiting dynamics in turbine operation, which could be beneficial for turbine lifetime. 
+
+
 
 %\begin{figure}
 %	\centering
