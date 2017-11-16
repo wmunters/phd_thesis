@@ -1,5 +1,5 @@
 Jw v Wingerden
-- p. 16 More concrete
+DONE - p. 16 More concrete
 DONE - Optimal control?
 DONE - WFsim niet teveel onderuit halen. Wake propagation is 'dynamic'. Term dynamic misschien wat meer gedetailleerd aflijnen.
 DONE - conclusie IPC wake redirection
