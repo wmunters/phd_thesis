@@ -34,9 +34,9 @@ The wind turbines are represented in the simulation domain using a non-rotating 
 \subsection{Wind turbine thrust force}
 Following the approach of \cite{meyers2010large} and \cite{calaf2010large}, the magnitude of the axial thrust force enacted on the flow field by a turbine $i$ is parametrized as 
 \begin{equation}
-f_i(t) = - \frac{1}{2}~\ctihat(t)~V_{i}^2(t)~A,
+f_i(t) = - \frac{1}{2}~\ctihat(t)~V_{i}^2(t)~A_i,
 \end{equation}
-where $\ctihat$ is the disk-based thrust coefficient (see discussion on wind turbine controls below). Further, $A$ is the rotor area, and $V_i$ is the disk-averaged velocity. As indicated, this force is aligned with the rotor-perpendicular direction, defined as $\eperpi =  \cos \theta_i \bs{e}_x + \sin \theta_i \bs{e}_y $, with $\theta_i$ the yaw angle of the rotor. The force is distributed to the LES grid as 
+where $\ctihat$ is the disk-based thrust coefficient (see discussion on wind turbine controls below). Further, $A_i$ is the rotor area, and $V_i$ is the disk-averaged velocity. As indicated, this force is aligned with the rotor-perpendicular direction, defined as $\eperpi =  \cos \theta_i \bs{e}_x + \sin \theta_i \bs{e}_y $, with $\theta_i$ the yaw angle of the rotor. The force is distributed to the LES grid as 
 \begin{equation}
 \blds{f}_i(\blds{x},t) = - \frac{1}{2}~\ctihat(t)~V_{i}^2(t)~\mathscr{R}_i(\blds{x})~\eperpi,\label{eq:define_force}, 
 \end{equation}
@@ -44,11 +44,11 @@ using the spatial kernel $\mathscr{R}_i (\blds{x})$ first introduced by \cite{me
 \begin{equation}
 \R_i(\bs{x}) = \sint G(\bs{s}-\bs{x}) ~ \diracdelta [(\bs{s}-\bs{t}_i)\cdot\eperpi] ~ H(D/2-\vert\vert \bs{s}-\bs{t}_i\vert\vert_2) \ds \label{eq:R}.
 \end{equation} 
-In this definition, $G(\bs{y}) = [6/(\pi \Delta_f)]^{3/2} \exp(-6\vert\vert \bs{y}\vert\vert_2^2/\Delta_f^2)$ is a three-dimensional Gaussian filter with a filter width $\Delta_f = 3/2\Delta$, $H$ is the Heaviside function and $\diracdelta$ the Dirac delta function. Further, $\bs{t}_i$ represents the hub coordinates of turbine~$i$ and $D$ is its rotor diameter. As shown in Figure~\ref{fig:Rkernel}, this definition leads to a diffuse and smooth representation on the simulation grid, which is amenable to the spectral discretization methods discussed further below. Note that, by definition, $\sint \R_i \dx = A$.
+In this definition, $G(\bs{y}) = [6/(\pi \Delta_f)]^{3/2} \exp(-6\vert\vert \bs{y}\vert\vert_2^2/\Delta_f^2)$ is a three-dimensional Gaussian filter with a filter width $\Delta_f = 3/2\Delta$, $H$ is the Heaviside function and $\diracdelta$ the Dirac delta function. Further, $\bs{t}_i$ represents the hub coordinates of turbine~$i$ and $D$ is its rotor diameter. As shown in Figure~\ref{fig:Rkernel}, this definition leads to a diffuse and smooth representation on the simulation grid, which is amenable to the spectral discretization methods discussed further below. Note that, by definition, $\sint \R_i \dx = A_i$.
 
 The disk-averaged velocity $V_i$ is calculated using the same geometric footprint $\R_i$ as 
 \begin{equation}
-V_{i} = (1/A) \int_\Omega \mathscr{R}_i(\blds{x})\ \ufilt \cdot \eperpi \ \dx.
+V_{i} = (1/A_i) \int_\Omega \mathscr{R}_i(\blds{x})\ \ufilt \cdot \eperpi \ \dx.
 \end{equation} 
 A slight difference of the current ADM with the aforementioned studies of \cite{meyers2010large} and \cite{calaf2010large} is the omission of a time-filtering operation on the disk velocity $V_i$ here. 
 
@@ -61,7 +61,7 @@ A slight difference of the current ADM with the aforementioned studies of \cite{
 \subsection{Wind turbine power extraction}
 The mechanical power captured by the wind turbine is calculated as 
 \begin{align}
-P_i(t) &= \frac{1}{2} C_{P,i}'(t)~V_{i}^3(t)~A = \frac{1}{2}~a\ctihat(t)~V_{i}^3(t)~A.\label{eq:define_power}
+P_i(t) &= \frac{1}{2} C_{P,i}'(t)~V_{i}^3(t)~A_i = \frac{1}{2}~a\ctihat(t)~V_{i}^3(t)~A_i.\label{eq:define_power}
 \end{align}
 In contrast to earlier work applying ADM turbines in wind-farm LES \citep{meyers2010large, calaf2010large, goit2015optimal}, where $C_P' = \widehat{C}_T'$, here the disk-based power coefficient $C_{P,i}' = a\widehat{C}_{T,i}'$, with $a = 0.9$ the result of fitting LES results to one-dimensional momentum theory as described in Appendix~\ref{ch:app_adm}. This is done in order to eliminate overpredictions in power extraction observed using turbine parametrizations on typical wind-farm grid resolutions (see, e.g. \citealp{martinez2016wind, martinez2015large}), which are caused by an overestimation of $V_i$ due to a spill-over effect of the footprint $\R_i$ over the rotor perimeter (see Figure~\ref{fig:Rkernel}b). Remark that, due to the linear nature of this fit, it does not influence results on power extraction discussed throughout this work, as they are always normalized by a reference power. 
 
