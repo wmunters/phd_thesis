@@ -2,16 +2,157 @@
 
 \textbf{Acronyms}
 
-\begin{tabular}{ p{3cm}  l }
-	ABL & Atmospheric Boundary Layer
+\begin{tabular}{ p{2cm}  l }
+	ABL  & Atmospheric Boundary Layer\\
+	ADM  & Actuator Disk Model\\
+	BFGS & Broyden--Fletcher--Goldfarb--Shanno algorithm\\
+	CFL  & Courant--Friedrichs--Lewy\\
+	CG   & Conjugate Gradient algorithm\\
+	DNS  & Direct Numerical Simulation\\
+	FFT  & Fast Fourier Transform\\
+	HAWT & Horizontal-Axis Wind Turbine\\
+	HPC  & High-Performance Computing\\
+	L--BFGS--B & Limited-memory BFGS with Bounds support\\
+	LES  & Large-Eddy Simulation\\
+	PDE  & Partial Differential Equation\\
+	SGS  & Subgrid-scale\\
+	TI   & Turbulence intensity\\
+	VLSM & Very-Large-Scale Motions\\
 \end{tabular}
-
-\makebox[1.5cm]{Shklh}  Isomeric state\par
-\makebox[1.5cm]{Z}  Atomic number\par
 
 \textbf{Greek symbols}
 
+\begin{tabular}{ p{2cm}  l }
+	$\alpha_k$       & Step length in line search for optimization iteration $k$\\
+	$\beta$			 & Blade pitch angle\\
+	$\beta_k$		 & Polak--Ribi\`ere coefficient in iteration $k$\\
+	$\bs{\gamma_i}$  & Adjoint variable for rotor-perpendicular vector ($\eperpi$)\\
+	$\Delta_x,\Delta_y,\Delta_z$   & Grid spacing\\
+	$\Delta t$       & Time step\\
+	$\Delta_f$       & Characteristic filter width\\
+	$\Delta(z,t)$    & Spanwise inhomogeneity factor\\
+\end{tabular}
+
+\begin{tabular}{ p{2cm}  l }
+	$\delta$         & Boundary-layer thickness\\
+	$\delta[a]$      & Dirac-delta function applied to scalar variable $a$\\
+	$\delta h$ 		 & Variation of functional $h$\\
+	$\bs{\zeta}$     & Rotor frame-of-reference coordinate system\\
+	$\eta_{\rm farm}$& Wind-farm efficiency\\
+	$\eta_i$     	 &  Adjoint variable for yaw angle of turbine $i$ ($\theta_i$) \\	
+	$\theta_i$       & Yaw angle of turbine $i$\\
+	$\theta$         & Inflow angle in variable direction precursor method\\
+    $\kappa$		 & von K\'arm\'an constant\\
+	$\lambda$ 	     & Tip speed ratio\\
+    $\lambda(x)$ 	 & Fringe forcing masking function\\
+	$\lambda(z)$     & Height-dependent Smagorinsky lengthscale\\
+	$\nu$ 			 & Kinematic viscosity\\
+	$\bs{\xi}$ & Adjoint variable for filtered velocity ($\ufilt$)\\
+	$\pi$ & Adjoint variable for filtered pressure ($\ptilde$)\\
+	$\rho$      &  Density of air \\
+	$\rho_i$    &  Adjoint variable for rotor footprint of turbine $i$ ($\R_i$)   \\
+	$\rho_{uu}$ &  Longitudinal autocorrelation of streamwise velocity \\
+	$\sigma_i$     	 &  Adjoint variable for thrust coefficient of turbine $i$ ($\ctihat$)  \\	
+	$\tau$     &     Wind turbine response time\\	
+	$\bs{\tau}_{\rm sgs}$     &  Subgrid-scale stress tensor   \\	
+	$\bs{\tau}_{\rm sgs}^*$     &  Adjoint subgrid-scale stress tensor   \\	
+	$\bs{\varphi}$     &  Controls vector \\
+	$\bs{\varphi}^\bullet$     &  Optimized controls vector \\
+	$\varphi(z)$ 	 & Estimator for compression in variable direction precursor\\
+	$\chi_i$    &  Adjoint variable for disk-averaged velocity of turbine $i$ ($V_i$)   \\
+	$\Omega$     &    Computational domain / Rotation rate in precursor method \\	
+	$\omega_i$     &    Yaw rate of turbine $i$ \\	
+\end{tabular}
 
 \textbf{Roman symbols}
 
+\begin{tabular}{ p{2cm}  l }
+	$A$   		& Amplitude of periodic $\cthat$ variations\\
+	$A_i$       & Rotor area of turbine $i$\\
+	$a$   	    & Scaling factor between $C_T'$ and $C_P'$\\
+	$\bs{B}(\bs{\varphi}, \bs{q})$ & Shorthand notation for state constraints\\
+	$BT$	    & Boundary terms originating from partial integration\\
+	$C_P, C_P'$ & Power coefficient based on undisturbed / rotor velocity\\
+	$C_s$ 		& Smagorinsky coefficient\\
+	$C_T, C_T'$ & Thrust coefficient based on undisturbed / rotor velocity\\
+	$\cthat$    & Time-filtered thrust coefficient\\
+	$D$			& Rotor diameter\\
+\end{tabular}
+
+\begin{tabular}{ p{2cm}  l }
+	$d_k$ 		& Step direction for optimization iteration $k$\\
+	$d_s$ 	    & Spanwise shifting distance for shifted periodic boundaries\\
+	$E_O, E_R$ & Energy extraction of optimized / reference case\\
+	$\eperpi, \etransi$ & Rotor-perpendicular / rotor-transversal unit vector\\
+	$\bs{e}_x, \bs{e}_y, \bs{e}_z$ & Unit vectors in streamwise, spanwise, and vertical direction\\
+	$f$	        & Frequency\\
+	$\bs{f}_{\rm fr}$  & Fringe force\\
+	$\bs{f}_{\rm fr}^*$  & Adjoint fringe force\\
+	$\bs{f}_i$  & Thrust force enacted by turbine $i$\\
+	$\bs{f}_i^*$& Adjoint thrust force enacted by turbine $i$\\
+	$G(\bs{x})$  & Gaussian filter kernel\\
+	$H$			& Domain height\\
+	$H(x)$ 	 	& Heaviside function\\
+	$\J$        & Cost functional\\
+	$\Jtilde$   & Reduced cost functional\\
+	$\nabla \Jtilde$ & Reduced cost functional gradient\\
+	$\Jtilde_{\bs{\varphi}}(\delta \bs{\varphi})$ & G\^ateaux derivative of $\Jtilde$ at $\bs{\varphi}$ in direction $\delta \bs{\varphi}$\\
+	$k$  		& Turbulence kinetic energy\\
+	$k_x, k_y$	& Streamwise / spanwise wavenumber\\
+	$\Lagr$     & Lagrangian function\\
+	$m$			& Amount of retained vector pairs in L-BFGS Hessian approximation\\
+	$N_{it}$    & Amount of optimization iterations\\
+	$N_t$ 		& Amount of wind turbines\\
+	$N_w$		& Amount of optimization windows\\
+	$N_x, N_y, N_z$ & Gridpoints in streamwise, spanwise, vertical directions\\
+	$N_p, N_{px}, N_{py}$ & Processor cores in $\verb|MPI_COMM_WORLD, X, Y|$\\
+	$P_i$ 	    & Power extraction by turbine $i$\\
+	$P_O, P_R$  & Power extraction in optimized / reference case\\
+	$\ptilde$    & Filtered fluctuation pressure\\
+	$p_\infty$  & Background pressure\\
+	$\mathscr{Q}_i$ & Yaw sensitivity geometric rotor footprint of turbine $i$\\
+	$\bs{q}$    & State variables \\
+	$\bs{q}^*$  & Adjoint state variables\\
+	$\R_i$      & Geometric rotor footprint of turbine $i$\\
+	$R$ 		& Rotation matrix\\
+	$Re$ 		& Reynolds number\\
+	$Re_\tau$   & Friction Reynolds number\\
+	$S$ 		& Turbine spacing\\
+	$\mathcal{S}$ & Rate-of-strain tensor\\
+	$St$    	& Strouhal number\\
+\end{tabular}
+
+\begin{tabular}{ p{2cm}  l }
+	$\bs{s}$    & Spatial integration variable\\
+	$T$     	& Optimization time horizon\\
+	$T_A$   	& Control application time horizon\\
+	$T_{tot}$ 	& Total control time\\
+	$t$   		& Time\\
+	$\bs{t}_i$ 	& Hub coordinates of turbine $i$\\
+	$U$      	& Control Hilbert space\\
+	$U_\infty$ 	& Undisturbed free-stream velocity\\
+	$U_b$ 	 	& Bulk velocity\\
+	$\widetilde{U}$  	& Time-averaged mean velocity\\ 
+	$\ufilt$ 	& Filtered velocity $\ufilt = [\widetilde{u}_x, \widetilde{u}_y, \widetilde{u}_z]$\\
+	$\ufilt'$   & Fluctuating component of velocity $\ufilt' = \ufilt - \widetilde{U}$\\
+	$\hat{\bs{u}}$ &  Fourier components of $\ufilt$\\
+	$u_*$    	& Friction velocity\\
+	$\ufilt_{\rm in}$ & Velocity inlet conditions\\
+	$V_i$    	& Disk-averaged rotor velocity of turbine $i$\\
+	$X_i$    	& Disk-averaged rotor adjoint velocity of turbine $i$\\
+	$\bs{x}$  	& Spatial coordinates $\bs{x} = [x,y,z]$\\
+	$z^+$    	& Non-dimensional distance from the wall, $z^+ = z u_* / \nu$\\
+	$z_0$    	& Surface roughness length of the wall\\
+	$z_h$ 	 	& Turbine hub height\\
+\end{tabular}
+
 \textbf{Miscellaneous symbols}
+
+\begin{tabular}{ p{2cm}  l }
+	$\langle a \rangle$ & Horizontally-averaged value of $a$\\
+	$\overline{a}$      & Time-averaged value of $a$\\
+	$\widetilde{a}$     & LES-filtered representation of $a$\\
+	$a'$  				& Temporally fluctuating component of $a$\\
+	$(\bs{\rm u}, \bs{\rm v})$ & Inner product between vectors $\bs{\rm u}$ and $\bs{\rm v}$\\
+	$\bs{\rm u} \cdot \bs{\rm v}$ & Dot product between vectors $\bs{\rm u}$ and $\bs{\rm v}$\\
+\end{tabular}
