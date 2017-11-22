@@ -34,7 +34,7 @@ Simulations are initialized as follows: firstly, a fully-developed high-Reynolds
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{chapters/philtrans_torque/figure6.eps}
-	\caption{Large-eddy simulation streamwise velocity field for a 12 $\times$ 6 aligned wind farm. The black lines represent the turbine rotors. The black dashed line indicates the start of the fringe region for imposition of turbulent inflow conditions (see Section~\ref{sec:meth_fringe}).}
+	\caption[Large-eddy simulation streamwise velocity field for a 12 $\times$ 6 aligned wind farm.]{Large-eddy simulation streamwise velocity field for a 12 $\times$ 6 aligned wind farm. The black lines represent the turbine rotors. The black dashed line indicates the start of the fringe region for imposition of turbulent inflow conditions (see Section~\ref{sec:meth_fringe}).}
 	\label{fig:domain}
 \end{figure}
 
@@ -105,7 +105,7 @@ Figure~\ref{fig:window_opt} illustrates the convergence behavior for all optimal
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\linewidth]{chapters/philtrans_torque/figure11.eps}
-	\caption{Convergence behavior for the third optimization window. (Legend: \legendnoref) \label{fig:window_opt}}
+	\caption[Convergence behavior for the third optimization window.]{Convergence behavior for the third optimization window. (Legend: \legendnoref) \label{fig:window_opt}}
 \end{figure}
 	
 Given the non-convexity of the Navier--Stokes constrained optimization problems considered here, the cost functional landscape is expected to be characterized by a multitude of local optima. Figure~\ref{fig:initial_conditions} shows the cost functional and a subset of the optimized controls for different starting points $\blds{\varphi}_0$, i.e. a greedy control case on the one hand, for which all turbines operate Betz-optimal at $\blds{\varphi}_0 = [2 \ \ 2 \ \dots \ 2]$, and a case with $\blds{\varphi}_0 = [1.33 \ \ 1.33 \ \dots \ 1.33]$ on the other hand. Figure~\ref{fig:initial_conditions}a illustrates cost functional decrease in terms of BFGS iterations. It can be seen that the choice of initial conditions has only a minor influence on the power extraction. Figure~\ref{fig:initial_conditions}b shows the optimized controls for the first row of the wind farm after 1, 60, 120, and 180 iterations. Although some regions of the controls are similar for both initial conditions, mainly at the start of the optimization window the controls differ significantly. Since the overall energy extraction seems only modestly dependent on the initial condition, the greedy control with $\varphi_0 = 2$ is a suitable starting point for wind-farm optimal control.
@@ -113,7 +113,7 @@ Given the non-convexity of the Navier--Stokes constrained optimization problems 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=\linewidth]{chapters/philtrans_torque/figure13.eps}	
-	\caption{Sensitivity of optimization to initial conditions. \emph{a):} Cost functional as a function of BFGS iterations for a single window. ($\square$: $\blds{\varphi}_0 = 2$, $\lozenge$: $\blds{\varphi}_0 = 1.33$, \legendnoref ). \emph{b):} Optimized controls for a front row turbine at various iterations. (Black: $\blds{\varphi}_0 = 2$, Gray: $\blds{\varphi}_0 = 1.33$). \label{fig:initial_conditions}} 
+	\caption[Sensitivity of optimization to initial conditions.]{Sensitivity of optimization to initial conditions. \emph{a):} Cost functional as a function of BFGS iterations for a single window. ($\square$: $\blds{\varphi}_0 = 2$, $\lozenge$: $\blds{\varphi}_0 = 1.33$, \legendnoref ). \emph{b):} Optimized controls for a front row turbine at various iterations. (Black: $\blds{\varphi}_0 = 2$, Gray: $\blds{\varphi}_0 = 1.33$). \label{fig:initial_conditions}} 
 \end{figure}
 
 
@@ -124,7 +124,7 @@ Figure~\ref{fig:bar_and_row} depicts the energy extraction of the optimally cont
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{chapters/philtrans_torque/figure8.eps}
-	\caption{Energy extraction of optimally controlled wind farms $E_O$ normalized by greedy reference case $E_R$. \emph{a) } Total energy extraction. Error bars indicate confidence intervals of $\pm 2$ standard deviations. \emph{b) } Energy extraction per row, normalized by first row of reference case. \legend \label{fig:bar_and_row}}
+	\caption[Energy extraction of optimally controlled wind farms $E_O$ normalized by greedy reference case $E_R$.]{Energy extraction of optimally controlled wind farms $E_O$ normalized by greedy reference case $E_R$. \emph{a) } Total energy extraction. Error bars indicate confidence intervals of $\pm 2$ standard deviations. \emph{b) } Energy extraction per row, normalized by first row of reference case. \legend \label{fig:bar_and_row}}
 \end{figure}
 
 \subsection{Wind-farm dynamics}\label{sec:opt_ind_dyn}
@@ -134,7 +134,7 @@ We note that C2t30 hardly differs from the reference case R, with $\widehat{C}_T
 \begin{figure}
 	\centering
 	\includegraphics[width=0.93\linewidth]{chapters/philtrans_torque/dynamics.eps}
-	\caption{Temporal behavior of optimally controlled wind farms. 
+	\caption[Temporal behavior of optimally controlled wind farms.]{Temporal behavior of optimally controlled wind farms. 
 		\emph{Left (a,c): } Thrust coefficient of the wind turbine in the first row of the central column. Colors: setpoint coefficient $C_T'$, Grey: time-filtered coefficient $\widehat{C}_T'$. \emph{Right (b,d): } Aggregate power extraction normalized by time average of reference power extraction. \emph{Top (a,b): } $C_T'^{max}=3$. \emph{Bottom (c,d): } $C_T'^{max} = 2$. \legendtauref \label{fig:time_control_and_time_power}}
 \end{figure}
 
@@ -142,7 +142,7 @@ Figure~\ref{fig:thrust} shows the dynamic behavior of the thrust force $f_t$ for
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{chapters/philtrans_torque/thrust_forces.eps}
-	\caption{Dynamic behavior of thrust force $f_t$ for the wind turbine in the central column of the sixth row. \emph{a)} Time series of thrust force, normalized by time-averaged reference thrust. \emph{b) } Power spectra $\Phi_f$ of normalized thrust force, averaged over columns. \legend \label{fig:thrust}}
+	\caption[Dynamic behavior of thrust force $f_t$ for the wind turbine in the central column of the sixth row.]{Dynamic behavior of thrust force $f_t$ for the wind turbine in the central column of the sixth row. \emph{a)} Time series of thrust force, normalized by time-averaged reference thrust. \emph{b) } Power spectra $\Phi_f$ of normalized thrust force, averaged over columns. \legend \label{fig:thrust}}
 \end{figure}
 
 
@@ -167,14 +167,14 @@ Figure~\ref{fig:thrust} shows the dynamic behavior of the thrust force $f_t$ for
 	\begin{figure}[ht]
 		\centering
 		\includegraphics[width=0.93\textwidth]{chapters/optimal_induction_control/topview_u.eps}
-		\caption{Planview ($xy$) of time-averaged axial velocity $\widetilde{U}_x$ at hub height. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control cases and reference case, defined as $\Delta = \widetilde{U}_{x,\text{opt}} - \widetilde{U}_{x,\text{R}}$  \label{fig:opt_ind_top_u}}
+		\caption[Planview ($xy$) of time-averaged axial velocity $\widetilde{U}_x$ at hub height.]{Planview ($xy$) of time-averaged axial velocity $\widetilde{U}_x$ at hub height. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control cases and reference case, defined as $\Delta = \widetilde{U}_{x,\text{opt}} - \widetilde{U}_{x,\text{R}}$  \label{fig:opt_ind_top_u}}
 	\end{figure}
 
 	% SIDEVIEW U
 	\begin{figure}[hbt]
 		\centering
 		\includegraphics[width=0.93\textwidth]{chapters/optimal_induction_control/sideview_u.eps}
-		\caption{Sideview ($xz$) of time-averaged axial velocity $\widetilde{U}_x$ in turbine centerline plane. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control cases and reference case, defined as $\Delta = \widetilde{U}_{x,\text{opt}} - \widetilde{U}_{x,\text{R}}$  \label{fig:opt_ind_side_u}}
+		\caption[Sideview ($xz$) of time-averaged axial velocity $\widetilde{U}_x$ in turbine centerline plane.]{Sideview ($xz$) of time-averaged axial velocity $\widetilde{U}_x$ in turbine centerline plane. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control cases and reference case, defined as $\Delta = \widetilde{U}_{x,\text{opt}} - \widetilde{U}_{x,\text{R}}$  \label{fig:opt_ind_side_u}}
 	\end{figure}	
 	
 	
@@ -187,14 +187,16 @@ Figure~\ref{fig:thrust} shows the dynamic behavior of the thrust force $f_t$ for
 		\begin{figure}[ht]
 			\centering
 			\includegraphics[width=0.93\textwidth]{chapters/optimal_induction_control/sideview_ke_total_side.eps}
-			\caption{Sideview ($xz$) of \emph{total} kinetic energy KE $= (\overline{\widetilde{u}_x \widetilde{u}_x} + \overline{\widetilde{u}_y \widetilde{u}_y} + \overline{\widetilde{u}_z \widetilde{u}_z})/2$ in turbine centerline plane. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = \text{KE}_{\text{opt}} - \text{KE}_{R}$  \label{fig:opt_ind_side_total_ke}}
+			\caption[Sideview ($xz$) of \emph{total} kinetic energy KE $= (\overline{\widetilde{u}_x \widetilde{u}_x} + \overline{\widetilde{u}_y \widetilde{u}_y} + \overline{\widetilde{u}_z \widetilde{u}_z})/2$ in turbine centerline plane.]{Sideview ($xz$) of \emph{total} kinetic energy KE $= (\overline{\widetilde{u}_x \widetilde{u}_x} + \overline{\widetilde{u}_y \widetilde{u}_y} + \overline{\widetilde{u}_z \widetilde{u}_z})/2$ in turbine centerline plane. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = \text{KE}_{\text{opt}} - \text{KE}_{R}$  \label{fig:opt_ind_side_total_ke}}
 		\end{figure}
 
 		% SIDEVIEW KE
 		\begin{figure}[hbt]
 			\centering
 			\includegraphics[width=0.93\textwidth]{chapters/optimal_induction_control/topview_ke_total.eps}
-			\caption{Sideview ($xz$) of \emph{total} kinetic energy KE $= (\overline{\widetilde{u}_x \widetilde{u}_x} + \overline{\widetilde{u}_y \widetilde{u}_y} + \overline{\widetilde{u}_z \widetilde{u}_z})/2$ in turbine centerline plane. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = \text{KE}_{\text{opt}} - \text{KE}_{R}$  \label{fig:opt_ind_top_total_ke}}
+			\caption[Planview ($xy$) of \emph{total} kinetic energy KE $= (\overline{\widetilde{u}_x \widetilde{u}_x} +
+			\overline{\widetilde{u}_y \widetilde{u}_y} + \overline{\widetilde{u}_z \widetilde{u}_z})/2$ in hub height.]{Planview ($xy$) of \emph{total} kinetic energy KE $= (\overline{\widetilde{u}_x \widetilde{u}_x} +
+			\overline{\widetilde{u}_y \widetilde{u}_y} + \overline{\widetilde{u}_z \widetilde{u}_z})/2$ in hub height. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = \text{KE}_{\text{opt}} - \text{KE}_{R}$  \label{fig:opt_ind_top_total_ke}}
 		\end{figure}
 	
 		Figures~\ref{fig:opt_ind_top_tke} and~\ref{fig:opt_ind_side_tke} show planviews and sideviews of \emph{turbulence} kinetic energy $k = (\overline{\widetilde{u}_x'\widetilde{u}_x'} + \overline{\widetilde{u}_y'\widetilde{u}_y'} + \overline{\widetilde{u}_z'\widetilde{u}_z'})/2$. The overinductive cases show an increase in turbulence throughout the entire wind farm, spreading to the internal boundary layer above the turbines and the intercolumn channels alongside them in the downstream regions of the wind farm. Note specifically the sharp increase in $k$ in the core wake regions behind the first rows of case C3t0 and C3t5. Contrastingly, the underinductive case C2t0 shows less coherent behavior, except for a slight turbulence increase in the near wake of the first-row turbines.
@@ -203,14 +205,14 @@ Figure~\ref{fig:thrust} shows the dynamic behavior of the thrust force $f_t$ for
 		\begin{figure}[ht]
 			\centering
 			\includegraphics[width=0.93\textwidth]{chapters/optimal_induction_control/topview_tke.eps}
-			\caption{Planview ($xy$) of \emph{turbulence} kinetic energy $k = (\overline{\widetilde{u}_x'\widetilde{u}_x'} + \overline{\widetilde{u}_y'\widetilde{u}_y'} + \overline{\widetilde{u}_z'\widetilde{u}_z'})/2$ at hub height. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = k_{\text{opt}} - k_{\text{R}}$  \label{fig:opt_ind_side_tke}}
+			\caption[Planview ($xy$) of \emph{turbulence} kinetic energy $k = (\overline{\widetilde{u}_x'\widetilde{u}_x'} + \overline{\widetilde{u}_y'\widetilde{u}_y'} + \overline{\widetilde{u}_z'\widetilde{u}_z'})/2$ at hub height.]{Planview ($xy$) of \emph{turbulence} kinetic energy $k = (\overline{\widetilde{u}_x'\widetilde{u}_x'} + \overline{\widetilde{u}_y'\widetilde{u}_y'} + \overline{\widetilde{u}_z'\widetilde{u}_z'})/2$ at hub height. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = k_{\text{opt}} - k_{\text{R}}$  \label{fig:opt_ind_side_tke}}
 		\end{figure}
 	
 		% SIDEVIEW U
 		\begin{figure}[hbt]
 			\centering
 			\includegraphics[width=0.93\textwidth]{chapters/optimal_induction_control/sideview_tke_side.eps}
-			\caption{Sideview ($xz$) of \emph{turbulence} kinetic energy $k = \frac{1}{2}(\overline{\widetilde{u}_x'\widetilde{u}_x'} + \overline{\widetilde{u}_y'\widetilde{u}_y'} + \overline{\widetilde{u}_z'\widetilde{u}_z'})$ in turbine centerline plane. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = k_{\text{opt}} - k_{\text{R}}$  \label{fig:opt_ind_top_tke}}
+			\caption[Sideview ($xz$) of \emph{turbulence} kinetic energy $k = \frac{1}{2}(\overline{\widetilde{u}_x'\widetilde{u}_x'} + \overline{\widetilde{u}_y'\widetilde{u}_y'} + \overline{\widetilde{u}_z'\widetilde{u}_z'})$ in turbine centerline plane.]{Sideview ($xz$) of \emph{turbulence} kinetic energy $k = \frac{1}{2}(\overline{\widetilde{u}_x'\widetilde{u}_x'} + \overline{\widetilde{u}_y'\widetilde{u}_y'} + \overline{\widetilde{u}_z'\widetilde{u}_z'})$ in turbine centerline plane. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = k_{\text{opt}} - k_{\text{R}}$  \label{fig:opt_ind_top_tke}}
 		\end{figure}
 
 	\subsubsection{Transversal momentum transport}
@@ -221,7 +223,7 @@ Figure~\ref{fig:thrust} shows the dynamic behavior of the thrust force $f_t$ for
 		\begin{figure}[ht]
 			\centering
 			\includegraphics[width=0.92\textwidth]{chapters/optimal_induction_control/topview_uvm.eps}
-			\caption{Planview ($xy$) of mean-flow transversal transport of axial momentum $\widetilde{U}_x \widetilde{U}_y$ at hub height. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = (\widetilde{U}_x \widetilde{U}_y)_{\text{opt}} - (\widetilde{U}_x \widetilde{U}_y)_{\text{R}}$. \label{fig:opt_ind_top_uvm}}
+			\caption[Planview ($xy$) of mean-flow transversal transport of axial momentum $\widetilde{U}_x \widetilde{U}_y$ at hub height.]{Planview ($xy$) of mean-flow transversal transport of axial momentum $\widetilde{U}_x \widetilde{U}_y$ at hub height. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = (\widetilde{U}_x \widetilde{U}_y)_{\text{opt}} - (\widetilde{U}_x \widetilde{U}_y)_{\text{R}}$. \label{fig:opt_ind_top_uvm}}
 		\end{figure}
 	
 		Figure~\ref{fig:opt_ind_top_uv} shows planviews of \emph{turbulent} transversal transport of axial momentum $\overline{\widetilde{u}_x' \widetilde{u}_y'}$ at hub height. For all overinductive cases an increased transport of momentum towards the wake centerline can be observed, whose effect is more pronounced for C3t0 and C3t5 than for C3t30. Note however that, although the absolute magnitude of this increased transport is about half that of the mean-flow transport in the first rows (Figure~\ref{fig:opt_ind_top_uvm}b,c), the relative increase over the reference value is similar for both mechanisms and constitutes about 25\%. Again, the underinductive case C2t0 shows no clearly coherent differences with the reference case. 
@@ -230,7 +232,7 @@ Figure~\ref{fig:thrust} shows the dynamic behavior of the thrust force $f_t$ for
 		\begin{figure}[hbt]
 			\centering
 			\includegraphics[width=0.92\textwidth]{chapters/optimal_induction_control/topview_uv.eps}
-			\caption{Planview ($xy$) of turbulent transversal transport of axial momentum $\overline{\widetilde{u}_x' \widetilde{u}_y'}$ at hub height. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = \overline{\widetilde{u}_x' \widetilde{u}_y'}_{\text{opt}} - \overline{\widetilde{u}_x' \widetilde{u}_y'}_{\text{R}}$  \label{fig:opt_ind_top_uv}}
+			\caption[Planview ($xy$) of turbulent transversal transport of axial momentum $\overline{\widetilde{u}_x' \widetilde{u}_y'}$ at hub height.]{Planview ($xy$) of turbulent transversal transport of axial momentum $\overline{\widetilde{u}_x' \widetilde{u}_y'}$ at hub height. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = \overline{\widetilde{u}_x' \widetilde{u}_y'}_{\text{opt}} - \overline{\widetilde{u}_x' \widetilde{u}_y'}_{\text{R}}$  \label{fig:opt_ind_top_uv}}
 		\end{figure}	
 	
 		\clearpage
@@ -244,7 +246,7 @@ Figure~\ref{fig:thrust} shows the dynamic behavior of the thrust force $f_t$ for
 	\begin{figure}[t]
 		\centering
 		\includegraphics[width=0.93\textwidth]{chapters/optimal_induction_control/sideview_uwm.eps}
-		\caption{Sideview ($xz$) of mean-flow top-down transport of axial momentum $- \overline{\widetilde{u}}_x~ \overline{\widetilde{u}}_z$ in turbine centerline plane. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = (- \overline{\widetilde{u}}_x~ \overline{\widetilde{u}}_z)_{\text{opt}} - (- \overline{\widetilde{u}}_x~ \overline{\widetilde{u}}_z)_{\text{R}}$. \label{fig:opt_ind_side_uwm}}
+		\caption[Sideview ($xz$) of mean-flow top-down transport of axial momentum $- \overline{\widetilde{u}}_x~ \overline{\widetilde{u}}_z$ in turbine centerline plane.]{Sideview ($xz$) of mean-flow top-down transport of axial momentum $- \overline{\widetilde{u}}_x~ \overline{\widetilde{u}}_z$ in turbine centerline plane. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = (- \overline{\widetilde{u}}_x~ \overline{\widetilde{u}}_z)_{\text{opt}} - (- \overline{\widetilde{u}}_x~ \overline{\widetilde{u}}_z)_{\text{R}}$. \label{fig:opt_ind_side_uwm}}
 	\end{figure}
 
 	Figure~\ref{fig:opt_ind_side_uw} shows sideviews of \emph{turbulent} vertical transport of axial momentum $- \overline{\widetilde{u}_x'\widetilde{u}_z'}$ through the rotor centerline. In contrast to the mean-flow transport described above, the turbulent transport shows significant deviations from the reference case: Throughout the wind-farm, all cases increase the turbulent entrainment of axial momentum at the interface between the wake and the flow above it. Similar to previous observations for other variables, this effect is most pronounced in the first row turbines of the overinductive case C3t0 and C3t5 (Figure\ref{fig:opt_ind_side_uw}b,c). Moreover, for these turbines, also a slight increase in upwards turbulent transport from underneath the rotor disk can be observed.
@@ -253,7 +255,7 @@ Figure~\ref{fig:thrust} shows the dynamic behavior of the thrust force $f_t$ for
 	\begin{figure}[bt]
 		\centering
 		\includegraphics[width=0.93\textwidth]{chapters/optimal_induction_control/sideview_uw.eps}
-		\caption{Sideview ($xz$) of turbulent top-down transport of axial momentum $- \overline{\widetilde{u}_x'\widetilde{u}_z'}$ in turbine centerline plane. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = (- \overline{\widetilde{u}_x'\widetilde{u}_z'})_{\text{opt}} - (- \overline{\widetilde{u}_x'\widetilde{u}_z'})_{\text{R}}$  \label{fig:opt_ind_side_uw}}
+		\caption[Sideview ($xz$) of turbulent top-down transport of axial momentum $- \overline{\widetilde{u}_x'\widetilde{u}_z'}$ in turbine centerline plane.]{Sideview ($xz$) of turbulent top-down transport of axial momentum $- \overline{\widetilde{u}_x'\widetilde{u}_z'}$ in turbine centerline plane. \emph{a) } Reference case. \emph{b-e)} Difference between optimal control and reference case, defined as $\Delta = (- \overline{\widetilde{u}_x'\widetilde{u}_z'})_{\text{opt}} - (- \overline{\widetilde{u}_x'\widetilde{u}_z'})_{\text{R}}$  \label{fig:opt_ind_side_uw}}
 	\end{figure}	
 
 	\subsubsection{Discussion}
