@@ -18,17 +18,17 @@ The outline of the chapter is as follows: first, Section~\ref{sec:analysis_contr
 	
 	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/analysis_induction_control/controls.eps}
-		\caption{Time evolution of the thrust coefficient $\cthat$ for a selection of optimally controlled turbines  of case C3t5. \emph{Left: } Total time horizon. \emph{Right: } Zoomed view, including setpoint $C_T'$ in gray. \label{fig:controls}}
+		\caption[Time evolution of the thrust coefficient $\cthat$ for a selection of optimally controlled turbines  of case C3t5.]{Time evolution of the thrust coefficient $\cthat$ for a selection of optimally controlled turbines  of case C3t5. \emph{Left: } Total time horizon. \emph{Right: } Zoomed view, including setpoint $C_T'$ in gray. \label{fig:controls}}
 	\end{figure}
 	
 	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/analysis_induction_control/sweep_ct.eps}
-		\caption{Normalized power extraction as a function of steady thrust coefficient $\cthat$ for wind turbines subject to the same freestream turbulent inflow as in case C3t5. Every dot corresponds to one LES.\label{fig:ct_sweep}}
+		\caption[Normalized power extraction as a function of steady thrust coefficient $\cthat$ for wind turbines subject to the same freestream turbulent inflow as in case C3t5.]{Normalized power extraction as a function of steady thrust coefficient $\cthat$ for wind turbines subject to the same freestream turbulent inflow as in case C3t5. Every dot corresponds to one LES.\label{fig:ct_sweep}}
 	\end{figure}
 	
 	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/analysis_induction_control/spectra_thrust_cthat.eps}
-		\caption{Power spectral density (PSD) estimates of the row-averaged thrust force $f_T$ (\emph{a}) and thrust coefficient $\cthat$ (\emph{b}) as a function of frequency $f$ (bottom axis) and non-dimensional Strouhal number $St$ (top axis). \label{fig:spectra_thrust_cthat}}
+		\caption[Power spectral density (PSD) estimates of the row-averaged thrust force $f_T$ and thrust coefficient $\cthat$ as a function of frequency $f$ and non-dimensional Strouhal number $St$.]{Power spectral density (PSD) estimates of the row-averaged thrust force $f_T$ (\emph{a}) and thrust coefficient $\cthat$ (\emph{b}) as a function of frequency $f$ (bottom axis) and non-dimensional Strouhal number $St$ (top axis). \label{fig:spectra_thrust_cthat}}
 	\end{figure}
 	
 	Figure~\ref{fig:spectra_thrust_cthat}a,b illustrate power spectral densities of the row-averaged thrust forces and thrust coefficients respectively. The figure illustrates that the variances of both the thrust coefficients and their resulting forces are highest in row 1. Further downstream, rows 2 to 11 have very similar spectral behavior, and row 12 shows significantly lower variability. The high-frequency slopes of around $-5$ observed both for $f_T$ and $\cthat$ indicate that force variability on short timescales is caused mainly by thrust coefficient variations, whereas the slower thrust force dynamics tend more to a $-5/3$ slope, suggesting that these are governed by the unsteadiness in the turbulence instead. Note that, even though the spectra for all rows except row 12 collapse at frequencies below $0.05$ Hz, the first-row spectrum shows a small yet significant peak at $f \approx 0.02 \dots 0.03$ Hz ($f D / U_\infty \approx 0.2 \dots 0.3$) as indicated by the purple arrow, which also translates to an increased spectral content of the first row thrust force at these frequencies. It will be shown later in this chapter that variations in the thrust coefficient around this frequency can be harnessed to increase power extraction in the second row. 
@@ -41,7 +41,7 @@ The outline of the chapter is as follows: first, Section~\ref{sec:analysis_contr
 	
 	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/analysis_induction_control/multirow.eps}
-		\caption{Normalized row-averaged power extraction for the reference case, optimal control case C3t5, and subset control cases up to optimization window 3. \emph{a)} Subset control cases with optimal controls applied \emph{only} in one specific row. \emph{b)} Subset control cases with optimal controls applied \emph{for all rows up to} specific row. \label{fig:multirow}}
+		\caption[Normalized row-averaged power extraction for the reference case, optimal control case C3t5, and subset control cases up to optimization window 3.]{Normalized row-averaged power extraction for the reference case, optimal control case C3t5, and subset control cases up to optimization window 3. \emph{a)} Subset control cases with optimal controls applied \emph{only} in one specific row. \emph{b)} Subset control cases with optimal controls applied \emph{for all rows up to} specific row. \label{fig:multirow}}
 	\end{figure}
 
 	\subsection{Optimization of single active turbine rows}\label{sec:optimization_single}
@@ -62,7 +62,7 @@ The outline of the chapter is as follows: first, Section~\ref{sec:analysis_contr
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.9\textwidth]{chapters/analysis_induction_control/individual_gains.eps}
-		\caption{Relative power increase matrix for downstream rows in the single-row optimization case for row R$_{\rm i}$, indicated in the horizontal axis. N/A indicates non-existing downstream rows. Finite-horizon effects are eliminated by only reporting power increase up until $t = T_A$ for the active row R$_i$. \label{fig:gains_singlerow}}
+		\caption[Relative power increase matrix for downstream rows in the single-row optimization case for row R$_{\rm i}$.]{Relative power increase matrix for downstream rows in the single-row optimization case for row R$_{\rm i}$, indicated in the horizontal axis. N/A indicates non-existing downstream rows. Finite-horizon effects are eliminated by only reporting power increase up until $t = T_A$ for the active row R$_i$. \label{fig:gains_singlerow}}
 	\end{figure}
 
 	Turning to the thrust dynamics, Figure~\ref{fig:control_C3t5_singlerow} shows the optimized thrust coefficients for the entire optimization horizon $T$ in several turbine rows for the single-row (gray) and full-farm (black) optimizations. Interestingly, the first-row thrust coefficient is virtually identical, regardless of whether downstream turbines are active or not. Although similarities can also be observed for the downstream rows, the correspondence is much weaker than in the first row. This can be explained by the fact that, in contrast to the first row, downstream turbines experience different local flow conditions based on whether the upstream turbines are active or not.
@@ -70,7 +70,7 @@ The outline of the chapter is as follows: first, Section~\ref{sec:analysis_contr
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.9\textwidth]{chapters/analysis_induction_control/fullfarm_singlerow.eps}
-		\caption{Optimized thrust coefficients in several rows for case C3t5 (black) and single-row optimal control cases (gray) for the full optimization horizon $T = 240$ s.\label{fig:control_C3t5_singlerow}}
+		\caption[Optimized thrust coefficients in several rows for case C3t5 and single-row optimal control cases for the full optimization horizon $T = 240$ s.]{Optimized thrust coefficients in several rows for case C3t5 (black) and single-row optimal control cases (gray) for the full optimization horizon $T = 240$ s.\label{fig:control_C3t5_singlerow}}
 	\end{figure}
 	
 
@@ -89,7 +89,7 @@ The outline of the chapter is as follows: first, Section~\ref{sec:analysis_contr
 
 	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/analysis_induction_control/scrambled.eps}
-		\caption{Normalized row-averaged power extraction for the reference case, optimal control case C3t5, and modified control cases. \emph{a)} Modified control cases with controls swapped between wind-turbine columns. \emph{b)} Modified control cases with controls swapped randomly by time window. \label{fig:scrambled}}
+		\caption[Normalized row-averaged power extraction for the reference case, optimal control case C3t5, and modified control cases.]{Normalized row-averaged power extraction for the reference case, optimal control case C3t5, and modified control cases. \emph{a)} Modified control cases with controls swapped between wind-turbine columns. \emph{b)} Modified control cases with controls swapped randomly by time window. \label{fig:scrambled}}
 	\end{figure}
 
 	\subsection{Discussion}\label{sec:analysis_discussion}
@@ -120,7 +120,7 @@ The observed shedding of ring vortices seems to occur at specific flow-synchroni
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{chapters/analysis_induction_control/vorticity.eps}
-	\caption{Instantaneous snapshots at t = 300 s of portion of wind-farm flow field for the reference (left) and optimized (right) case. \emph{a,b) } Isosurface of vorticity magnitude, colored by streamwise velocity $\widetilde{u}_x$. Deep wake regions (with $\widetilde{u}_x < 4.5$ m s$^{-1}$) are rendered in black. \emph{c)} Contours of streamwise velocity $\widetilde{u}_x$. Coloring is in units of m s$^{-1}$. Wind turbines are represented as gray disks. \label{fig:vorticity_windfarm}}
+	\caption[Instantaneous snapshots at t = 300 s of portion of wind-farm flow field for the reference and optimized case.]{Instantaneous snapshots at t = 300 s of portion of wind-farm flow field for the reference (left) and optimized (right) case. \emph{a,b) } Isosurface of vorticity magnitude, colored by streamwise velocity $\widetilde{u}_x$. Deep wake regions (with $\widetilde{u}_x < 4.5$ m s$^{-1}$) are rendered in black. \emph{c)} Contours of streamwise velocity $\widetilde{u}_x$. Coloring is in units of m s$^{-1}$. Wind turbines are represented as gray disks. \label{fig:vorticity_windfarm}}
 \end{figure}
 
 
@@ -136,28 +136,28 @@ A parameter sweep is performed for both $A$ and $St$ on a reduced-size wind-farm
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{chapters/analysis_induction_control/setup_sinusoidal.eps}
-	\caption{Reduced $4 \times 4$ wind-farm simulation setup for sinusoidal variation parameter study showing instantaneous contours of streamwise velocity $\widetilde{u}_x$. Coloring is in units of m s$^{-1}$. The dashed line indicates the start of the fringe region for imposition of unwaked inflow conditions. \label{fig:sinus_setup}}
+	\caption[Reduced $4 \times 4$ wind-farm simulation setup for sinusoidal variation parameter study showing instantaneous contours of streamwise velocity $\widetilde{u}_x$.]{Reduced $4 \times 4$ wind-farm simulation setup for sinusoidal variation parameter study showing instantaneous contours of streamwise velocity $\widetilde{u}_x$. Coloring is in units of m s$^{-1}$. The dashed line indicates the start of the fringe region for imposition of unwaked inflow conditions. \label{fig:sinus_setup}}
 \end{figure}
 
 Figure~\ref{fig:sinus_baseline} illustrates the power extraction for all cases considered. Figure~\ref{fig:sinus_baseline}a illustrates the relative power gains over the reference case. From the figure it can be seen that there is a well-defined range of values for $A$ and $St$ for which wind-farm power can be increased substantially through upstream sinusoidal thrust variations, with a maximal power increase of $\approx$ 5\% at $(St^\star, A^\star) = (0.25, 1.5)$. In order to put the technical feasibility of these parameters into context, note that a Strouhal number $St = 0.25$ corresponds here to a sine wave period of $\approx$ 50 s for a turbine with diameter $D = 100$ m and a freestream velocity $U_\infty = 8.5$ m s$^{-1}$. Furthermore, although higher than the $\ctmax$ applied in the optimal control cases of the previous chapter, the resulting maximum thrust coefficient of 3.5 could e.g. be attained by an NREL 5MW rotor with a 50\% increase in chord length (see \cite{goit2015optimal}, Appendix A). Figure~\ref{fig:sinus_baseline}b illustrates normalized power extraction by row for the reference case, the best sinusoidal case, and the first four rows of the optimal control case C3t5 from previous chapter. The figure shows that the power gain in the sinusoidal cases originates mostly from the second row, and that power in the first row is decreased by approximately 5\%. In contrast, optimal control case C3t5, in which all rows are active, also increases power in rows 3 and 4, and reduces first-row power by only 1\%. 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{chapters/analysis_induction_control/gains_turbulent_6D_6D_6D_wide_inphase2.eps}
-	\caption{Power extraction of baseline sinusoidal thrust case ($S = 6D$, $z_0/H = 10^{-4}$). \emph{a) } Relative gain in mean wind-farm power extraction over reference case as a function of sine amplitude $A$ and frequency $St$. \emph{b) } Row-averaged mean power extraction for the best sinusoidal case, the optimal control case C3t5 from Chapter~\ref{ch:opt_induction}, and the reference case, normalized by first-row reference power.\label{fig:sinus_baseline} }
+	\caption[Power extraction of baseline sinusoidal thrust case.]{Power extraction of baseline sinusoidal thrust case ($S = 6D$, $z_0/H = 10^{-4}$). \emph{a) } Relative gain in mean wind-farm power extraction over reference case as a function of sine amplitude $A$ and frequency $St$. \emph{b) } Row-averaged mean power extraction for the best sinusoidal case, the optimal control case C3t5 from Chapter~\ref{ch:opt_induction}, and the reference case, normalized by first-row reference power.\label{fig:sinus_baseline} }
 \end{figure}
 
 Figure~\ref{fig:vorticity_parametersweep} illustrates instantaneous vorticity and axial velocities for a set of wind turbines of the aforementioned reference case (a), the best sinusoidal case with $(St, A) = (St^\star, A^\star)= (0.25, 1.5)$ (b), and a sinusoidal case which does not lead to increased power extraction with $(St, A) = (0.6, 2)$ (c). The figure illustrates that sinusoidal variations in the first-row thrust coefficient indeed cause periodic shedding of vortex rings. Figure~\ref{fig:vorticity_parametersweep}b shows that, at the optimal frequency, this leads to increased wake mixing, providing the second-row turbine with a higher incoming velocity. In contrast, Figure~\ref{fig:vorticity_parametersweep}c shows that, even though higher frequency thrust oscillations also result in periodic shedding of vortex rings, this does not automatically lead to more favorable flow conditions for downstream turbines. 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{chapters/analysis_induction_control/pumpcases2.eps}
-	\caption{Snapshots of wind-farm flow fields at t = 1 800 s. \emph{Left: } Isocontours of vorticity, colored by streamwise velocity. \emph{Right: } Contours of streamwise velocity. \emph{a)} Reference. \emph{b)} Best sinusoidal case, with $(St , A) = (St^\star, A^\star) = (0.25, 1.5)$. \emph{c)} Sinusoidal case with $(St, A) = (0.6, 2)$ \label{fig:vorticity_parametersweep}  }
+	\caption[Snapshots of wind-farm flow fields at t = 1 800 s.]{Snapshots of wind-farm flow fields at t = 1 800 s. \emph{Left: } Isocontours of vorticity, colored by streamwise velocity. \emph{Right: } Contours of streamwise velocity. \emph{a)} Reference. \emph{b)} Best sinusoidal case, with $(St , A) = (St^\star, A^\star) = (0.25, 1.5)$. \emph{c)} Sinusoidal case with $(St, A) = (0.6, 2)$ \label{fig:vorticity_parametersweep}  }
 \end{figure}
 
 In order to assess whether the same strategy can be used in the downstream turbines as well, Figure~\ref{fig:sinus_row2} illustrates the results from an identical parameter sweep as discussed above, except that here the second turbine row is controlled using a sinusoidal thrust coefficient. Figure~\ref{fig:sinus_row2}a indicates that sinusoidal actuation of the second row invariably leads to losses in wind-farm power. Figure ~\ref{fig:sinus_row2}b  shows that, for the optimal combination of parameters of  $(St, A) = (0.25, 1.5)$ as reported for first-row actuation above, the minor power increase in the third row does not compensate for additional losses in the second and fourth row. This shows that the proposed simple control strategy does not work when applied to waked turbines, and that more elaborate control strategies are required to harness the gains achieved by the optimal control simulation in the downstream regions of the farm. 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{chapters/analysis_induction_control/gains_row22.eps}
-	\caption{Power extraction of second-row sinusoidal thrust case . \emph{a) } Relative gain in mean wind-farm power extraction over reference case as a function of sine amplitude $A$ and frequency $St$. \emph{b) } Row-averaged mean power extraction for the sinusoidal case with the optimal parameters as for row 1 sinusoidal thrust, and the reference case, normalized by first-row reference power.\label{fig:sinus_row2} }
+	\caption[Power extraction of second-row sinusoidal thrust case.]{Power extraction of second-row sinusoidal thrust case. \emph{a) } Relative gain in mean wind-farm power extraction over reference case as a function of sine amplitude $A$ and frequency $St$. \emph{b) } Row-averaged mean power extraction for the sinusoidal case with the optimal parameters as for row 1 sinusoidal thrust, and the reference case, normalized by first-row reference power.\label{fig:sinus_row2} }
 \end{figure}
 
 It is interesting to note that, even though the current parameter sweep is performed using different initial and inlet conditions, the optimal frequency of sinusoidal variations in $\cthat$ at $St^\star = f D / U_\infty = 0.25$ corresponds to the location of the peak in the first-row thrust coefficient spectrum in Figure~\ref{fig:spectra_thrust_cthat}. This suggests that the current vortex-shedding mechanism is related to the flow-invariant characteristics for increasing power reported in Figure~\ref{fig:scrambled}. 
@@ -170,14 +170,14 @@ Figure~\ref{fig:sinus_spacing} illustrates the power extraction resulting from t
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{chapters/analysis_induction_control/gains_combined2.eps}
-	\caption{Power extraction of sinusoidal thrust cases with varying streamwise spacing. \emph{Top} (\emph{a,b}): Decreased spacing at $S = 5D$. \emph{Bottom} (\emph{c,d}): Increased spacing at $S = 7D$.  \emph{Left} (\emph{a,c}): Relative gain in mean wind-farm power extraction over reference case as a function of sine amplitude $A$ and frequency $St$. \emph{Right} (\emph{b,d}): Row-averaged mean power extraction for the best sinusoidal case and the reference case, normalized by first-row reference power. \label{fig:sinus_spacing} }
+	\caption[Power extraction of sinusoidal thrust cases with varying streamwise spacing.]{Power extraction of sinusoidal thrust cases with varying streamwise spacing. \emph{Top} (\emph{a,b}): Decreased spacing at $S = 5D$. \emph{Bottom} (\emph{c,d}): Increased spacing at $S = 7D$.  \emph{Left} (\emph{a,c}): Relative gain in mean wind-farm power extraction over reference case as a function of sine amplitude $A$ and frequency $St$. \emph{Right} (\emph{b,d}): Row-averaged mean power extraction for the best sinusoidal case and the reference case, normalized by first-row reference power. \label{fig:sinus_spacing} }
 \end{figure}
 
 Figure~\ref{fig:sinus_roughness} depicts the power extraction results from a parameter sweep with the same wind-farm layout as in the baseline case, but with a tenfold increase in roughness length, i.e. $z_0 = 10^{-3}H$. This results in a turbulence intensity of $\approx$ 16\%, compared to $\approx$ 10\% in the baseline case. Again, the best parameter combination of $(St^\star, A^\star) = (0.25, 1.5)$ remains unchanged. Further, even for this higher turbulence case, in which downstream losses are lower due to naturally better wake mixing, power is significantly increased in the second row, leading to a relative gain in wind-farm power of around 2\%. 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{chapters/analysis_induction_control/gains_turbulent_6D_6D_6D_wide_antiphase_z0_1m2.eps}
-	\caption{Power extraction of sinusoidal thrust case with increased wall roughness $z_0/H = 10^{-3}$. \emph{a) } Relative gain in mean wind-farm power extraction over reference case as a function of sine amplitude $A$ and frequency $St$. \emph{b) } Row-averaged mean power extraction for the best sinusoidal case and the reference case, normalized by first-row reference power.\label{fig:sinus_roughness} }
+	\caption[Power extraction of sinusoidal thrust case with increased wall roughness $z_0/H = 10^{-3}$.]{Power extraction of sinusoidal thrust case with increased wall roughness $z_0/H = 10^{-3}$. \emph{a) } Relative gain in mean wind-farm power extraction over reference case as a function of sine amplitude $A$ and frequency $St$. \emph{b) } Row-averaged mean power extraction for the best sinusoidal case and the reference case, normalized by first-row reference power.\label{fig:sinus_roughness} }
 \end{figure}
 
 %\begin{figure}
@@ -196,7 +196,7 @@ Figure~\ref{fig:sinus_fullscale} shows the power extraction of the full-scale te
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{chapters/analysis_induction_control/gains_fullscale.eps}
-	\caption{Power extraction of full-scale sinusoidal thrust case ($S = 6D$, $z_0/H = 10^{-4}$). \emph{a) } Relative gain in mean wind-farm power extraction over reference case as a function of sine amplitude $A$ and frequency $St$. \emph{b) } relative gain in mean power extraction for the first four rows. \emph{c) } Row-averaged mean power extraction for the best sinusoidal case, the optimal control case C3t5 from Chapter~\ref{ch:opt_induction}, and the reference case, normalized by first-row reference power.\label{fig:sinus_fullscale} }
+	\caption[Power extraction of full-scale sinusoidal thrust case ($S = 6D$, $z_0/H = 10^{-4}$).]{Power extraction of full-scale sinusoidal thrust case ($S = 6D$, $z_0/H = 10^{-4}$). \emph{a) } Relative gain in mean wind-farm power extraction over reference case as a function of sine amplitude $A$ and frequency $St$. \emph{b) } relative gain in mean power extraction for the first four rows. \emph{c) } Row-averaged mean power extraction for the best sinusoidal case, the optimal control case C3t5 from Chapter~\ref{ch:opt_induction}, and the reference case, normalized by first-row reference power.\label{fig:sinus_fullscale} }
 \end{figure}
 
 The top panel of Figure~\ref{fig:cross_section_sinus} shows cross sections of time-averaged axial velocities $\widetilde{U}_x$ at the rotor disk locations for the reference case. Further, the middle and bottom panel illustrate deviations from the reference velocity for the $(St^\star, A^\star)$ sinusoidal case and the optimal control case C3t5 respectively.  The figure shows that both controlled cases show similar characteristics at the second turbine row, with an increased axial velocity at the rotor disk, accompanied by decreased velocities above and below. Downstream, it can be seen that the passive turbines of the sinusoidal case fail to retain increased velocities at the rotor disks, instead resulting in slightly lower disk velocities starting from the fifth row. In contrast, case C3t5, in which all turbines are actively controlled, succeeds to attain similar cross section characteristics with higher rotor velocities in the downstream as well. 
@@ -206,7 +206,7 @@ The current strategy hence succeeds in increasing total farm power for relativel
 \begin{figure}
 		\centering
 		\includegraphics[width=\textwidth]{chapters/analysis_induction_control/frontviews_allc3t5.eps}
-		\caption{Cross section of time-averaged axial velocity $\widetilde{U}_x$ at rotor locations in rows 1, 2, 3, 4, 5, and 12. \emph{Top: } Reference case. \emph{Middle: } Difference between best sinusoidal perturbation case (with $A = 1.5$, $St = 0.25$) and reference case. \emph{Bottom: } Difference between optimal control case C3t5 and reference case. Coloring is in units of m s$^{-1}$. \label{fig:cross_section_sinus}}
+		\caption[Cross section of time-averaged axial velocity $\widetilde{U}_x$ at rotor locations in rows 1, 2, 3, 4, 5, and 12.]{Cross section of time-averaged axial velocity $\widetilde{U}_x$ at rotor locations in rows 1, 2, 3, 4, 5, and 12. \emph{Top: } Reference case. \emph{Middle: } Difference between best sinusoidal perturbation case (with $A = 1.5$, $St = 0.25$) and reference case. \emph{Bottom: } Difference between optimal control case C3t5 and reference case. Coloring is in units of m s$^{-1}$. \label{fig:cross_section_sinus}}
 \end{figure}
 
 As shown throughout the current section, a qualitative analysis of instantaneous flow features in the optimal induction control wind farm from Chapter~\ref{ch:opt_induction} has led to the identification of a sinusoidal thrust control strategy for first-row turbines, resulting in increased power extraction in the second row. In contrast to earlier work on steady axial induction control, for which power gains have often been marginal or non-existent, the current analysis resulted in a robust axial induction control strategy with significant power gains, independent of specific local flow conditions. To the best knowledge of the author, this is the first time that optimal control simulations of wind farms are used to come up with simple control strategies, hence marking an important step towards practical dynamic axial induction control for increased power extraction. However, important comments should be made. First, sustained sinusoidal thrust variations with a large amplitude could contribute significantly to turbine fatigue loading. Hence, structural aspects should be taken into account upon evaluating the practical viability of the approach. Second, even though experiments have shown that, for practically relevant tip speed ratios, wind turbines shed vortices in a similar way as disk-like bluff bodies \citep{medici2006measurements}, the current behavior could still be an artifact of the relatively simple ADM used throughout this study. Further verification using higher fidelity wind turbine models, such as actuator line models, and wind-tunnel testing is hence necessary. 
