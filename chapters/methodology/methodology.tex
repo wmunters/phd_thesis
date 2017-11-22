@@ -25,7 +25,7 @@ Figure~\ref{fig:les_field} illustrates a snapshot of a wind-farm LES using typic
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{chapters/methodology/les_field.eps}
-	\caption{Snapshot of streamwise velocity of a typical wind-farm LES used in this thesis. Turbines are shown as gray actuator disks. Wakes are rendered as 3D volumetric structures. \emph{Left: } Full wind-farm flow field. \emph{Right: } close-up of flow field indicated in by blue lines on left. Details of simulation setup correspond to Table~\ref{tab:setup_params_ind}. \label{fig:les_field}}
+	\caption[Snapshot of streamwise velocity of a typical wind-farm LES used in this thesis.]{Snapshot of streamwise velocity of a typical wind-farm LES used in this thesis. Turbines are shown as gray actuator disks. Wakes are rendered as 3D volumetric structures. \emph{Left: } Full wind-farm flow field. \emph{Right: } close-up of flow field indicated in by blue lines on left. Details of simulation setup correspond to Table~\ref{tab:setup_params_ind}. \label{fig:les_field}}
 \end{figure}
 
 \section{Actuator disk wind turbine model}\label{sec:meth_adm}
@@ -55,7 +55,7 @@ A slight difference of the current ADM with the aforementioned studies of \cite{
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{chapters/methodology/visualize_R.eps}
-	\caption{Visualization of geometric footprint $\R$ of actuator disk turbine with yaw angle $\theta_i = 45^\circ$ on LES grid. \emph{a)} Topview. \emph{b)} Cross-section through rotor plane. Coloring normalized by maximum value of $\R$. \label{fig:Rkernel}}
+	\caption[Visualization of geometric footprint $\R$ of actuator disk turbine with yaw angle $\theta_i = 45^\circ$ on LES grid.]{Visualization of geometric footprint $\R$ of actuator disk turbine with yaw angle $\theta_i = 45^\circ$ on LES grid. \emph{a)} Topview. \emph{b)} Cross-section through rotor plane. Coloring normalized by maximum value of $\R$. \label{fig:Rkernel}}
 \end{figure}
 
 \subsection{Wind turbine power extraction}
@@ -93,7 +93,7 @@ As shown in Figure~\ref{fig:ct_cpct}, $C_P$ achieves a maximum at the well-known
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/meth_ct_ctprime_cp.eps}
-	\caption{Thrust coefficient $C_T$ (\emph{a}) and power coefficient $C_P$ (\emph{b}) as a function of modified thrust coefficient $C_T'$ for a steady turbine based on 1D momentum theory.}
+	\caption[Thrust coefficient $C_T$ and power coefficient $C_P$ as a function of modified thrust coefficient $C_T'$ for a steady turbine based on 1D momentum theory.]{Thrust coefficient $C_T$ (\emph{a}) and power coefficient $C_P$ (\emph{b}) as a function of modified thrust coefficient $C_T'$ for a steady turbine based on 1D momentum theory.}
 	\label{fig:ct_cpct}
 \end{figure}
 
@@ -132,7 +132,7 @@ Although most operations in the flow solver are performed in Fourier space, a tr
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{chapters/methodology/physicalfourierpng.eps}
-	\caption{Planview in the logarithmic region of instantaneous streamwise component of the velocity field for a typical high Reynolds number wall-bounded turbulent flow. The simulation setup corresponds to the precursor simulations used in Chapter~\ref{ch:opt_induction}, further detailed in Table~\ref{tab:setup_params_ind}. \emph{a)} Physical space velocity $\tilde{u}_x (x, y, z=0.1H)$. \emph{b)} Amplitude of Fourier modal velocity $\vert \hat{u} \vert (k_x, k_y, z=0.1H)$ \label{fig:physical_fourier}}
+	\caption[Planview in the logarithmic region of instantaneous streamwise component of the velocity field for a typical high Reynolds number wall-bounded turbulent flow.]{Planview in the logarithmic region of instantaneous streamwise component of the velocity field for a typical high Reynolds number wall-bounded turbulent flow. The simulation setup corresponds to the precursor simulations used in Chapter~\ref{ch:opt_induction}, further detailed in Table~\ref{tab:setup_params_ind}. \emph{a)} Physical space velocity $\tilde{u}_x (x, y, z=0.1H)$. \emph{b)} Amplitude of Fourier modal velocity $\vert \hat{u} \vert (k_x, k_y, z=0.1H)$ \label{fig:physical_fourier}}
 \end{figure}
 
 The horizontal projection of the solution field onto periodic Fourier modes implies that the discrete governing equations are solved on a domain of infinite horizontal extent with periodic boundary conditions at the lateral domain boundaries. However, a so-called fringe region technique can be used in order to impose non-cyclic inflow conditions without breaking global periodicity, further elaborated in Section~\ref{sec:meth_fringe}. Unless explicitly stated otherwise, the top boundary is treated with a stress-free condition, emulating a fixed ABL height at the top of the domain. At the bottom boundary an impermeable wall stress boundary condition is imposed, relating the wall stress to the wall-parallel velocity consistent with log-law behavior at the first gridpoint away from the wall \citep{bou2005scale, calaf2010large}. 
@@ -178,7 +178,7 @@ The inflow conditions $\bs{u}_{\text{in}}$ in \eqref{eq:fringeforcing} themselve
 \begin{figure}[t]
 	\centering
 	\includegraphics[width = \textwidth,trim= 0cm 4.4cm 0cm 5cm,clip]{chapters/methodology/lambda_fringefunction.eps}
-	\caption{Example of a fringe masking function $\lambda(x)$, defined by Equation \eqref{eq:lambda}, with parameters $x_{s} = 0.8L_x$, $x_{e} = L_x$, $\Delta_{s} = 0.1L_x$ and $\Delta_{e} = 0.05L_x$.}
+	\caption[Example of a fringe masking function $\lambda(x)$.]{Example of a fringe masking function $\lambda(x)$, defined by Equation \eqref{eq:lambda}, with parameters $x_{s} = 0.8L_x$, $x_{e} = L_x$, $\Delta_{s} = 0.1L_x$ and $\Delta_{e} = 0.05L_x$.}
 	\label{fig:lambda}
 \end{figure}	
 
@@ -205,7 +205,7 @@ Figure~\ref{fig:grid_partitioning} illustrates the strategies for decomposing th
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{figures/meth_slab_pencil.eps}
-	\caption{Simulation grid partitioning and associated communication patterns during two-dimensional (inverse) Fourier transforms. \emph{a)} One-dimensional slab decomposition with $N_p = 8$. \emph{b)} Two-dimensional pencil decomposition with $N_p = 8$, $N_{px} = 4$, and $N_{py} = 2$. \label{fig:grid_partitioning}}
+	\caption[Simulation grid partitioning and associated communication patterns during two-dimensional (inverse) Fourier transforms.]{Simulation grid partitioning and associated communication patterns during two-dimensional (inverse) Fourier transforms. \emph{a)} One-dimensional slab decomposition with $N_p = 8$. \emph{b)} Two-dimensional pencil decomposition with $N_p = 8$, $N_{px} = 4$, and $N_{py} = 2$. \label{fig:grid_partitioning}}
 \end{figure}
 
 \subsubsection{Slab decomposition} 
@@ -227,7 +227,7 @@ Figure~\ref{fig:strongscaling}a shows the walltime per timestep as a function of
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{figures/meth_strong_scaling.eps}
-	\caption{Strong scaling plot for SP-Wind solver using a grid with $512 \times 256 \times 256$ grid points. \emph{a)} Walltime per timestep within Runge-Kutta time integration. \emph{b)} Parallel efficiency in comparison to single-node slab decomposition. The dashed green line indicates the maximum amount of processor cores on which a solver with a slab decomposition can run.\label{fig:strongscaling}}
+	\caption[Strong scaling plot for SP-Wind solver using a grid with $512 \times 256 \times 256$ grid points.]{Strong scaling plot for SP-Wind solver using a grid with $512 \times 256 \times 256$ grid points. \emph{a)} Walltime per timestep within Runge-Kutta time integration. \emph{b)} Parallel efficiency in comparison to single-node slab decomposition. The dashed green line indicates the maximum amount of processor cores on which a solver with a slab decomposition can run.\label{fig:strongscaling}}
 \end{figure}
 
 \subsection{Processor mapping \& intranode communication}\label{sec:meth_par_map}
@@ -238,7 +238,7 @@ Alternatively, one could abandon the aim of balancing all communications and foc
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{figures/meth_balanced_intranode.eps}
-	\caption{Performance of processor distribution strategies for a pencil decomposition. \emph{a)} Walltime per timestep. \emph{b)} Speedup of intranode strategies over  balanced distribution. Errorbars indicate a 95$\%$ confidence interval. \label{fig:balanced_intranode}}
+	\caption[Performance of processor distribution strategies for a pencil decomposition.]{Performance of processor distribution strategies for a pencil decomposition. \emph{a)} Walltime per timestep. \emph{b)} Speedup of intranode strategies over  balanced distribution. Errorbars indicate a 95$\%$ confidence interval. \label{fig:balanced_intranode}}
 \end{figure}
 
 Figure~\ref{fig:balanced_intranode} illustrates the performance of the abovementioned approaches on a wide range of node counts. As shown in Figure~\ref{fig:balanced_intranode}b, a significant overall speedup in the order of $10 - 20\%$ can be achieved when choosing intranode $\verb|MPI_COMM_Y|$ communicators over a balanced processor distribution. This is not the case for intranode $\verb|MPI_COMM_X|$ communicators: the increased cost of internode $\verb|MPI_COMM_Y|$ communication seems to annul the intranode cost reduction. The results presented here indicate the importance of considering both code characteristic and hardware topology when optimizing code scalability. All further simulations throughout this work apply pencil decomposition parallelism with intranode $\verb|MPI_COMM_Y|$ communicators.
