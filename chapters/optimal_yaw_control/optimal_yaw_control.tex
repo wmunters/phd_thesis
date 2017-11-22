@@ -37,7 +37,7 @@ Simulations are initialized as follows: for the turbulent inflow case, a fully-d
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/domain_rast_RC.eps}
-	\caption{Planview at hub height $z_h$ of initial conditions for optimal control cases. \emph{a)} Uniform and steady inflow. \emph{b)} Turbulent inflow. Colors represent instantaneous streamwise velocity $\widetilde{u}_x$ in m s$^{-1}$. The black lines represent wind turbine locations. The black dashed line indicates the start of the fringe region. R1 -- R4 and C1 -- C4 indicate the numbering convention used for turbine rows and columns respectively. \label{fig:initial_conditions_flow_yaw}}
+	\caption[Planview at hub height $z_h$ of initial conditions for optimal control cases.]{Planview at hub height $z_h$ of initial conditions for optimal control cases. \emph{a)} Uniform and steady inflow. \emph{b)} Turbulent inflow. Colors represent instantaneous streamwise velocity $\widetilde{u}_x$ in m s$^{-1}$. The black lines represent wind turbine locations. The black dashed line indicates the start of the fringe region. R1 -- R4 and C1 -- C4 indicate the numbering convention used for turbine rows and columns respectively. \label{fig:initial_conditions_flow_yaw}}
 \end{figure}
 
 \subsubsection{Control cases}
@@ -103,7 +103,7 @@ Figure~\ref{fig:convergence} illustrates the typical convergence behavior within
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/convergence_cost_pde.eps}
-	\caption{Typical convergence behavior within an optimization window for uniform inflow. \emph{a) }: Cost functional $\mathscr{J}$. \emph{b) }: PDE evaluations (forward or adjoint). Markers represent every fifteenth iteration step.\label{fig:convergence}}
+	\caption[Typical convergence behavior within an optimization window for uniform inflow.]{Typical convergence behavior within an optimization window for uniform inflow. \emph{a) }: Cost functional $\mathscr{J}$. \emph{b) }: PDE evaluations (forward or adjoint). Markers represent every fifteenth iteration step.\label{fig:convergence}}
 \end{figure}
 
 \subsection{Uniform inflow}\label{sec:opt_yaw_uniform}
@@ -112,7 +112,7 @@ Figure~\ref{fig:convergence} illustrates the typical convergence behavior within
 	
 	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/flow_field_lam.eps}
-		\caption{Instantaneous planviews at hub height for uniform inflow cases R, Y, I3, and I3Y at $t= 450$ s. \emph{Top: } Streamwise velocity. \emph{Bottom: } Wall-normal vorticity. \label{fig:flowfield_uniform}}
+		\caption[Instantaneous planviews at hub height for uniform inflow cases R, Y, I3, and I3Y at $t= 450$ s.]{Instantaneous planviews at hub height for uniform inflow cases R, Y, I3, and I3Y at $t= 450$ s. \emph{Top: } Streamwise velocity. \emph{Bottom: } Wall-normal vorticity. \label{fig:flowfield_uniform}}
 	\end{figure}
 	
 	First, time-averaged power extraction and wind-farm efficiency are compared between cases. Second, yaw characteristics of the yaw-enabled control cases Y, Y5, I2Y, and I3Y are discussed. Time evolution of yaw angles are shown, and two distinct yawing regimes are identified. Finally, the induction characteristics of induction-enabled cases I2, I3, I2Y, and I3Y are shortly presented.
@@ -128,7 +128,7 @@ Figure~\ref{fig:convergence} illustrates the typical convergence behavior within
 	
 	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/power_row_lam_eff.eps}
-		\caption{Wind-farm power extraction. \emph{a) } Row-averaged power, normalized by first-row power of reference case R. \emph{b) } Wind-farm efficiency $\eta_{\text{farm}}$ compared to situation in which all turbines are first-row turbines of R case. Errorbars indicate confidence intervals of $\pm$ 2 standard deviations and are calculated using the procedure detailed in Appendix~\ref{ch:app_variance}. \label{fig:power_uniform}}
+		\caption[Wind-farm power extraction and efficiency for uniform inflow.]{Wind-farm power extraction. \emph{a) } Row-averaged power, normalized by first-row power of reference case R. \emph{b) } Wind-farm efficiency $\eta_{\text{farm}}$ compared to situation in which all turbines are first-row turbines of R case. Errorbars indicate confidence intervals of $\pm$ 2 standard deviations and are calculated using the procedure detailed in Appendix~\ref{ch:app_variance}. \label{fig:power_uniform}}
 	\end{figure}
 	
 	\subsubsection{B. Yaw characteristics}
@@ -138,7 +138,7 @@ Figure~\ref{fig:convergence} illustrates the typical convergence behavior within
 	\begin{figure}
 	%	\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/power_angle_ctfilt_lam.eps}
 		\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/power_yaw_lam.eps}	
-		\caption{Time evolution of uniform inflow yaw-enabled cases. \emph{Top: } Turbine power extraction $P$, normalized by mean first row power in the uncontrolled reference $\overline{P}_{R1}^R$. \emph{Bottom: } Yaw angle $\theta$. Line colors indicate different turbine columns as indicated in Figure~\ref{fig:initial_conditions_flow_yaw} ({\color{C1} C1}, {\color{C2} C2}, {\color{C3} C3}, {\color{C4} C4}), i.e. every line represents a single wind turbine. \label{fig:dynamic_uniform}}
+		\caption[Time evolution of uniform inflow yaw-enabled cases.]{Time evolution of uniform inflow yaw-enabled cases. \emph{Top: } Turbine power extraction $P$, normalized by mean first row power in the uncontrolled reference $\overline{P}_{R1}^R$. \emph{Bottom: } Yaw angle $\theta$. Line colors indicate different turbine columns as indicated in Figure~\ref{fig:initial_conditions_flow_yaw} ({\color{C1} C1}, {\color{C2} C2}, {\color{C3} C3}, {\color{C4} C4}), i.e. every line represents a single wind turbine. \label{fig:dynamic_uniform}}
 	\end{figure}
 	
 	Turning to the time evolution of the yaw angle $\theta$, a first observation is that, although the 4 columns of the considered wind farm are statistically equivalent in the reference case, their behavior in an optimal control setting is heterogeneous. For example, for case Y, the first-row behavior of the yaw angle $\theta$ seems to exhibit a bifurcation between 2 limit cycles. On the one hand, the first-row turbines in columns C1, C2, and C3 initially oscillate around the flow-aligned yaw angle of $0^\circ$, triggering a \emph{wake meandering} type of motion. Column C4 on the other hand directly turns to a misaligned yaw angle of $30^\circ$, after which it shows some minor high frequency yaw oscillations. As shown in panel Y of Figure~\ref{fig:flowfield_uniform}, the former wake meandering mechanism mainly acts on increased wake spreading in the lateral direction, and enhances recovery by increasing the contact area between the wake and its surroundings. Turbine row 2 and 3 show more complex oscillations, with additional variability in response to the unsteadiness in local flow conditions. In contrast, the first-row yaw misalignment in column C4 creates a more shallow wake which is \emph{redirected} such that it just misses the downstream turbine. Downstream rows 2 and 3 exhibit some minor oscillations around a yaw misalignment angle of $\approx 17^\circ$, causing further yaw redirection downstream. Since there is no further downstream potential for wake mixing or redirection, the final row consistently shows a yaw angle aligned with the mean flow. Similar time evolutions of the yaw angle are observed for column C2 of combined yaw--induction case I2Y. In cases I3Y and Y5, the wake meandering regime seems to be virtually non-existent and wake redirection is dominant, except for the initial stage of the first-row turbine in column C2. In summary, two distinct and relatively simple mechanisms for power increase through yaw control are found: on the one hand a \emph{dynamic} wake meandering regime is identified, and on the other hand a \emph{static} wake redirection regime is observed. These mechanisms are further analyzed below.
@@ -150,7 +150,7 @@ Figure~\ref{fig:convergence} illustrates the typical convergence behavior within
 	
 	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/frontview_yaw.eps}
-		\caption{Time-averaged cross-sectional views of streamwise velocity $\widetilde{u}_x$ for case Y at a distance $D/2$ upstream of the downstream turbines in column C4. Arrows represent the projection of the velocity vector on the cross-sectional plane. Dashed white lines indicate turbine rotor locations. \label{fig:cross_section}}
+		\caption[Time-averaged cross-sectional views of streamwise velocity $\widetilde{u}_x$ for case Y at a distance $D/2$ upstream of the downstream turbines in column C4.]{Time-averaged cross-sectional views of streamwise velocity $\widetilde{u}_x$ for case Y at a distance $D/2$ upstream of the downstream turbines in column C4. Arrows represent the projection of the velocity vector on the cross-sectional plane. Dashed white lines indicate turbine rotor locations. \label{fig:cross_section}}
 	\end{figure}
 	
 	\paragraph{Dynamic yaw regime - wake meandering}
@@ -158,7 +158,7 @@ Figure~\ref{fig:convergence} illustrates the typical convergence behavior within
 	
 	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/PSD_laminar.eps}
-		\caption{Row-averaged power spectral density estimate of yaw angle $\theta$ as a function of Strouhal number $St = f D/U_\infty$. Spectra of different rows are shifted vertically for clarity. Horizontal dashed lines indicate identical reference values for each row.\label{fig:spec_uniform}}
+		\caption[Row-averaged power spectral density estimate of yaw angle $\theta$ as a function of Strouhal number $St = f D/U_\infty$.]{Row-averaged power spectral density estimate of yaw angle $\theta$ as a function of Strouhal number $St = f D/U_\infty$. Spectra of different rows are shifted vertically for clarity. Horizontal dashed lines indicate identical reference values for each row.\label{fig:spec_uniform}}
 	\end{figure}
 	
 	
@@ -167,7 +167,7 @@ Figure~\ref{fig:convergence} illustrates the typical convergence behavior within
 	\begin{figure}
 		%	\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/power_angle_ctfilt_lam.eps}
 		\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/power_ctfilt_lam_bw.eps}	
-		\caption{Time evolution of column C1 in uniform inflow induction-enabled cases. \emph{Top: } Turbine power extraction $P$, normalized by mean first row power in the uncontrolled reference $\overline{P}_{R1}^R$. \emph{Bottom: } Thrust coefficient $\widehat{C}_T'$. \label{fig:dynamic_ctfilt}}
+		\caption[Time evolution of column C1 in uniform inflow induction-enabled cases.]{Time evolution of column C1 in uniform inflow induction-enabled cases. \emph{Top: } Turbine power extraction $P$, normalized by mean first row power in the uncontrolled reference $\overline{P}_{R1}^R$. \emph{Bottom: } Thrust coefficient $\widehat{C}_T'$. \label{fig:dynamic_ctfilt}}
 	\end{figure}
 	
 	Also the thrust coefficient dynamics vary significantly between different cases: the first-row thrust coefficients of I2 and I3 exhibit periodic oscillatory traits, and the downstream rows of these cases show somewhat more chaotic dynamics in response to unsteady flow conditions resulting from upstream actuation. Note that the period associated with this periodicity corresponds to the window length, i.e. 150 s, hence indicating that these cases are reacting to finite-horizon effects. 
@@ -182,7 +182,7 @@ Figure~\ref{fig:convergence} illustrates the typical convergence behavior within
 	Figure~\ref{fig:flowfield_turb} illustrates snapshots of instantaneous streamwise velocity and wall-normal vorticity at hub height at t = 450 s for the reference case R, yawing case Y, overinductive case I3, and combined yaw--overinductive case I3Y. In comparison to the uniform inflow set in Figure~\ref{fig:flowfield_uniform}, the ambient turbulence introduces background vorticity and already destabilizes turbine wakes even in the reference case. Furthermore, wake behavior is much more chaotic and, although traces of wake redirection can be observed for cases Y and I3Y, differences between the flow fields of different cases are far less obvious than in uniform inflow. 
 	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/flow_field_turb.eps}
-		\caption{Instantaneous planviews at hub height for turbulent inflow cases at $t= 450$ s. \emph{Top: } Streamwise velocity. \emph{Bottom: } Wall-normal vorticity. \label{fig:flowfield_turb}}
+		\caption[Instantaneous planviews at hub height for turbulent inflow cases at $t= 450$ s.]{Instantaneous planviews at hub height for turbulent inflow cases at $t= 450$ s. \emph{Top: } Streamwise velocity. \emph{Bottom: } Wall-normal vorticity. \label{fig:flowfield_turb}}
 	\end{figure}
 	
 	Similar to the presentation of uniform inflow results in the previous section, firstly power extraction and wind-farm efficiency are illustrated, after which the induction characteristics of inductive cases are shown. Finally, the yaw and power characteristics of the yaw-enabled control cases are described.
@@ -194,7 +194,7 @@ Figure~\ref{fig:convergence} illustrates the typical convergence behavior within
 	
 	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/power_row_turb_eff.eps}
-		\caption{Wind-farm power extraction. \emph{a) } Column-averaged power per row, normalized by first-row power of reference case R. \emph{b) } Wind-farm efficiency $\eta_{\text{farm}}$ compared to situation in which all turbines are first-row turbines of R case. Errorbars indicate confidence intervals of $\pm$ 2 standard deviations and are calculated using the procedure detailed in Appendix~\ref{ch:app_variance}. \label{fig:power_turb}}
+		\caption[Wind-farm power extraction for turbulent inflow.]{Wind-farm power extraction. \emph{a) } Column-averaged power per row, normalized by first-row power of reference case R. \emph{b) } Wind-farm efficiency $\eta_{\text{farm}}$ compared to situation in which all turbines are first-row turbines of R case. Errorbars indicate confidence intervals of $\pm$ 2 standard deviations and are calculated using the procedure detailed in Appendix~\ref{ch:app_variance}. \label{fig:power_turb}}
 	\end{figure}
 	
 	\subsubsection{B. Yaw characteristics}
@@ -202,19 +202,19 @@ Figure~\ref{fig:convergence} illustrates the typical convergence behavior within
 	\begin{figure}
 		%	\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/power_angle_ctfilt_lam.eps}
 		\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/power_yaw_turb.eps}	
-		\caption{Time evolution of uniform inflow yaw-enabled cases. \emph{Top: } Turbine power extraction $P$, normalized by mean first row power in the uncontrolled reference $\overline{P}_{R1}^R$. \emph{Bottom: } Yaw angle $\theta$. Line colors indicate different turbine columns as indicated in Figure~\ref{fig:initial_conditions_flow_yaw} ({\color{C1} C1}, {\color{C2} C2}, {\color{C3} C3}, {\color{C4} C4}), i.e. every line represents a single wind turbine. \label{fig:dynamic_turb}}
+		\caption[Time evolution of turbulent inflow yaw-enabled cases.]{Time evolution of turbulent inflow yaw-enabled cases. \emph{Top: } Turbine power extraction $P$, normalized by mean first row power in the uncontrolled reference $\overline{P}_{R1}^R$. \emph{Bottom: } Yaw angle $\theta$. Line colors indicate different turbine columns as indicated in Figure~\ref{fig:initial_conditions_flow_yaw} ({\color{C1} C1}, {\color{C2} C2}, {\color{C3} C3}, {\color{C4} C4}), i.e. every line represents a single wind turbine. \label{fig:dynamic_turb}}
 	\end{figure}
 
 	Figure~\ref{fig:cross_section_turb} illustrates time-averaged cross sections of streamwise velocity just upstream of the column C4 turbines for reference case R and yawing case Y. Although wake redirection is complicated by the unsteady inflow, similar deflected and curl-shaped wakes with counter-rotating vortex pairs can be observed for case Y, albeit less explicit than in uniform inflow. Similar characteristics were observed for the other yawing cases Y5, I2Y, and I3Y (not further shown here). Given this information, a similar simplified steady yaw redirection case Ystat was defined, based on the same yaw angles as in the uniform inflow set, i.e. 30$^\circ$, 17$^\circ$, and 17$^\circ$ in rows 1, 2, and 3 respectively. Figure~\ref{fig:power_turb}b illustrates that, although steady yaw control succesfully increases wind-farm efficiency to 66\%, this value is surpassed significantly by the dynamic yawing cases presented above.
 	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/frontview_yaw_turb.eps}
-		\caption{Time-averaged cross-sectional views of streamwise velocity $\widetilde{u}_x$ at a distance $D/2$ upstream of the downstream turbines in column C4. Arrows represent the projection of the velocity vector on the cross-sectional plane. Dashed white lines indicate turbine rotor locations. \label{fig:cross_section_turb}}
+		\caption[Time-averaged cross-sectional views of streamwise velocity $\widetilde{u}_x$ at a distance $D/2$ upstream of the downstream turbines in column C4.]{Time-averaged cross-sectional views of streamwise velocity $\widetilde{u}_x$ at a distance $D/2$ upstream of the downstream turbines in column C4. Arrows represent the projection of the velocity vector on the cross-sectional plane. Dashed white lines indicate turbine rotor locations. \label{fig:cross_section_turb}}
 	\end{figure}
 
 	Figure~\ref{fig:spec_turbulent} shows power spectral densities of the yaw angle $\theta$. Although much less apparent than in the uniform inflow, faint local increases in some of the spectra around $St = 0.2$ can be seen. This raises the suspicion that also in the turbulent inflow case, for which wake meandering is already triggered naturally, the optimizer possibly reinforces meandering through yaw actuation in this frequency range. Therefore, an identical meandering case Ymndr, with on--off yaw control at a rate of $\omega = 0.3^\circ$ s$^{-1}$ in the first row was defined. However, Figure~\ref{fig:power_turb}b indicates that this strategy does not lead to an increase in wind-farm efficiency. 
 	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/PSD_turbulent.eps}
-		\caption{Row-averaged power spectral density estimate of yaw angle $\theta$ as a function of Strouhal number $St = f D/U_\infty$. Spectra of different rows are shifted vertically for clarity. Horizontal dashed lines indicate identical reference values for each row.\label{fig:spec_turbulent}}
+		\caption[Row-averaged power spectral density estimate of yaw angle $\theta$ as a function of Strouhal number $St = f D/U_\infty$.]{Row-averaged power spectral density estimate of yaw angle $\theta$ as a function of Strouhal number $St = f D/U_\infty$. Spectra of different rows are shifted vertically for clarity. Horizontal dashed lines indicate identical reference values for each row.\label{fig:spec_turbulent}}
 	\end{figure}
 	
 	\subsubsection{C. Induction characteristics}
@@ -222,7 +222,7 @@ Figure~\ref{fig:convergence} illustrates the typical convergence behavior within
 	\begin{figure}
 		%	\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/power_angle_ctfilt_lam.eps}
 		\includegraphics[width=\textwidth]{chapters/optimal_yaw_control/power_ctfilt_turb_bw.eps}	
-		\caption{Time evolution of column C1 in uniform inflow induction-enabled cases. \emph{Top: } Turbine power extraction $P$, normalized by mean first row power in the uncontrolled reference $\overline{P}_{R1}^R$. \emph{Bottom: } Thrust coefficient $\widehat{C}_T'$. \label{fig:dynamic_ctfilt_turb}}
+		\caption[Time evolution of column C1 in turbulent inflow induction-enabled cases.]{Time evolution of column C1 in turbulent inflow induction-enabled cases. \emph{Top: } Turbine power extraction $P$, normalized by mean first row power in the uncontrolled reference $\overline{P}_{R1}^R$. \emph{Bottom: } Thrust coefficient $\widehat{C}_T'$. \label{fig:dynamic_ctfilt_turb}}
 	\end{figure}
 	
 
