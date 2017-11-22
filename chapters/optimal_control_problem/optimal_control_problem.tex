@@ -14,7 +14,7 @@ Throughout the current work, the same approach to wind-farm control is followed 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\textwidth]{chapters/optimal_control_problem/figure1.eps}
-	\caption{Model-predictive control applied to wind farms. a) Conventional feedback MPC of a wind farm. b) Benchmark optimal control framework of a wind farm LES considered in the current study.}\label{fig:block_diag}
+	\caption[Model-predictive control approach applied to wind farms. Conventional MPC \& Benchmark optimal control framework applied in the current study.]{Model-predictive control applied to wind farms. a) Conventional feedback MPC of a wind farm. b) Benchmark optimal control framework of a wind farm LES considered in the current study.}\label{fig:block_diag}
 \end{figure}
 
 Similar to \cite{goit2015optimal}, we use a receding horizon optimization approach as shown in Figure~\ref{fig:drawing_receding_horizon}. Given a control time horizon $T$, controls are optimized to yield maximum energy extraction. Further details are provided in following sections. Part of the resulting optimal controls $\boldsymbol{\varphi}^{\bullet}$ are then used for a time period $T_A \leq T$, during which we advance the wind-farm LES system in time. Subsequently, control optimization over a new time horizon is initiated, and the process is repeated for each of the $N_w$ control windows in order to control wind-farm operation of the total time $T_{tot} = N_w T$. 
@@ -24,7 +24,7 @@ Note that, in a true optimal control setting, we aim to choose $T = T_{tot}$, re
 \begin{figure}[]
 	\centering
 	\includegraphics[width=0.65\linewidth]{chapters/optimal_control_problem/figure2.eps}
-	\caption{Receding horizon optimization framework for optimal control of wind farms. Figure adapted from \cite{goit2015optimal}.}
+	\caption[Receding horizon optimization framework for optimal control of wind farms.]{Receding horizon optimization framework for optimal control of wind farms. Figure adapted from \cite{goit2015optimal}.}
 	\label{fig:drawing_receding_horizon}
 \end{figure}
 
@@ -33,7 +33,7 @@ The flow advancement time $T_A$ is chosen based on a trade-off between limiting 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{chapters/optimal_control_problem/figure10.eps}
-	\caption{Dynamic behavior of optimized power extraction for case C3t0 from Chapter~\ref{ch:opt_induction}, normalized by a greedy control reference case (shown in gray). \emph{Top: } $T_A = T/2 = 120$ s. \emph{Bottom: } $T_A = T/4 = 60$ s. The dashed vertical lines indicate the flow advancement windows.\label{fig:T_A}}
+	\caption[Dynamic behavior of optimized power extraction for case C3t0 from Chapter~\ref{ch:opt_induction}, normalized by a greedy control reference case.]{Dynamic behavior of optimized power extraction for case C3t0 from Chapter~\ref{ch:opt_induction}, normalized by a greedy control reference case (shown in gray). \emph{Top: } $T_A = T/2 = 120$ s. \emph{Bottom: } $T_A = T/4 = 60$ s. The dashed vertical lines indicate the flow advancement windows.\label{fig:T_A}}
 \end{figure}
 
 
@@ -152,7 +152,7 @@ where $k$ denotes the iteration index, $\bs{d}_k$ is the current search directio
 	\begin{figure}
 		\centering
 		\includegraphics[width=\linewidth]{chapters/optimal_control_problem/figure5.eps}
-		\caption{Cost functional decrease as a function of PDE simulations for a non-linear CG and L--BFGS--B algorithm applied to a typical wind-farm optimization window. \emph{Filled circles: } LES, \emph{Open circles: } adjoint. }
+		\caption[Cost functional decrease as a function of PDE simulations for a non-linear CG and L--BFGS--B algorithm applied to a typical wind-farm optimization window.]{Cost functional decrease as a function of PDE simulations for a non-linear CG and L--BFGS--B algorithm applied to a typical wind-farm optimization window. \emph{Filled circles: } LES, \emph{Open circles: } adjoint. }
 		\label{fig:cg_bfgs}
 	\end{figure}
 	
@@ -286,14 +286,14 @@ where $k$ denotes the iteration index, $\bs{d}_k$ is the current search directio
 	
 	\begin{figure}[t]
 		\includegraphics[width=\textwidth]{chapters/optimal_control_problem/forward_v_adjoint.eps}
-	\caption{Solution fields for adjoint gradient verification test case at $t=150$ s. \emph{a)} Forward field $\tilde{u}_x$. \emph{b)} Adjoint field $\xi_x$. \label{fig:forwardfield_adjointfield}}
+	\caption[Solution fields for adjoint gradient verification test case at $t=150$ s.]{Solution fields for adjoint gradient verification test case at $t=150$ s. \emph{a)} Forward field $\tilde{u}_x$. \emph{b)} Adjoint field $\xi_x$. \label{fig:forwardfield_adjointfield}}
 	\end{figure}
 
 	Figure~\ref{fig:gradient_verification} illustrates the baseline controls $\bs{\varphi}$ around which the linearization is performed, as well as the adjoint gradient (full lines) compared to the finite difference gradient component approximations described above (dots). It can be seen from the figure that, throughout the entire time horizon, the gradient approximations match well. The overall relative error between both is about 2$\%$. Note that, although this error could be further reduced through grid refinement, we will show later that the current gradient accuracy is adequate for the optimizations considered in this work.
 	
 	\begin{figure}[b]
 		\includegraphics[width=\textwidth]{chapters/optimal_control_problem/gradient_verification.eps}
-		\caption{Adjoint gradient verification case. \emph{a)} Baseline controls around which linearization is performed. \emph{b)} Cost functional gradient. Full lines: adjoint, dots: finite-difference. \label{fig:gradient_verification}}
+		\caption[Adjoint gradient verification case.]{Adjoint gradient verification case. \emph{a)} Baseline controls around which linearization is performed. \emph{b)} Cost functional gradient. Full lines: adjoint, dots: finite-difference. \label{fig:gradient_verification}}
 	\end{figure}
 
 \section{Summary}\label{sec:opt_prob_summ}
