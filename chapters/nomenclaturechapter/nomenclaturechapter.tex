@@ -100,12 +100,12 @@
 	$k$  		& Turbulence kinetic energy\\
 	$k_x, k_y$	& Streamwise / spanwise wavenumber\\
 	$\Lagr$     & Lagrangian function\\
-	$m$			& Amount of retained vector pairs in L-BFGS Hessian approximation\\
+	$m$			& Amount of retained vectors in BFGS Hessian approximation\\
 	$N_{it}$    & Amount of optimization iterations\\
+	$N_p, N_{px}, N_{py}$ & Amount of processor cores in $\verb|MPI_COMM_WORLD, X, Y|$\\
 	$N_t$ 		& Amount of wind turbines\\
 	$N_w$		& Amount of optimization windows\\
 	$N_x, N_y, N_z$ & Gridpoints in streamwise, spanwise, vertical directions\\
-	$N_p, N_{px}, N_{py}$ & Processor cores in $\verb|MPI_COMM_WORLD, X, Y|$\\
 	$P_i$ 	    & Power extraction by turbine $i$\\
 	$P_O, P_R$  & Power extraction in optimized / reference case\\
 	$\ptilde$    & Filtered fluctuation pressure\\
@@ -132,9 +132,9 @@
 	$U$      	& Control Hilbert space\\
 	$U_\infty$ 	& Undisturbed free-stream velocity\\
 	$U_b$ 	 	& Bulk velocity\\
-	$\widetilde{U}$  	& Time-averaged mean velocity\\ 
+	$\widetilde{\bs{U}}$  	& Time-averaged mean velocity\\ 
 	$\ufilt$ 	& Filtered velocity $\ufilt = [\widetilde{u}_x, \widetilde{u}_y, \widetilde{u}_z]$\\
-	$\ufilt'$   & Fluctuating component of velocity $\ufilt' = \ufilt - \widetilde{U}$\\
+	$\ufilt'$   & Fluctuating component of velocity $\ufilt' = \ufilt - \widetilde{\bs{U}}$\\
 	$\hat{\bs{u}}$ &  Fourier components of $\ufilt$\\
 	$u_*$    	& Friction velocity\\
 	$\ufilt_{\rm in}$ & Velocity inlet conditions\\
