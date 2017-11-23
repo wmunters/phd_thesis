@@ -490,7 +490,7 @@ FUNCTION {format.names}
    numnames 'namesleft :=
      { namesleft #0 > }
      { s nameptr
-       "{vv~}{ll}{, jj}{, ff}" format.name$ cmd@author 't :=
+       "{vv~}{ll}{, f.}{, jj}" format.name$ cmd@author 't :=
        nameptr #1 >
          {
            namesleft #1 >
@@ -518,7 +518,7 @@ FUNCTION {format.names.ed}
    numnames 'namesleft :=
      { namesleft #0 > }
      { s nameptr
-       "{ff~}{vv~}{ll}{, jj}"
+       "{vv~}{ll}{, f.}{, jj}"
        format.name$ 't :=
        nameptr #1 >
          {
