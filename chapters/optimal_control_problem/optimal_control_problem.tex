@@ -53,7 +53,7 @@ The individual wind turbines are controlled dynamically in such a way as to acti
 \begin{equation}\label{eq:problem_thrust}
 \bs{f}_i(\bs{x}) = -\frac{1}{2} \ctihat V_i^2 A_i \R_i(\bs{x}) (\bs{e}_x \cos \theta_i + \bs{e}_y \sin \theta_i).
 \end{equation} 
-The control parameters for the turbine models were also introduced in Section~\ref{sec:meth_adm}, and consist of the thrust coefficient setpoint $\cti$ and yaw rate $\omega_i$ for every turbine $i = 1 \dots N_t$ in every discrete timestep, with shorthand notation $\bs{\varphi}(t) = [\ctn{1}(t), \dots, \ctn{N_t}(t), \omega_1(t), \dots, \omega_{N_t}(t)] = [\bs{C}_T'(t), \bs{\omega}(t)]$. The influence of these control parameters on the thrust force in \eqref{eq:problem_thrust} is governed by their influence on the thrust coefficient $\ctihat$ and yaw angle $\theta_i$ in the following set of ODEs:
+The control parameters for the turbine models were also introduced in Section~\ref{sec:meth_adm}, and consist of the thrust coefficient setpoint $\cti$ and yaw rate $\omega_i$ for every turbine $i = 1 \dots N_t$ in every discrete time step, with shorthand notation $\bs{\varphi}(t) = [\ctn{1}(t), \dots, \ctn{N_t}(t), \omega_1(t), \dots, \omega_{N_t}(t)] = [\bs{C}_T'(t), \bs{\omega}(t)]$. The influence of these control parameters on the thrust force in \eqref{eq:problem_thrust} is governed by their influence on the thrust coefficient $\ctihat$ and yaw angle $\theta_i$ in the following set of ODEs:
 \begin{align}
 \tau \ddt{\ctihat} &= \cti - \ctihat \label{eq:problem_timefilter_def},\\
 \ddt{\theta_i} &= \omega_i \label{eq:problem_omega_def}.
