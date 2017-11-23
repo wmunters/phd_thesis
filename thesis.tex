@@ -46,7 +46,7 @@
 %  \addcontentsline{toc}{chapter}{\nomname} %% comment to exclude from TOC
 %}
 %\makenomenclature%
-%
+%%
 %% for the list of abbreviations (comment out if you do not use the glossaries package
 %\usepackage{glossaries} % For list of abbreviations
 %\newcommand{\glossname}{List of Abbreviations}
@@ -89,6 +89,7 @@
 %\includeonly{introduction}
 
 \include{packages_and_commands}
+\usepackage{array}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -103,8 +104,8 @@
 \frontmatter % to get \pagenumbering{roman}
 
 %\includepreface{preface}
-%\includeabstract{abstract}
-%\includeabstractnl{abstractnl}
+\includeabstract{abstract}
+\includeabstractnl{abstractnl}
 
 %% To create a list of abbreviations, there are 2 options
 %% 1. manual creation of list of abbreviations and inclusion as a chapter
@@ -117,7 +118,8 @@
 %% 1. include a manually created nomenclature as a chapter
 \includenomenclature{nomenclaturechapter}
 %% 2. automatic generation via the nomencl package
-%%    \nomenclature[cB]{$c_B(\vec{x})$}{Characteristic function of $B$}
+%\nomenclature[cB]{$c_B(\vec{x})$}{Characteristic function of $B$}
+%\printnomenclature
 
 %
 \tableofcontents
@@ -128,13 +130,13 @@
 % MAIN MATTER
 \mainmatter 
 \includechapter{introduction}
-%\includechapter{methodology}
-%\includechapter{turbulent_inflow}
-%\includechapter{optimal_control_problem}
-%\includechapter{optimal_induction_control}
-%\includechapter{analysis_induction_control}
-%\includechapter{optimal_yaw_control}
-%\includechapter{conclusion}
+\includechapter{methodology}
+\includechapter{turbulent_inflow}
+\includechapter{optimal_control_problem}
+\includechapter{optimal_induction_control}
+\includechapter{analysis_induction_control}
+\includechapter{optimal_yaw_control}
+\includechapter{conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % APPENDICES
 \appendix
