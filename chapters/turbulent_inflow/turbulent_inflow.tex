@@ -386,9 +386,9 @@ Firstly, the method and its implementation in a pseudo-spectral discretization i
 	illustrated graphically in Figure~\ref{fig:topview_shift} for $d_s = \delta/2$ and $d_s = L_y/2$. The figure shows adjacent copies of velocity field planviews, shifted in the spanwise direction with the respective $d_s$ at the streamwise domain boundaries. The arrows illustrate where turbulent structures will be reintroduced after flowing through the domain. It can be observed from the figure that choosing $d_s = L_y/2$ results in structures arriving at the exact same spanwise location after only 2 flowthroughs.
 	
 	In practice, we propose to choose $d_s$ such that it flattens out the spanwise variations as quickly as possible. 
-	Therefore, we choose a value of $d_s = 0.5\delta$ since this is roughly equal to the spanwise lengthscale of the largest turbulent structures in the wall-bounded flows studied here \citep{tomkins2003spanwise, hutchins2007evidence,fang2015large}. 
+	Therefore, we choose a value of $d_s = 0.5\delta$ since this is roughly equal to the spanwise length scale of the largest turbulent structures in the wall-bounded flows studied here \citep{tomkins2003spanwise, hutchins2007evidence,fang2015large}. 
 	In this way, the large-scale structures gradually sweep the spanwise extent of the domain. 
-	Note that this lengthscale is dependent on factors such as Reynolds number and distance to the wall. 
+	Note that this length scale is dependent on factors such as Reynolds number and distance to the wall. 
 	Therefore, we verified that other values also yield satisfactory results with significant reductions in spanwise inhomogeneities (e.g. $d_s = \delta/4$, $\delta$, $3\delta/2$), provided that $d_s$ and $L_y$ have no ``small'' least common multiple.
 	
 	The spanwise domain boundaries are still treated with standard periodic boundary conditions. This allows us to reconstruct a continuous inflow plane at the streamwise inflow boundary since, after shifting, the portion of the outflow plane which falls out of range can now be remapped to the other side, as shown by the dashed arrows and the indicated flow structure in Figure~\ref{fig:concept}b. The methodology, although conceptually simple, leads to significant improvements in the spanwise homogeneity of time-averaged flow fields, as is shown below.
