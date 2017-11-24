@@ -209,7 +209,7 @@ The current section derives the adjoint equation for the adjoint yaw angle $\eta
 \Tint \bs{\gamma}_i \cdot \bigg\{ \bs{e}_x \sin \theta_i - \bs{e}_y \cos \theta_i  \bigg\} \delta \theta_i \dt + \Tint \ddt{\delta \theta_i} \eta_i \dt \\ 
 &= \Tint \bigg\{ -\ddt{\eta_i} + \etransi \cdot \bs{\gamma}_i   \bigg\} \dt,
 \end{align}
-Where partial integration on the time derivative is perform, and a terminal condition $\eta_i(T) = 0$ is applied, leading to vanishing boundary terms. This yields an ODE for $\eta_i$:
+Where partial integration on the time derivative is performed, and a terminal condition $\eta_i(T) = 0$ is applied, leading to vanishing boundary terms. This yields an ODE for $\eta_i$:
 \begin{equation}\label{eq:app_adj_eta_basic}
 - \ddt{\eta_i} = \bs{e}_{\parallel,i} \cdot \bs{\gamma}_i 
 \qquad\qquad \text{for } i=1\dots N_t.
