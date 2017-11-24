@@ -120,7 +120,7 @@ The current section discusses the derivation of the adjoint yaw angle Equation \
 
 
 \subsection{Adjoint disk velocity equation}
-The adjoint disk velocity equation for the adjoint variable $\chi_i$ is found by equating the functional derivative of the Lagrangian $\Lagr$ to the disk velocity $V_i$ to zero for $i = 1 \dots N_t$: 
+The adjoint disk velocity equation for the adjoint variable $\chi_i$ is found by expressing the functional derivative of the Lagrangian $\Lagr$ to the disk velocity $V_i$, and equalizing to zero for all possible variations $\delta V_i$, with $i = 1 \dots N_t$: 
 \begin{align}
 \Lagr_{V_i}(\delta V_i) = \innerproductsmall{\partial \Lagr / \partial V_i}{\delta V_i} &= \Tint -\frac{1}{2} a \ctihat 3 V_i^2 A_i \delta V_i \dt  \nonumber \\
 & \ \ + \Tint \frac{1}{2} \ctihat 2 V_i X_i  A_i \delta V_i \dt \nonumber \\
@@ -145,11 +145,11 @@ leading to a straightforward expression of the adjoint variable $\rho_i$:
  &= \frac{1}{2} \ctihat V_i \bigg(3aV_i \ufilt  -2 X_i \ufilt - V_i\bs{\xi} \bigg) \cdot \eperpi \qquad\qquad \text{for } i=1\dots N_t. \label{eq:rho_i}
 \end{align}
 
-\subsection{Adjoint perpendicular vector equation}
-
+\subsection{Adjoint rotor-perpendicular vector equation}
+Similar to the previous sections, the equation for the adjoint rotor-perpendicular vector $\bs{\gamma}_i$ is derived by expressing the derivative of the Lagrangian $\Lagr$ to $\eperpi$:
 {\small
 \begin{align}
-&\Lagr_{\R_i}(\delta \R_i) =\innerproductsmall {\partial \Lagr / \partial \eperpi}{\delta \eperpi} = \nonumber \\
+&\Lagr_{\eperpi}(\delta \eperpi) =\innerproductsmall {\partial \Lagr / \partial \eperpi}{\delta \eperpi} = \nonumber \\
 & \stint \frac{1}{2} \ctihat V_i^2 \R_i \bs{\xi} \cdot \delta \eperpi \dx \dt \nonumber \\
 & + \stint - \rho_i \times \nonumber \\
 & \qquad \bigg\{ \sint G(\bs{s} - \bs{x})  H\big[D/2 - \vert\vert \bs{s} - \bs{t}_i \vert\vert_2 \big]~\diracdelta'\big[(\bs{s} - \bs{t}_i) \cdot \eperpi \big]~(\bs{s} - \bs{t}_i) \cdot \delta \eperpi \ds \bigg\} \dx \dt \nonumber\\
@@ -185,14 +185,14 @@ Substituting the integrand back into Equation \eqref{eq:app_adj_der_partial}, an
 
 \noindent Substituting Equation \eqref{eq:subs_this} into Equation \eqref{eq:app_adj_perp1} for the functional derivative, along with the expressions for $\rho_i$ \eqref{eq:rho_i} and $\chi_i$ \eqref{eq:chi_i} yields:
 \begin{align}
-&\Lagr_{\R_i}(\delta \R_i) = \Tint \bs{\gamma}_i \cdot \delta \eperpi \dt \nonumber\\
+&\Lagr_{\eperpi}(\delta \eperpi) = \Tint \bs{\gamma}_i \cdot \delta \eperpi \dt \nonumber\\
 & - \stint \frac{1}{2} \ctihat V_i \bigg\{ 3a V_i \ufilt  - 2 X_i \ufilt - V_i\bs{\xi}   \bigg\} \R_i \cdot \delta \eperpi \dx \dt \nonumber \\
 & + \stint \frac{1}{2} \ctihat V_i \bigg\{ \bigg(3aV_i \ufilt  -2 X_i \ufilt - V_i\bs{\xi} \bigg) \cdot \eperpi \bigg\} \R_i \eperpi \cdot \delta \eperpi \ds \nonumber \\
 & - \stint \frac{1}{2} \ctihat V_i \bigg\{ \bigg(3aV_i \ufilt  -2 X_i \ufilt - V_i\bs{\xi} \bigg) \cdot \eperpi \bigg\} \bs{Q}_i \cdot \delta \eperpi \ds 
 \end{align}
 Since there is no rotor tilt, and the vectorial integrands of the second and third term are hence two-dimensional, their difference is simply the rotor-transversal component of the integrand, 
 \begin{align}
-&\Lagr_{\R_i}(\delta \R_i) = \Tint \bs{\gamma}_i \cdot \delta \eperpi \dt \nonumber\\
+&\Lagr_{\eperpi}(\delta \eperpi) = \Tint \bs{\gamma}_i \cdot \delta \eperpi \dt \nonumber\\
 & - \stint \frac{1}{2} \ctihat V_i \bigg\{ \bigg(3a V_i \ufilt  - 2 X_i \ufilt - V_i\bs{\xi} \bigg) \cdot \etransi   \bigg\} \R_i \etransi \cdot \delta \eperpi \dx \dt \nonumber \\
 & - \stint \frac{1}{2} \ctihat V_i \bigg\{ \bigg(3aV_i \ufilt  -2 X_i \ufilt - V_i\bs{\xi} \bigg) \cdot \eperpi \bigg\} \bs{Q}_i \cdot \delta \eperpi \ds 
 \end{align}
