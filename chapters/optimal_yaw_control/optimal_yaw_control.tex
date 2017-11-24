@@ -42,7 +42,7 @@ Simulations are initialized as follows: for the turbulent inflow case, a fully-d
 
 \subsubsection{Control cases}
 
-For each set of simulations, a steady reference case (R) with $C_T' = 2$ and $\omega = 0^\circ$/s is considered. Further, a first yaw control case (Y) is defined, with a steady $C_T'=2$, but turbines are allowed to yaw dynamically at a maximum rate of $\omega^{\text{max}} = 0.3^\circ$/s, corresponding to the maximum yaw rate of the conceptual NREL 5MW and the DOWEC 6MW turbines \citep{jonkman2009definition, kooijman2003dowec}. In addition, a second yaw control case (Y5) is constructed, for which a higher maximum yaw rate of $\omega^{\text{max}} = 5^\circ$/s is selected. Although this significantly exceeds the capabilities of the abovementioned turbine design concepts, this case will allows to assess whether significant gains in power could be achieved by rapidly yawing turbine designs, such as low-inertia two-bladed teeter hinge wind turbines \citep{kim2014yaw}. 
+For each set of simulations, a steady reference case (R) with $C_T' = 2$ and $\omega = 0^\circ s^{-1}$ is considered. Further, a first yaw control case (Y) is defined, with a steady $C_T'=2$, but turbines are allowed to yaw dynamically at a maximum rate of $\omega^{\text{max}} = 0.3^\circ s^{-1}$, corresponding to the maximum yaw rate of the conceptual NREL 5MW and the DOWEC 6MW turbines \citep{jonkman2009definition, kooijman2003dowec}. In addition, a second yaw control case (Y5) is constructed, for which a higher maximum yaw rate of $\omega^{\text{max}} = 5^\circ s^{-1}$ is selected. Although this significantly exceeds the capabilities of the abovementioned turbine design concepts, this case will allows to assess whether significant gains in power could be achieved by rapidly yawing turbine designs, such as low-inertia two-bladed teeter hinge wind turbines \citep{kim2014yaw}. 
 
 Also, two induction control cases are considered, in which turbines can adapt their thrust coefficient $C_T'$ with a characteristic time scale $\tau = 5$ s: an underinductive case (I2, with $\ctmax = 2$), and an overinductive case (I3, with $\ctmax = 3$). Finally, for both the latter cases, also the option of combining dynamic induction control with the yaw control of case Y is considered, defining the yaw--induction cases I2Y and I3Y respectively. The cases investigated in this study are summarized in Table~\ref{tab:case_definition}. 
 
@@ -76,7 +76,7 @@ Also, two induction control cases are considered, in which turbines can adapt th
 		Flow advancement time window 	& \multicolumn{4}{l}{$T_A = 150$ s}\\
 		Total operation time         	& \multicolumn{4}{l}{$T_{tot} = 900$ s (6 windows)}\\
 		& & & & \\	
-		\textbf{Cases} & \  & $C_{T,\text{min}}'$ & $C_{T,\text{max}}'$ & $\omega_{\text{max}}$ [$^\circ/s$] \\ 
+		\textbf{Cases} & \  & $C_{T,\text{min}}'$ & $C_{T,\text{max}}'$ & $\omega_{\text{max}}$ [$^\circ s^{-1}$] \\ 
 		Reference & (R)    &  2 & 2 & 0   \\ 
 		Yaw control & (Y)   &  2 & 2 & \textbf{0.3} \\ 
 		Fast yaw control & (Y5)   &  2 & 2 &\textbf{5}   \\ 
