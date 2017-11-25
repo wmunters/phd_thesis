@@ -2,7 +2,7 @@ Figures that could be converted to black and white
 PRINT = Keep in current form, simply print black and white
 CONVERT = Figure converted to black and white 
 
-1.5
+CONVERT 1.5
 2.2
 2.8
 2.9
