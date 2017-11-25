@@ -1,0 +1,22 @@
+Figures that could be converted to black and white
+PRINT = Keep in current form, simply print black and white
+CONVERT = Figure converted to black and white 
+
+1.5
+2.2
+2.8
+2.9
+3.2
+3.4
+3.8
+3.9
+3.13
+3.17
+3.22
+3.23
+4.2
+4.4
+4.7
+5.3
+7.12
+
