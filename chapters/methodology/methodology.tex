@@ -237,7 +237,7 @@ As mentioned above, a pencil decomposition provides an additional degree of free
 Alternatively, one could abandon the aim of balancing all communications and focus on minimizing the cost of either the $\verb|MPI_COMM_X|$ or the $\verb|MPI_COMM_Y|$ steps by exploiting the hardware topology. On modern HPC infrastructure, MPI communication between processes residing on the same computational node (\emph{intranode} communication) can be performed at a significantly lower cost than communication that has to go over the interconnect network between different nodes (\emph{internode} communication). Hence, for the given cluster with 28 cores per node, we can exploit this by judiciously mapping process ranks to selected cores, and choosing $N_{px} = 28$ or $N_{py} = 28$ in order to obtain either intranode $\verb|MPI_COMM_X|$ or intranode $\verb|MPI_COMM_Y|$ communicators. As shown in Figure~\ref{fig:grid_partitioning}b, this either results in an intranode YX transpose (for intranode $\verb|MPI_COMM_X|$), or in intranode ZY and XZ transposes (for intranode $\verb|MPI_COMM_Y|$). 
 
 \begin{figure}
-	\includegraphics[width=\textwidth]{figures/meth_balanced_intranode.eps}
+	\includegraphics[width=\textwidth]{figures/meth_balanced_intranode_bw.eps}
 	\caption[Performance of processor distribution strategies for a pencil decomposition.]{Performance of processor distribution strategies for a pencil decomposition. \emph{a)} Walltime per time step. \emph{b)} Speedup of intranode strategies over  balanced distribution. Errorbars indicate a 95$\%$ confidence interval. \label{fig:balanced_intranode}}
 \end{figure}
 
