@@ -13,7 +13,7 @@ Throughout the current work, the same approach to wind-farm control is followed 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{chapters/optimal_control_problem/figure1.eps}
+	\includegraphics[width=0.95\textwidth]{chapters/optimal_control_problem/figure1.eps}
 	\caption[Model-predictive control approach applied to wind farms. Conventional MPC \& Benchmark optimal control framework applied in the current study.]{Model-predictive control applied to wind farms. a) Conventional feedback MPC of a wind farm. b) Benchmark optimal control framework of a wind farm LES considered in the current study.}\label{fig:block_diag}
 \end{figure}
 
@@ -23,7 +23,7 @@ Note that, in a true optimal control setting, we aim to choose $T = T_{tot}$, re
 
 \begin{figure}[]
 	\centering
-	\includegraphics[width=0.65\linewidth]{chapters/optimal_control_problem/figure2_bw.eps}
+	\includegraphics[width=0.8\linewidth]{chapters/optimal_control_problem/figure2_bw.eps}
 	\caption[Receding horizon optimization framework for optimal control of wind farms.]{Receding horizon optimization framework for optimal control of wind farms. Figure adapted from \cite{goit2015optimal}.}
 	\label{fig:drawing_receding_horizon}
 \end{figure}
@@ -123,6 +123,8 @@ where $k$ denotes the iteration index, $\bs{d}_k$ is the current search directio
 	
 	Assuming that $\Jtilde_k = \Jtilde(\bs{\varphi}_k) \equiv \Jtilde(\bs{\varphi}_{k-1} + \alpha_{k-1} \bs{d}_{k-1})$ is known at the start of iteration $k$ from the line search in iteration $k-1$, within each iteration the gradient $\nabla \Jtilde_k = \nabla \Jtilde (\bs{\varphi}_k)$ is to be calculated only once to determine the step direction $\bs{d}_k$. Subsequently, each subiteration of the line-search algorithm requires one additional functional evaluation $\Jtilde(\bs{\varphi}_k + \alpha \bs{d}_k)$.
 
+	\pagebreak
+
 	\subsection{Limited-memory BFGS method with Bounds support\\(L--BFGS--B)}
 	It has been shown for turbulent flow optimization that the inclusion of curvature information as in quasi-Newton methods can lead to a significant computational cost reduction in terms of functional and gradient evaluations \citep{nita2016efficiency}. The limited-memory BFGS method with bounds support (L--BFGS--B) algorithm developed by \cite{byrd1995limited} is a widely used quasi-Newton method, suitable for the constrained optimization problem at hand. 
 	
@@ -151,7 +153,7 @@ where $k$ denotes the iteration index, $\bs{d}_k$ is the current search directio
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{chapters/optimal_control_problem/figure5.eps}
+		\includegraphics[width=\linewidth]{chapters/optimal_control_problem/figure5_bw.eps}
 		\caption[Cost functional decrease as a function of PDE simulations for a non-linear CG and L--BFGS--B algorithm applied to a typical wind-farm optimization window.]{Cost functional decrease as a function of PDE simulations for a non-linear CG and L--BFGS--B algorithm applied to a typical wind-farm optimization window. \emph{Filled circles: } LES, \emph{Open circles: } adjoint. }
 		\label{fig:cg_bfgs}
 	\end{figure}
@@ -183,7 +185,9 @@ where $k$ denotes the iteration index, $\bs{d}_k$ is the current search directio
 	The remainder of the current section focuses on the conceptual derivation of the adjoint equations associated with the given optimal control problem. Although the concrete elaboration of this derivation is relatively straightforward, it is also lengthy. For case of readability and brevity, we focus here on the concept, and discuss the concrete derivation of non-standard terms that are original contributions of the author in Appendix~\ref{ch:app_adj_der}.
 
 	\subsection{Continuous adjoint method}
-	In the current dissertation, the continuous adjoint method is used to circumvent the explicit evaluation of the state variation $\delta \bs{q}$ incurred by control variations when evaluating the cost functional gradient $\nabla \Jtilde$ defined in the previous section. The formal Lagrangian approach \citep{troltzsch, borzinschulz} allows to derive the adjoint equations by postulating vanishing gradients of the Lagrangian function with respect to the state variables $\bs{q}$. The following explanation largely follows the derivation from \cite{goit2015optimal}, Appendix C. The Lagrangian is constructed by adding the state constraints $\bs{B}(\bs{\varphi}, \bs{q})$ to the cost functional through the use of Lagrange multipliers, or \emph{adjoint} variables, $\bs{q}^*$:
+	In the current dissertation, the continuous adjoint method is used to circumvent the explicit evaluation of the state variation $\delta \bs{q}$ incurred by control variations when evaluating the cost functional gradient $\nabla \Jtilde$ defined in the previous section. The formal Lagrangian approach \citep{troltzsch, borzinschulz} allows to derive adjoint equations by postulating vanishing gradients of the Lagrangian with respect to the state variables $\bs{q}$. The following explanation largely follows the derivation from \cite{goit2015optimal}, Appendix~C.
+	
+	The Lagrangian is constructed by adding the state constraints $\bs{B}(\bs{\varphi}, \bs{q})$ to the cost functional through the use of Lagrange multipliers, or \emph{adjoint} variables, $\bs{q}^*$:
 	\begin{equation}
 		\Lagr(\bs{\varphi}, \bs{q}, \bs{q}^*) = \J(\bs{\varphi}, \bs{q}) + \innerproduct{\bs{q}^*}{\bs{B}(\bs{\varphi}, \bs{q})}
 	\end{equation} 
@@ -284,15 +288,15 @@ where $k$ denotes the iteration index, $\bs{d}_k$ is the current search directio
 	
 	Figure~\ref{fig:forwardfield_adjointfield} illustrates snapshots of both the forward and adjoint solutions at hub height. From Figure~\ref{fig:forwardfield_adjointfield}b it can be seen that the adjoint field starts out as streamtubes from the turbines indicating where immediate changes in the cost function originate, and transitions to a chaotic field after some upstream distance. 
 	
-	\begin{figure}[t]
+	\begin{figure}
 		\includegraphics[width=\textwidth]{chapters/optimal_control_problem/forward_v_adjoint.eps}
 	\caption[Solution fields for adjoint gradient verification test case at $t=150$ s.]{Solution fields for adjoint gradient verification test case at $t=150$ s. \emph{a)} Forward field $\tilde{u}_x$. \emph{b)} Adjoint field $\xi_x$. \label{fig:forwardfield_adjointfield}}
 	\end{figure}
 
 	Figure~\ref{fig:gradient_verification} illustrates the baseline controls $\bs{\varphi}$ around which the linearization is performed, as well as the adjoint gradient (full lines) compared to the finite difference gradient component approximations described above (dots). It can be seen from the figure that, throughout the entire time horizon, the gradient approximations match well. The overall relative error between both is about 2$\%$. Note that, although this error could be further reduced through grid refinement, we will show later that the current gradient accuracy is adequate for the optimizations considered in this work.
 	
-	\begin{figure}[b]
-		\includegraphics[width=\textwidth]{chapters/optimal_control_problem/gradient_verification.eps}
+	\begin{figure}
+		\includegraphics[width=0.975\textwidth]{chapters/optimal_control_problem/gradient_verification.eps}
 		\caption[Adjoint gradient verification case.]{Adjoint gradient verification case. \emph{a)} Baseline controls around which linearization is performed. \emph{b)} Cost functional gradient. Full lines: adjoint, dots: finite-difference. \label{fig:gradient_verification}}
 	\end{figure}
 
