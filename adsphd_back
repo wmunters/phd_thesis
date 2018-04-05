@@ -1356,7 +1356,7 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
   \fi
   %
   % Place the title and subtitle
-  \begin{textblock*}{135mm}(17.5mm+#1,050mm)
+  \begin{textblock*}{135mm}(17.5mm+#1,100mm)
   \textblockcolour{}
   \vspace{-\parskip}
   \raggedright
@@ -1372,13 +1372,6 @@ De appendices kunnen desgevallend worden gebundeld in een apart boekdeel.
   \coverfontsize{14}{19}\selectfont\sffamily\textbf{\@authorf\ \@authorl}
   \end{flushright}
   \end{textblock*}
-
-  \begin{textblock*}{135mm}(17.5mm+#1,80mm)
-   \textblockcolour{}
-   \begin{center}
-   \includegraphics*[width=125mm]{coverimg}   
-   \end{center}
-   \end{textblock*}
   %
   % Place the fullfilment text
   \begin{textblock*}{67.5mm}(85mm+#1,185mm)
